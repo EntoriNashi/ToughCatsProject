@@ -58,12 +58,22 @@ public class PlayerController : MonoBehaviour, IDamage
     public int JumpMax => jumpMax;
     public int ShootDistance => shootDistance;
     public float ShootRate => shootRate;
-    public int ShootDamage => shootDamage; 
+    public int ShootDamage => shootDamage;
+
+    private void Start()
+    {
+        SpawnPlayer();
+    }
 
     private void Update()
     {
         Movement();
         Sprint();
+
+        if(Input.GetButton("Shoot") && !isShooting)
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     void Movement()
@@ -109,11 +119,40 @@ public class PlayerController : MonoBehaviour, IDamage
         if (CurrentHP <= 0)
         {
             //kill player and respawn
+            //gameManager.instance.youLose();
         }
     }
 
     public void HealPlayer(int amount)
     {
         CurrentHP += amount;
+    }
+
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance))
+        {
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            if (damageable != null)
+            {
+                damageable.takeDamage(ShootDamage);
+            }
+        }
+
+        yield return new WaitForSeconds(ShootRate);
+
+        isShooting = false;
+    }
+
+    public void SpawnPlayer()
+    {
+        characterController.enabled = false;
+        CurrentHP = MaxHP;
+        //transform.position = gameManager.instance.playerSpawnPosition.transform.position;
+        characterController.enabled = true;
     }
 }

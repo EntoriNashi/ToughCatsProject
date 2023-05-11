@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b50c1f69466054b9418f42c7cd0e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 0
-  sensVert: 0
-  lockVerMin: 0
-  lockVerMax: 0
+  sensHor: 300
+  sensVert: 300
+  lockVerMin: -90
+  lockVerMax: 90
   invertY: 0
 --- !u!20 &5536566303889084613
 Camera:
