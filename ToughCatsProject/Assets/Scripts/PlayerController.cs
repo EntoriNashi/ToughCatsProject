@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (CurrentHP <= 0)
         {
             //kill player and respawn
-            //gameManager.instance.youLose();
+            gameManager.instance.youLose();
         }
     }
 
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         characterController.enabled = false;
         CurrentHP = MaxHP;
-        //transform.position = gameManager.instance.playerSpawnPosition.transform.position;
+        transform.position = gameManager.instance.playerSpawnPOS.transform.position;
         characterController.enabled = true;
     }
 }

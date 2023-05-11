@@ -8617,22 +8617,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2340182871736468476, guid: 535ca6b22ff6c924e9920e48d26226a4, type: 3}
   m_PrefabInstance: {fileID: 1056171557}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1057387097 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5536566305096996014, guid: 01c04b2cb9cb48f4098faddf447fa117, type: 3}
-  m_PrefabInstance: {fileID: 1528278995}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1057387102 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5536566305096996011, guid: 01c04b2cb9cb48f4098faddf447fa117, type: 3}
-  m_PrefabInstance: {fileID: 1528278995}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057387097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d8fb7ad00cc284b8d6f3c9408b4a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1061728138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15755,42 +15739,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3826156913939914721, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1057387097}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: enemyType
-      value: 
-      objectReference: {fileID: 5795768673988804308, guid: c8da48810819f334ba0fb4fcd03c8ddb, type: 3}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: waveDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: enemyCount
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 196901227}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: playerScript
-      value: 
-      objectReference: {fileID: 1057387102}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: playerSpawnPOS
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
-      propertyPath: secBetweenSpawns
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3955344149464752074, guid: f580346034967b6448e9e9e645059c78, type: 3}
       propertyPath: m_Name
       value: UI

@@ -28,8 +28,8 @@ public class gameManager : MonoBehaviour
     
 
     int enemiesRemaining;
-    bool isPaused;
-    float timeScaleOrig;
+    public bool isPaused;
+    public float timeScaleOrig;
     int WaveCout;
     int numOfWaves;
 
@@ -74,6 +74,14 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(3);
+        activeMenu = WinMenu;
+        activeMenu.SetActive(true);
+        pauseState();
+    }
+
     public void youLose()
     {
         pauseState();
@@ -81,6 +89,7 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
     }
 
+    //Updated enemiesRemaining and if there are no more enemies, starts the advanceWave routine
     public void enemyDefeatedCounter()
     {
         enemiesRemaining--;
@@ -90,6 +99,7 @@ public class gameManager : MonoBehaviour
         }
     }
     
+    //initialize sets numOfWaves and WaveCount, and starts the advanceWave routine
     void startWave()
     {
         numOfWaves = 5;
@@ -98,14 +108,7 @@ public class gameManager : MonoBehaviour
         StartCoroutine(advanceWave());
     }
 
-    IEnumerator youWin()
-    {
-        yield return new WaitForSeconds(3);
-        activeMenu = WinMenu;
-        activeMenu.SetActive(true);
-        pauseState();
-    }
-
+    //Spawns an amount (enemyCount) of objects (enemyType)  with a delay between spawning (secBetweenSpans)
     IEnumerator SpawnEnemy()
     {
         for (int spawnCount = 0; spawnCount < enemyCount; spawnCount++)
@@ -116,6 +119,8 @@ public class gameManager : MonoBehaviour
         }
     }
 
+
+    //Delays wave advacement(waveDelay), increase WaveCount, and decides if to start another wave or start the win routine
     IEnumerator advanceWave()
     {
         yield return new WaitForSeconds(waveDelay);
