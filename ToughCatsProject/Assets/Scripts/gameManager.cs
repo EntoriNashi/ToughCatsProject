@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
-    public PlayerController playerScript;
+    public playerController playerScript;
     public GameObject playerSpawnPOS;
 
     [Header("*----- UI Stuff -----*")]
@@ -37,7 +37,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
+        playerScript = player.GetComponent<playerController>();
         playerSpawnPOS = GameObject.FindGameObjectWithTag("Player Spawn POS");
         timeScaleOrig = Time.timeScale;
         startWave();
