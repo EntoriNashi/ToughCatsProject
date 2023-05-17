@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class playerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController characterController;
@@ -73,6 +73,14 @@ public class playerController : MonoBehaviour, IDamage
         if(Input.GetButton("Shoot") && !isShooting)
         {
             StartCoroutine(Shoot());
+        }
+        else if (Input.GetButtonDown("Grenade"))
+        {
+            Debug.Log("Throwing grenade!");
+        }
+        else if (Input.GetButtonDown("Melee"))
+        {
+            Debug.Log("High five to the face!");
         }
     }
 
