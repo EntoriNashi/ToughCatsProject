@@ -14,6 +14,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamWaitTime;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2,300)][SerializeField] int shootDist;
@@ -23,29 +25,53 @@ public class enemyAI : MonoBehaviour, IDamage
 
     Color colorOrig;
     bool isShooting;
-    Vector3 playerDir;
+    bool destinationChosen;
     bool playerInRange;
+    Vector3 playerDir;
+    Vector3 startingPos;
     float angleToPlayer;
+    float stoppingDistOrg;
 
     // Start is called before the first frame update
     void Start()
     {
         colorOrig = model.material.color;
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        stoppingDistOrg = agent.stoppingDistance;
+        startingPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if (playerInRange && !canSeePlayer())
         {
-            //StartCoroutine(shoot());
+            StartCoroutine(roam());
         }
-        else
+        else if (agent.destination != gameManager.instance.player.transform.position)
         {
-            StartCoroutine(antiIdleEnemy());
+            StartCoroutine (roam());
         }
         
+    }
+
+    IEnumerator roam()
+    {
+        if(!destinationChosen && agent.remainingDistance < .05f)
+        {
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamWaitTime);
+            destinationChosen = false;
+
+            Vector3 randPos = Random.insideUnitSphere * roamDist;
+            randPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
+
+            agent.SetDestination(hit.position);
+        }
+
     }
 
     public void takeDamage(int dmg)
@@ -123,12 +149,4 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator antiIdleEnemy()
-    {
-        if(agent.destination != gameManager.instance.player.transform.position)
-        {
-            yield return new WaitForSeconds(10);
-            agent.SetDestination(gameManager.instance.player.transform.position);
-        }
-    }
 }
