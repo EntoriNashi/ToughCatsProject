@@ -8,6 +8,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animator;
+    [SerializeField] Transform headPos;
     
 
     [Header("----- Enemy Stats -----")]
@@ -16,6 +18,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamWaitTime;
+    [SerializeField] int animTransSpeed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2,300)][SerializeField] int shootDist;
@@ -31,6 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     float angleToPlayer;
     float stoppingDistOrg;
+    float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +47,8 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+        animator.SetFloat("Speed", speed);
         if (playerInRange && !canSeePlayer())
         {
             StartCoroutine(roam());
@@ -77,6 +83,7 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        animator.SetTrigger("Damage");
         StartCoroutine(flashColor());
 
         if (HP <= 0) 
@@ -114,6 +121,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.stoppingDistance = stoppingDistOrg;
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     facePlayer();
@@ -124,6 +132,7 @@ public class enemyAI : MonoBehaviour, IDamage
             }
 
         }
+        agent.stoppingDistance = 0;
         return false;
     }
 
@@ -145,7 +154,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false; ;
+            playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
