@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
-    [SerializeField] CharacterController characterController;
+    [SerializeField] CharacterController controller;
+    [SerializeField] MeshFilter gunModel;
+    [SerializeField] MeshRenderer gunMaterial;
 
     [Header("----- Player Attributes -----")]
-    [SerializeField][Range(1, 10)] int currentHP;
+    [SerializeField][Range(1, 10)] int HP;
     [SerializeField][Range(1, 10)] int maxHP;
     [SerializeField][Range(1, 5)] float playerSpeed;
     [SerializeField][Range(2, 5)] float sprintMod;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(1, 3)] int jumpMax;
 
     [Header("----- Weapon Attributes -----")]
+    public List<GunStats> gunList = new List<GunStats>();
     [SerializeField][Range(2, 300)] int shootDistance;
     [SerializeField][Range(0.1f, 3)] float shootRate;
     [SerializeField][Range(1, 10)] int shootDamage;
@@ -28,112 +31,64 @@ public class PlayerController : MonoBehaviour, IDamage
     private int jumpedTimes;
     private bool isSprinting;
     private bool isShooting;
-
-    //Properties
-    public int CurrentHP { 
-        get
-        {
-            return currentHP;
-        }
-        set
-        {
-            if(value < 0)
-            {
-                currentHP = 0;
-            }else if(value > maxHP)
-            {
-                currentHP = maxHP;
-            }
-            else
-            {
-                currentHP = value;
-            }
-        }
-    }
-    public int MaxHP => maxHP;
-    public float PlayerSpeed => playerSpeed;
-    public float SprintMod => sprintMod;
-    public float JumpHeight => jumpHeight;
-    public float GravityValue => gravityValue;
-    public int JumpMax => jumpMax;
-    public int ShootDistance => shootDistance;
-    public float ShootRate => shootRate;
-    public int ShootDamage => shootDamage;
+    private int selectedGun;
 
     private void Start()
     {
         SpawnPlayer();
+        HP = maxHP;
     }
 
-    private void Update()
+    void Update()
     {
-        Movement();
-        Sprint();
+        if(gameManager.instance.activeMenu == null)
+        {
+            Movement();
+            SelectGun();
+            if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0)
+            {
+                StartCoroutine(Shoot());
+            }
+        }
 
-        if(Input.GetButton("Shoot") && !isShooting)
-        {
-            StartCoroutine(Shoot());
-        }
-        else if (Input.GetButtonDown("Grenade"))
-        {
-            Debug.Log("Throwing grenade!");
-        }
-        else if (Input.GetButtonDown("Melee"))
-        {
-            Debug.Log("High five to the face!");
-        }
+        Sprint();        
     }
 
-    void Movement()
+    private void Movement()
     {
-        groundedPlayer = characterController.isGrounded;
-        if(groundedPlayer && playerVelocity.y < 0)
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
         {
-            playerVelocity.y = 0;
+            playerVelocity.y = 0f;
             jumpedTimes = 0;
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        characterController.Move(move * Time.deltaTime * PlayerSpeed);
+        controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (Input.GetButtonDown("Jump") && jumpedTimes < JumpMax)
+        // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         {
             jumpedTimes++;
-            playerVelocity.y = JumpHeight;
+            playerVelocity.y = jumpHeight;
         }
 
-        playerVelocity.y -= GravityValue * Time.deltaTime;
-        characterController.Move(playerVelocity * Time.deltaTime);
+        playerVelocity.y -= gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    void Sprint()
+    private void Sprint()
     {
         if (Input.GetButtonDown("Sprint"))
         {
             isSprinting = true;
-            playerSpeed *= SprintMod;
+            playerSpeed *= sprintMod;
         }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            isSprinting = false;
-            playerSpeed /= SprintMod;
+        else if(Input.GetButtonUp("Sprint"))
+        { 
+            isSprinting= false;
+            playerSpeed /= sprintMod;
         }
-    }
-
-    public void takeDamage(int damage)
-    {
-        CurrentHP -= damage;
-
-        if (CurrentHP <= 0)
-        {
-            //kill player and respawn
-            gameManager.instance.youLose();
-        }
-    }
-
-    public void HealPlayer(int amount)
-    {
-        CurrentHP += amount;
     }
 
     IEnumerator Shoot()
@@ -142,25 +97,74 @@ public class PlayerController : MonoBehaviour, IDamage
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance))
+        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDistance))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
-            if (damageable != null)
+            if(damageable != null)
             {
-                damageable.takeDamage(ShootDamage);
+                damageable.takeDamage(shootDamage);
             }
         }
 
-        yield return new WaitForSeconds(ShootRate);
+        yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
     }
 
+    public void Heal(int amount)
+    {
+        HP += amount;
+    }
+
+    public void takeDamage(int damage)
+    {
+        HP -= damage;
+
+        if(HP <= 0)
+        {
+            //kill player and respawn
+            gameManager.instance.youLose();
+        }
+    }
+
     public void SpawnPlayer()
     {
-        characterController.enabled = false;
-        CurrentHP = MaxHP;
+        controller.enabled = false;
+        HP = maxHP;
         transform.position = gameManager.instance.playerSpawnPOS.transform.position;
-        characterController.enabled = true;
+        controller.enabled = true;
+    }
+
+    public void GunPickUp(GunStats gunStat)
+    {
+        gunList.Add(gunStat);
+
+        ChangeGunStats(gunStat);
+        selectedGun = gunList.Count - 1;
+    }
+
+    private void ChangeGunStats(GunStats gunStat)
+    {
+        shootDamage = gunStat.shootDamage;
+        shootRate = gunStat.shootRate;
+        shootDistance = gunStat.shootDistance;
+
+        gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
+        gunMaterial.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void SelectGun()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+        }
+
+        if(gunList.Count > 0)
+            ChangeGunStats(gunList[selectedGun]);
     }
 }
