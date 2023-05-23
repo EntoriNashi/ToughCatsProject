@@ -10,6 +10,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
     [SerializeField] Transform headPos;
+    [SerializeField] Transform shootPos;
     
 
     [Header("----- Enemy Stats -----")]
@@ -103,34 +104,39 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(bullet,transform.position,transform.rotation);
+        animator.SetTrigger("Shoot");
+        createBullet();
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
+
+    public void createBullet()
+    {
+        Instantiate(bullet, shootPos.position, transform.rotation);
+    }
+
     bool canSeePlayer()
     {
-        playerDir = gameManager.instance.player.transform.position - transform.position;
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        Debug.DrawRay(transform.position, playerDir);
+        Debug.DrawRay(headPos.position, playerDir);
         Debug.Log(angleToPlayer);
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
                 agent.stoppingDistance = stoppingDistOrg;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                
                 if (agent.remainingDistance <= agent.stoppingDistance)
-                {
                     facePlayer();
-                }
                 if (!isShooting && angleToPlayer <= shootAngle)
                     StartCoroutine(shoot());
                 return true;
             }
-
         }
         agent.stoppingDistance = 0;
         return false;
