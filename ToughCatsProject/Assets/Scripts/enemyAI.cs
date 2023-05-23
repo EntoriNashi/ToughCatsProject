@@ -84,13 +84,22 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        animator.SetTrigger("Damage");
-        StartCoroutine(flashColor());
+        
 
         if (HP <= 0) 
         {
             gameManager.instance.enemyDefeatedCounter();
-            Destroy(gameObject);
+            animator.SetBool("Dead", true);
+            GetComponent<CapsuleCollider>().enabled = false;
+            StopAllCoroutines();
+            Destroy(gameObject, 10);
+        }
+        else
+        {
+            animator.SetTrigger("Damage");
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            StartCoroutine(flashColor());
+            playerInRange = true;
         }
     }
     
