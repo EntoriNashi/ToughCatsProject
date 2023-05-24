@@ -18,10 +18,13 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
-    
+
+    [Header("*----- Other -----*")]
+    public bool IsPlayerDetected;
+
     int enemiesRemaining;
-    public bool isPaused;
-    public float timeScaleOrig;
+    bool isPaused;
+    float timeScaleOrig;
 
     void Awake()
     {
@@ -29,6 +32,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
+        IsPlayerDetected = false;
         Instantiate(playerSpawnPos, player.transform.position, player.transform.rotation);
 
     }
@@ -92,9 +96,10 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerSpawnPos()
+    public void UpdatePlayerSpawnPos(Vector3 position, Quaternion oriantation)
     {
-        playerSpawnPos.transform.position = player.transform.position;
+        playerSpawnPos.transform.position = position;
+        playerSpawnPos.transform.rotation = oriantation;
     }
     
     

@@ -8,16 +8,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] spawnPos;
     [SerializeField] float timeBetweenSpawns;
     [SerializeField] int numberToSpawn;
+    [SerializeField] bool IsUsingTriggerCollider;
 
 
     int numberSpawned;
     bool playerInRange;
     bool isSpawning;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -29,7 +27,14 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && !isSpawning && numberSpawned < numberToSpawn)
+        if(IsUsingTriggerCollider)
+        {
+            if (playerInRange && !isSpawning && numberSpawned < numberToSpawn)
+            {
+                StartCoroutine(spawn());
+            }
+        }
+        else if (gameManager.instance.IsPlayerDetected && !isSpawning && numberSpawned < numberToSpawn)
         {
             StartCoroutine(spawn());
         }
