@@ -7,15 +7,15 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] MeshFilter gunModel;
-    [SerializeField] MeshRenderer gunMaterial;
+    [SerializeField] AudioSource aud;
+    [SerializeField] LayerMask PlayerMask;
 
     [Header("----- Player Attributes -----")]
     [SerializeField][Range(1, 10)] int HP;
     [SerializeField][Range(1, 10)] int maxHP;
     [SerializeField][Range(1, 5)] float playerSpeed;
     [SerializeField][Range(2, 5)] float sprintMod;
-    [SerializeField][Range(10, 50)] float jumpHeight;
+    [SerializeField][Range(1, 50)] float jumpHeight;
     [SerializeField][Range(9.81f, 20)] float gravityValue;
     [SerializeField][Range(1, 3)] int jumpMax;
 
@@ -24,6 +24,16 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(2, 300)] int shootDistance;
     [SerializeField][Range(0.1f, 3)] float shootRate;
     [SerializeField][Range(1, 10)] int shootDamage;
+    [SerializeField] MeshFilter gunModel;
+    [SerializeField] MeshRenderer gunMaterial;
+
+    [Header("*----- Audio -----*")]
+    [SerializeField] AudioClip[] audJump;
+    [SerializeField] [Range(0, 1)] float audJumpVol;
+    [SerializeField] AudioClip[] audDmg;
+    [SerializeField] [Range(0, 1)] float audDmgVol;
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] [Range(0, 1)] float audStepsVol;
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -32,6 +42,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool isSprinting;
     private bool isShooting;
     private int selectedGun;
+    bool stepIsPlaying;
+
 
     private void Start()
     {
@@ -57,18 +69,27 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Movement()
     {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        if (groundedPlayer)
         {
-            playerVelocity.y = 0f;
-            jumpedTimes = 0;
+            if (!stepIsPlaying && move.normalized.magnitude > 0.5f)
+            {
+                StartCoroutine(playSteps());
+            }
+
+            if (playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+                jumpedTimes = 0;
+            }
         }
 
-        move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
+            move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         {
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpedTimes++;
             playerVelocity.y = jumpHeight;
         }
@@ -91,19 +112,42 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(.3f);
+        }
+
+
+        stepIsPlaying = false;
+    }
+
     IEnumerator Shoot()
     {
         isShooting = true;
 
+        aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+
         RaycastHit hit;
 
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDistance))
+        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDistance, PlayerMask))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if(damageable != null)
             {
                 damageable.takeDamage(shootDamage);
             }
+
+            Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
         }
 
         yield return new WaitForSeconds(shootRate);

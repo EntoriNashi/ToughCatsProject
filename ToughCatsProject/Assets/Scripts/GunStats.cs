@@ -12,6 +12,8 @@ public class GunStats : ScriptableObject
 
     [Header("----- Components -----")]
     public GameObject model;
+    public GameObject hitEffect;
+    public GameObject muzzleFlash;
 
     [Header("----- Audio -----")]
     public AudioClip gunShotAud;
