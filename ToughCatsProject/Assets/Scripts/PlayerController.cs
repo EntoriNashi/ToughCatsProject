@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         controller.enabled = false;
         HP = maxHP;
-        transform.position = gameManager.instance.playerSpawnPOS.transform.position;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
 
