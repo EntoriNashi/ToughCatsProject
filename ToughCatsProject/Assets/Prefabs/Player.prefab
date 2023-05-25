@@ -2746,8 +2746,8 @@ MonoBehaviour:
   throwPoint: {fileID: 8547314548323490618}
   totalGrenades: 2
   throwCooldown: 3
-  throwForce: 70
-  throwUpwardForce: 20
+  throwForce: 10
+  throwUpwardForce: 10
   audJump:
   - {fileID: 8300000, guid: df4d2f9041efd474bb72c4cfe14d3773, type: 3}
   - {fileID: 8300000, guid: 60f31b1d763121e45bebc7f6a9145993, type: 3}
