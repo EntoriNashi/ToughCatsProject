@@ -146,7 +146,7 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone ||hit.collider.CompareTag("Player Alert"))
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone || hit.collider.CompareTag("Player Alert"))
             {
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
