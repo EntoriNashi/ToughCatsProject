@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3319493656836786955}
   - component: {fileID: 6822720086045278585}
-  - component: {fileID: 4413362557191966307}
+  - component: {fileID: -4696755003941241836}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -52,8 +52,8 @@ MonoBehaviour:
   timeBetweenSpawns: 0
   numberToSpawn: 0
   IsUsingTriggerCollider: 1
---- !u!135 &4413362557191966307
-SphereCollider:
+--- !u!65 &-4696755003941241836
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -63,7 +63,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8727406554775486566
 GameObject:

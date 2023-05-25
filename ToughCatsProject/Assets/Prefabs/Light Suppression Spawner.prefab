@@ -64,6 +64,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6822720086045278585, guid: e0e56565a3bba3548b0e897923820377, type: 3}
+      propertyPath: IsUsingPlayerDetected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822720086045278585, guid: e0e56565a3bba3548b0e897923820377, type: 3}
       propertyPath: objectToSpawn.Array.size
       value: 1
       objectReference: {fileID: 0}
