@@ -1337,16 +1337,16 @@ MonoBehaviour:
   shootPos: {fileID: 7886053637201801134}
   aud: {fileID: 6278550422357795449}
   HP: 10
-  playerFaceSpeed: 1
-  viewCone: 25
-  roamDist: 10
-  roamWaitTime: 3
+  playerFaceSpeed: 3
+  viewCone: 45
+  roamDist: 12
+  roamWaitTime: 1
   animTransSpeed: 3
   armed: 1
   shootDist: 25
   shootRate: 0.5
   bullet: {fileID: 2193468300472952756, guid: d10ef838204d08b49a5d6d230db6116b, type: 3}
-  shootAngle: 25
+  shootAngle: 30
   audSteps:
   - {fileID: 8300000, guid: 7e7707efd452d68418e2dd8c68579037, type: 3}
   - {fileID: 8300000, guid: 0e98b340836ee2c4bb9fd35bd910bca4, type: 3}
