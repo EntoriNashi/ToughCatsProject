@@ -55,6 +55,7 @@ public class enemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
+        gameManager.instance.UpdateEnemyCout(1);
     }
 
     // Update is called once per frame

@@ -125,8 +125,8 @@ public class gameManager : MonoBehaviour
     
     public void UpdateUI()
     {
-        //KillCountText.text = enemiesKilled.ToString("F0");
-        //TotalEnemiesText.text = totalEnemies.ToString("F0");
+        KillCountText.text = enemiesKilled.ToString("F0");
+        TotalEnemiesText.text = totalEnemies.ToString("F0");
     }
     
 }

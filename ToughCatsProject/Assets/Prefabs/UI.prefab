@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 689880118}
   - component: {fileID: 689880117}
   m_Layer: 5
-  m_Name: Kill Count
+  m_Name: Total Enemy Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2276,6 +2276,7 @@ MonoBehaviour:
   playerMagazineAmount: {fileID: 2772650596058788784}
   IsPlayerDetected: 0
   unarmed: {fileID: 0}
+  WinDelay: 0
 --- !u!114 &2113167013
 MonoBehaviour:
   m_ObjectHideFlags: 0
