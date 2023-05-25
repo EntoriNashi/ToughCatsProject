@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -19,8 +20,13 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
-    public TextMeshProUGUI KillCountText;
-    public TextMeshProUGUI TotalEnemiesText;
+    public Image playerHpBar;
+    public GameObject playerDamageFlash;
+    public TextMeshProUGUI? KillCountText;
+    public TextMeshProUGUI? TotalEnemiesText;
+    public TextMeshProUGUI playerCurrentAmmo;
+    public TextMeshProUGUI playerMagazineSize;
+    public TextMeshProUGUI playerMagazineAmount;
     
 
     [Header("*----- Other -----*")]

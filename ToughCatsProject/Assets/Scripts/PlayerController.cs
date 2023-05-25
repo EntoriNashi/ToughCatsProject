@@ -182,15 +182,15 @@ public class PlayerController : MonoBehaviour, IDamage
     public void Heal(int amount)
     {
         HP += amount;
-        //UpdatePlayerUI();
+        UpdatePlayerUI();
     }
 
     public void takeDamage(int damage)
     {
         HP -= damage;
         aud.PlayOneShot(audDmg[Random.Range(0, audDmg.Length)], audDmgVol);
-        //UpdatePlayerUI();
-        //StartCoroutine(DamageFlash());
+        UpdatePlayerUI();
+        StartCoroutine(DamageFlash());
 
         if (HP <= 0)
         {
@@ -199,18 +199,18 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    //IEnumerator DamageFlash()
-    //{
-    //    gameManager.instance.playerDamageFlash.SetActive(true);
-    //    yield return new WaitForSeconds(0.2f);
-    //    gameManager.instance.playerDamageFlash.SetActive(false);
-    //}
+    IEnumerator DamageFlash()
+    {
+        gameManager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        gameManager.instance.playerDamageFlash.SetActive(false);
+    }
 
     public void SpawnPlayer()
     {
         controller.enabled = false;
         HP = maxHP;
-        //UpdatePlayerUI();
+        UpdatePlayerUI();
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour, IDamage
         currentMag = gunList[selectedGun].numOfMag;
         currentAmmo = gunList[selectedGun].magazineSize;
 
-        //UpdatePlayerUI();
+        UpdatePlayerUI();
     }
 
     private void ChangeGunStats(GunStats gunStat)
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
         gunMaterial.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //UpdatePlayerUI();
+        UpdatePlayerUI();
     }
 
     void SelectGun()
@@ -254,13 +254,14 @@ public class PlayerController : MonoBehaviour, IDamage
             ChangeGunStats(gunList[selectedGun]);
     }
 
-    //void UpdatePlayerUI()
-    //{
-    //    gameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
-    //    if (gunList.Count > 0)
-    //    {
-    //        GameManager.instance.playerAmmoMax.text = $"/{gunList[selectedGun].ammoMax}";
-    //        GameManager.instance.playerAmmoCurrent.text = $"{gunList[selectedGun].ammoCur}";
-    //    }
-    //}
+    void UpdatePlayerUI()
+    {
+        gameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
+        if (gunList.Count > 0)
+        {
+            gameManager.instance.playerCurrentAmmo.text = $"{currentAmmo}";
+            gameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].numOfMag}";
+            gameManager.instance.playerMagazineSize.text = $"/{gunList[selectedGun].magazineSize}";
+        }
+    }
 }

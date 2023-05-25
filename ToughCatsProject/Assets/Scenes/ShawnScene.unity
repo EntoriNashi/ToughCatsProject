@@ -185,6 +185,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5495201501235400486, guid: f2a48520c3614734aa7d9a5117e555c8, type: 3}
   m_PrefabInstance: {fileID: 66147723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &763019733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1023173101, guid: f580346034967b6448e9e9e645059c78, type: 3}
+  m_PrefabInstance: {fileID: 1954891165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961127420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1414094035930165907, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
@@ -361,6 +366,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5659941511909589864, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
     - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
+      propertyPath: playerHpBar
+      value: 
+      objectReference: {fileID: 2043826674}
+    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 8013862478018986403, guid: 84d5c992a43b0cd418666d8e460de31e, type: 3}
@@ -372,6 +381,10 @@ PrefabInstance:
       propertyPath: playerSpawnPOS
       value: 
       objectReference: {fileID: 632394699}
+    - target: {fileID: 3955344148803172001, guid: f580346034967b6448e9e9e645059c78, type: 3}
+      propertyPath: playerDamageFlash
+      value: 
+      objectReference: {fileID: 763019733}
     - target: {fileID: 3955344149464752074, guid: f580346034967b6448e9e9e645059c78, type: 3}
       propertyPath: m_Name
       value: UI
@@ -460,8 +473,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7385825857753724619, guid: f580346034967b6448e9e9e645059c78, type: 3}
+      propertyPath: m_text
+      value: 'Num of Mag:'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f580346034967b6448e9e9e645059c78, type: 3}
+--- !u!114 &2043826674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2022193067, guid: f580346034967b6448e9e9e645059c78, type: 3}
+  m_PrefabInstance: {fileID: 1954891165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5222263540974455019
 PrefabInstance:
   m_ObjectHideFlags: 0
