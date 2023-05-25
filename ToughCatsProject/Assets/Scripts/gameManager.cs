@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
 
     [Header("*----- Other -----*")]
     public bool IsPlayerDetected;
+    public GameObject unarmed;
 
     int enemiesKilled;
     int totalEnemies;
@@ -41,6 +42,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        unarmed = GameObject.FindGameObjectWithTag("Unarmed");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
         IsPlayerDetected = false;

@@ -1429,6 +1429,7 @@ MonoBehaviour:
   roamDist: 10
   roamWaitTime: 5
   animTransSpeed: 3
+  armed: 1
   shootDist: 10
   shootRate: 1
   bullet: {fileID: 2193468300472952756, guid: d10ef838204d08b49a5d6d230db6116b, type: 3}

@@ -21,6 +21,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamDist;
     [SerializeField] int roamWaitTime;
     [SerializeField] int animTransSpeed;
+    [SerializeField] bool armed;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2,300)][SerializeField] int shootDist;
@@ -40,8 +41,10 @@ public class enemyAI : MonoBehaviour, IDamage
     bool isShooting;
     bool destinationChosen;
     bool playerInRange;
+    bool alerting;
     Vector3 playerDir;
     Vector3 startingPos;
+    Vector3 unarmedDir;
     float angleToPlayer;
     float stoppingDistOrg;
     float speed;
@@ -65,7 +68,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         else if (agent.destination != gameManager.instance.player.transform.position)
         {
-            StartCoroutine (roam());
+            StartCoroutine(roam());
         }
         
     }
@@ -121,7 +124,6 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         animator.SetTrigger("Shoot");
-        createBullet();
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -134,6 +136,7 @@ public class enemyAI : MonoBehaviour, IDamage
     bool canSeePlayer()
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
+        unarmedDir = gameManager.instance.unarmed.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPos.position, playerDir);
@@ -150,12 +153,24 @@ public class enemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
                 if (!isShooting && angleToPlayer <= shootAngle)
-                    StartCoroutine(shoot());
+                    if (armed)
+                        StartCoroutine(shoot());
+                    else
+                        StartCoroutine(alert());
                 return true;
             }
         }
         agent.stoppingDistance = 0;
         return false;
+    }
+
+    IEnumerator alert()
+    {
+        alerting = true;
+        gameObject.tag = "Player Alert";
+        yield return new WaitForSeconds(3);
+        alerting = false;
+        gameObject.tag = "Unarmed";
     }
 
     void facePlayer()
