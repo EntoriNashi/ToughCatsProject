@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] Animator anim;
 
+    [SerializeField] bool IsGoal;
     [SerializeField] bool IsRoomEnterence;
     [SerializeField] bool IsRoomExit;
     [SerializeField] GameObject UnarmedSpawnPos;
@@ -22,6 +23,10 @@ public class Door : MonoBehaviour
             {
                 gameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
                 
+            }
+            if(IsGoal)
+            {
+                gameManager.instance.UpdateWinCondition();
             }
         }
     }

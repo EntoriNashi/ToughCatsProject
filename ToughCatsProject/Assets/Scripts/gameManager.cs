@@ -32,6 +32,7 @@ public class gameManager : MonoBehaviour
     [Header("*----- Other -----*")]
     public bool IsPlayerDetected;
     public GameObject unarmed;
+    [SerializeField][Range(0,10)] float WinDelay;
 
     int enemiesKilled;
     int totalEnemies;
@@ -85,7 +86,7 @@ public class gameManager : MonoBehaviour
 
     IEnumerator youWin()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(WinDelay);
         activeMenu = WinMenu;
         activeMenu.SetActive(true);
         pauseState();
@@ -93,7 +94,7 @@ public class gameManager : MonoBehaviour
     
     public void UpdateWinCondition()
     {
-
+        StartCoroutine(youWin());
     }
 
     public void youLose()
