@@ -1426,7 +1426,7 @@ MonoBehaviour:
   HP: 8
   playerFaceSpeed: 5
   viewCone: 15
-  roamDist: 15
+  roamDist: 10
   roamWaitTime: 5
   animTransSpeed: 3
   shootDist: 50
@@ -1487,7 +1487,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &850341529
 Animator:
