@@ -168,9 +168,11 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator alert()
     {
         alerting = true;
+        gameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
         yield return new WaitForSeconds(3);
         alerting = false;
+        gameManager.instance.IsPlayerDetected = false;
         gameObject.tag = "Unarmed";
     }
 
