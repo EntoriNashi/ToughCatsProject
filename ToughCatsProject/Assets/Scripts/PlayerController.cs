@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Transform throwPoint;
     [SerializeField][Range(1, 3)] int totalGrenades;
     [SerializeField][Range(0.2f, 5)] float throwCooldown;
-    [SerializeField][Range(1, 100)] int throwForce;
-    [SerializeField][Range(1, 100)] int throwUpwardForce;
+    [SerializeField][Range(1, 15)] int throwForce;
+    [SerializeField][Range(1, 15)] int throwUpwardForce;
 
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
