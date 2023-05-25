@@ -25,5 +25,6 @@ public class buttonFunctions : MonoBehaviour
     {
         gameManager.instance.unPausedState();
         gameManager.instance.playerScript.SpawnPlayer();
+        gameManager.instance.unPausedState();
     }
 }

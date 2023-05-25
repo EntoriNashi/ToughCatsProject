@@ -42,12 +42,12 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn POS");
         player = GameObject.FindGameObjectWithTag("Player");
         unarmed = GameObject.FindGameObjectWithTag("Unarmed");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
         IsPlayerDetected = false;
-        Instantiate(playerSpawnPos, player.transform.position, player.transform.rotation);
         totalEnemies = 0;
         enemiesKilled = 0;
         UpdateUI();

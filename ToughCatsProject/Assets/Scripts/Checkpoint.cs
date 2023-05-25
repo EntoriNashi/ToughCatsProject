@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] Vector3 Position;
     [SerializeField] Quaternion Oriantation;
-    [SerializeField] int SpawnHeightAdjustment;
+    [SerializeField] float SpawnHeightAdjustment;
 
     private void OnTriggerEnter(Collider other)
     {
