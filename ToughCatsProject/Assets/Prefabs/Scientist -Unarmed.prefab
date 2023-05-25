@@ -60,9 +60,9 @@ MonoBehaviour:
   aud: {fileID: 1128057895389535003}
   HP: 5
   playerFaceSpeed: 5
-  viewCone: 15
-  roamDist: 15
-  roamWaitTime: 10
+  viewCone: 45
+  roamDist: 12
+  roamWaitTime: 5
   animTransSpeed: 3
   armed: 0
   shootDist: 2
@@ -144,7 +144,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1128057895389534980
 CapsuleCollider:
