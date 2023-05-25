@@ -556,11 +556,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1354266266650434499, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
       propertyPath: throwForce
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1354266266650434499, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
       propertyPath: throwUpwardForce
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1407651665346739931, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
       propertyPath: m_RootOrder
@@ -609,6 +609,10 @@ PrefabInstance:
     - target: {fileID: 1414094035930165907, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414094035930165907, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}

@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Transform throwPoint;
     [SerializeField][Range(1, 3)] int totalGrenades;
     [SerializeField][Range(0.2f, 5)] float throwCooldown;
-    [SerializeField][Range(0.2f, 5)] float throwForce;
-    [SerializeField][Range(0.2f, 5)] float throwUpwardForce;
+    [SerializeField][Range(1, 100)] int throwForce;
+    [SerializeField][Range(1, 100)] int throwUpwardForce;
 
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
@@ -56,13 +56,14 @@ public class PlayerController : MonoBehaviour, IDamage
     int currentMag;
     int currentAmmo;
     bool isReloading;
-    bool isThrowing;
-    int currGreandeAmount;
+    bool isThrowing = false;
+    int currGrenadeAmount;
 
     private void Start()
     {
         SpawnPlayer();
         HP = maxHP;
+        currGrenadeAmount = totalGrenades;
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(Reload());
             }
-            if(Input.GetButton("Grenade") && !isThrowing && currGreandeAmount > 0)
+            if(Input.GetButton("Grenade") && !isThrowing && currGrenadeAmount > 0)
             {
                 StartCoroutine(ThrowGrenade());
             }
@@ -273,16 +274,14 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator ThrowGrenade()
     {
         isThrowing = true;
-
         GameObject grenade = Instantiate(grenadePrefab, throwPoint.position, grenadePrefab.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
-        Vector3 forceToAdd = transform.forward * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = GetComponentInChildren<Camera>().transform.forward * throwForce + transform.up * throwUpwardForce;
 
         rb.AddForce(forceToAdd, ForceMode.Impulse);
-        currGreandeAmount--;
+        currGrenadeAmount--;
 
         yield return new WaitForSeconds(throwCooldown);
-
         isThrowing = false;
     }
 
