@@ -342,6 +342,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842064399058941601, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4039495390153839481, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
       propertyPath: m_Name
       value: EnemySpawnRoom1
@@ -571,6 +575,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842064399058941601, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4039495390153839481, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
       propertyPath: m_Name
       value: EnemySpawnRoom1 (2)
@@ -1434,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: door2
       objectReference: {fileID: 0}
+    - target: {fileID: 1331946542800192139, guid: 2817b05e5b19f414ab7f7445a6e18fbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1331946542800426339, guid: 2817b05e5b19f414ab7f7445a6e18fbd, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -1521,6 +1533,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842064399058941601, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4039495390153839481, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
       propertyPath: m_Name
       value: EnemySpawnRoom1 (1)
@@ -2280,6 +2296,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842064399058941601, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4039495390153839481, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
       propertyPath: m_Name
       value: EnemySpawnRoom1 (3)
