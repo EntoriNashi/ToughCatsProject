@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460707374146979291}
   m_LocalRotation: {x: 0.71551454, y: -0.076431535, z: -0.010194237, w: 0.69432926}
-  m_LocalPosition: {x: -0.02063201, y: -0.10494612, z: -0.02905602}
+  m_LocalPosition: {x: -0.02, y: -0.098, z: -0.029}
   m_LocalScale: {x: 0.15999997, y: 0.15999989, z: 0.15999992}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1425,8 +1425,8 @@ MonoBehaviour:
   aud: {fileID: 771298950}
   HP: 8
   playerFaceSpeed: 5
-  viewCone: 25
-  roamDist: 25
+  viewCone: 15
+  roamDist: 15
   roamWaitTime: 5
   animTransSpeed: 3
   shootDist: 50
@@ -1520,10 +1520,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!82 &771298950
 AudioSource:
   m_ObjectHideFlags: 0
