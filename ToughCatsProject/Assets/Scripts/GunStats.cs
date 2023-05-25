@@ -9,6 +9,10 @@ public class GunStats : ScriptableObject
     [Range(2, 300)] public int shootDistance;
     [Range(0.1f, 3)] public float shootRate;
     [Range(1, 10)] public int shootDamage;
+    [Range(1, 25)] public int magazineSize;
+    [Range(1, 10)] public int numOfMag;
+    [Range(0.1f, 3)] public float reloadSpeed;
+
 
     [Header("----- Components -----")]
     public GameObject model;

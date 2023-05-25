@@ -2756,15 +2756,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5403c12c111293e4d8a683f0b03bf7f8, type: 3}
   audDmgVol: 0.5
   audSteps:
-  - {fileID: 8300000, guid: 7e7707efd452d68418e2dd8c68579037, type: 3}
   - {fileID: 8300000, guid: 0e98b340836ee2c4bb9fd35bd910bca4, type: 3}
   - {fileID: 8300000, guid: fe1f10cde4fd9eb47ad9c6676d465484, type: 3}
-  - {fileID: 8300000, guid: 2a90ffe9b14902240ac31b4712fe2116, type: 3}
-  - {fileID: 8300000, guid: 8d545ed519f66b74c8b4860bc364043e, type: 3}
   - {fileID: 8300000, guid: 8b91165d5adf592428bd3720d6396ac2, type: 3}
   - {fileID: 8300000, guid: 43e7d99170361ca41858236ffdfa7a8c, type: 3}
-  - {fileID: 8300000, guid: 362544fb2b9dbb04a91a796d296f3d34, type: 3}
-  - {fileID: 8300000, guid: a5934b7345107524da8f824930fc1891, type: 3}
   audStepsVol: 0.5
 --- !u!143 &1354266266650434498
 CharacterController:

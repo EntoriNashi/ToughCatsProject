@@ -1590,8 +1590,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 6374248883389014245}
   LoseMenu: {fileID: 1445247402107861764}
   WinMenu: {fileID: 3826156913939914721}
-  isPaused: 0
-  timeScaleOrig: 0
+  IsPlayerDetected: 0
 --- !u!114 &2113167013
 MonoBehaviour:
   m_ObjectHideFlags: 0

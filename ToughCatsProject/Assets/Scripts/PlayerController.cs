@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(2, 300)] int shootDistance;
     [SerializeField][Range(0.1f, 3)] float shootRate;
     [SerializeField][Range(1, 10)] int shootDamage;
+    [SerializeField][Range(1, 10)] int currentAmmo;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
-
+    
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
     [SerializeField] [Range(0, 1)] float audJumpVol;
@@ -43,7 +44,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool isShooting;
     private int selectedGun;
     bool stepIsPlaying;
-
+    int currentMag;
+    bool isReloading;
 
     private void Start()
     {
@@ -60,6 +62,10 @@ public class PlayerController : MonoBehaviour, IDamage
             if (Input.GetButton("Shoot") && !isShooting && gunList.Count > 0)
             {
                 StartCoroutine(Shoot());
+            }
+            if(Input.GetButton("Reload") && !isReloading && gunList[selectedGun].numOfMag > 0 && gunList.Count > 0)
+            {
+                StartCoroutine(Reload());
             }
         }
 
@@ -135,6 +141,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
+        currentAmmo--;
         aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
 
         RaycastHit hit;
@@ -147,34 +154,63 @@ public class PlayerController : MonoBehaviour, IDamage
                 damageable.takeDamage(shootDamage);
             }
 
-            Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            yield return new WaitForSeconds(0.5f);
+            Destroy(hitEffect);
         }
 
         yield return new WaitForSeconds(shootRate);
+        //UpdatePlayerUI();
 
         isShooting = false;
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
+
+        //decrease mag amount
+        currentMag--;
+        //set current to mag max size
+        currentAmmo = gunList[selectedGun].magazineSize;
+
+        isReloading = false;
     }
 
     public void Heal(int amount)
     {
         HP += amount;
+        //UpdatePlayerUI();
     }
 
     public void takeDamage(int damage)
     {
         HP -= damage;
+        aud.PlayOneShot(audDmg[Random.Range(0, audDmg.Length)], audDmgVol);
+        //UpdatePlayerUI();
+        //StartCoroutine(DamageFlash());
 
-        if(HP <= 0)
+        if (HP <= 0)
         {
             //kill player and respawn
             gameManager.instance.youLose();
         }
     }
 
+    //IEnumerator DamageFlash()
+    //{
+    //    gameManager.instance.playerDamageFlash.SetActive(true);
+    //    yield return new WaitForSeconds(0.2f);
+    //    gameManager.instance.playerDamageFlash.SetActive(false);
+    //}
+
     public void SpawnPlayer()
     {
         controller.enabled = false;
         HP = maxHP;
+        //UpdatePlayerUI();
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
@@ -185,6 +221,10 @@ public class PlayerController : MonoBehaviour, IDamage
 
         ChangeGunStats(gunStat);
         selectedGun = gunList.Count - 1;
+        currentMag = gunList[selectedGun].numOfMag;
+        currentAmmo = gunList[selectedGun].magazineSize;
+
+        //UpdatePlayerUI();
     }
 
     private void ChangeGunStats(GunStats gunStat)
@@ -195,6 +235,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         gunModel.mesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
         gunMaterial.material = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //UpdatePlayerUI();
     }
 
     void SelectGun()
@@ -211,4 +253,14 @@ public class PlayerController : MonoBehaviour, IDamage
         if(gunList.Count > 0)
             ChangeGunStats(gunList[selectedGun]);
     }
+
+    //void UpdatePlayerUI()
+    //{
+    //    gameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
+    //    if (gunList.Count > 0)
+    //    {
+    //        GameManager.instance.playerAmmoMax.text = $"/{gunList[selectedGun].ammoMax}";
+    //        GameManager.instance.playerAmmoCurrent.text = $"{gunList[selectedGun].ammoCur}";
+    //    }
+    //}
 }
