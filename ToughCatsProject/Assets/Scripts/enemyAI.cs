@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator animator;
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
+    [SerializeField] AudioSource aud;
     
-
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] int playerFaceSpeed;
@@ -26,6 +27,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(0.1f, 3)][SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootAngle;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audSteps;
+    [SerializeField] AudioClip[] audHit;
+    [SerializeField] AudioClip audShot;
+    [SerializeField][Range(0, 1)] float audStepsVol;
+    [SerializeField][Range(0, 1)] float audHitVol;
+    [SerializeField][Range(0, 1)] float audShotVol;
 
     Color colorOrig;
     bool isShooting;
@@ -70,7 +79,7 @@ public class enemyAI : MonoBehaviour, IDamage
             yield return new WaitForSeconds(roamWaitTime);
             destinationChosen = false;
 
-            Vector3 randPos = Random.insideUnitSphere * roamDist;
+            Vector3 randPos = UnityEngine.Random.insideUnitSphere * roamDist;
             randPos += startingPos;
 
             NavMeshHit hit;
@@ -78,13 +87,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
             agent.SetDestination(hit.position);
         }
-
     }
 
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        
 
         if (HP <= 0) 
         {
@@ -139,7 +146,7 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                
+ 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
                 if (!isShooting && angleToPlayer <= shootAngle)
@@ -174,4 +181,16 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    void step()
+    {
+        aud.PlayOneShot(audSteps[UnityEngine.Random.Range(0, audSteps.Length)],audStepsVol);
+    }
+    void hit()
+    {
+        aud.PlayOneShot(audHit[UnityEngine.Random.Range(0,audHit.Length)],audHitVol);
+    }
+    void gunShot()
+    {
+        aud.PlayOneShot(audShot, audShotVol);
+    }
 }
