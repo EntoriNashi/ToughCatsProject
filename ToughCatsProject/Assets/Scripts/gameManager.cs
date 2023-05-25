@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
+    public TextMeshProUGUI KillCountText;
+    public TextMeshProUGUI TotalEnemiesText;
+    
 
     [Header("*----- Other -----*")]
     public bool IsPlayerDetected;
 
-    int enemiesRemaining;
+    int enemiesKilled;
+    int totalEnemies;
     bool isPaused;
     float timeScaleOrig;
 
@@ -34,6 +39,9 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         IsPlayerDetected = false;
         Instantiate(playerSpawnPos, player.transform.position, player.transform.rotation);
+        totalEnemies = 0;
+        enemiesKilled = 0;
+        UpdateUI();
 
     }
 
@@ -90,10 +98,8 @@ public class gameManager : MonoBehaviour
     
     public void enemyDefeatedCounter()
     {
-        enemiesRemaining--;
-        if (enemiesRemaining <= 0)
-        {
-        }
+        enemiesKilled += 1;
+        UpdateUI();
     }
 
     public void UpdatePlayerSpawnPos(Vector3 position, Quaternion oriantation)
@@ -101,6 +107,17 @@ public class gameManager : MonoBehaviour
         playerSpawnPos.transform.position = position;
         playerSpawnPos.transform.rotation = oriantation;
     }
+
+    public void UpdateEnemyCout(int amount)
+    {
+        totalEnemies += amount;
+        UpdateUI();
+    }
     
+    public void UpdateUI()
+    {
+        KillCountText.text = enemiesKilled.ToString("F0");
+        TotalEnemiesText.text = totalEnemies.ToString("F0");
+    }
     
 }
