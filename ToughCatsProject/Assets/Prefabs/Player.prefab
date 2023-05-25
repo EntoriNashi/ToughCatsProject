@@ -2740,8 +2740,15 @@ MonoBehaviour:
   shootDistance: 2
   shootRate: 0.2
   shootDamage: 1
+  currentAmmo: 0
   gunModel: {fileID: 160906921240717746}
   gunMaterial: {fileID: 2728988649883737464}
+  grenadePrefab: {fileID: 8728687244338436789, guid: 2f023df0ba510b4409d877eca78ce2b3, type: 3}
+  throwPoint: {fileID: 8547314548323490618}
+  totalGrenades: 2
+  throwCooldown: 3
+  throwForce: 0
+  throwUpwardForce: 0
   audJump:
   - {fileID: 8300000, guid: df4d2f9041efd474bb72c4cfe14d3773, type: 3}
   - {fileID: 8300000, guid: 60f31b1d763121e45bebc7f6a9145993, type: 3}
@@ -2942,6 +2949,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3860847580849858071}
+  - {fileID: 8547314548323490618}
   m_Father: {fileID: 1407651665346739931}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3013,6 +3021,37 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6475739803219899856}
   m_Enabled: 1
+--- !u!1 &9137714018030937879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8547314548323490618}
+  m_Layer: 0
+  m_Name: ThrowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8547314548323490618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9137714018030937879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.54, y: -0.61, z: 1.14}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6475739803219899857}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3611540650329506300
 PrefabInstance:
   m_ObjectHideFlags: 0

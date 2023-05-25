@@ -24,10 +24,17 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(2, 300)] int shootDistance;
     [SerializeField][Range(0.1f, 3)] float shootRate;
     [SerializeField][Range(1, 10)] int shootDamage;
-    [SerializeField][Range(1, 10)] int currentAmmo;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
-    
+
+    [Header("*----- Grenade Attributes -----*")]
+    [SerializeField] GameObject grenadePrefab;
+    [SerializeField] Transform throwPoint;
+    [SerializeField][Range(1, 3)] int totalGrenades;
+    [SerializeField][Range(0.2f, 5)] float throwCooldown;
+    [SerializeField][Range(0.2f, 5)] float throwForce;
+    [SerializeField][Range(0.2f, 5)] float throwUpwardForce;
+
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
     [SerializeField] [Range(0, 1)] float audJumpVol;
@@ -35,6 +42,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] [Range(0, 1)] float audDmgVol;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] [Range(0, 1)] float audStepsVol;
+
+    
 
     private Vector3 move;
     private Vector3 playerVelocity;
@@ -45,7 +54,10 @@ public class PlayerController : MonoBehaviour, IDamage
     private int selectedGun;
     bool stepIsPlaying;
     int currentMag;
+    int currentAmmo;
     bool isReloading;
+    bool isThrowing;
+    int currGreandeAmount;
 
     private void Start()
     {
@@ -66,6 +78,10 @@ public class PlayerController : MonoBehaviour, IDamage
             if(Input.GetButton("Reload") && !isReloading && gunList[selectedGun].numOfMag > 0 && gunList.Count > 0)
             {
                 StartCoroutine(Reload());
+            }
+            if(Input.GetButton("Grenade") && !isThrowing && currGreandeAmount > 0)
+            {
+                StartCoroutine(ThrowGrenade());
             }
         }
 
@@ -89,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamage
             }
         }
 
-            move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
+        move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // Changes the height position of the player..
@@ -252,6 +268,22 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if(gunList.Count > 0)
             ChangeGunStats(gunList[selectedGun]);
+    }
+
+    IEnumerator ThrowGrenade()
+    {
+        isThrowing = true;
+
+        GameObject grenade = Instantiate(grenadePrefab, throwPoint.position, grenadePrefab.transform.rotation);
+        Rigidbody rb = grenade.GetComponent<Rigidbody>();
+        Vector3 forceToAdd = transform.forward * throwForce + transform.up * throwUpwardForce;
+
+        rb.AddForce(forceToAdd, ForceMode.Impulse);
+        currGreandeAmount--;
+
+        yield return new WaitForSeconds(throwCooldown);
+
+        isThrowing = false;
     }
 
     void UpdatePlayerUI()
