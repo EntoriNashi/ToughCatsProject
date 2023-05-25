@@ -22,8 +22,8 @@ public class gameManager : MonoBehaviour
     public GameObject WinMenu;
     public Image playerHpBar;
     public GameObject playerDamageFlash;
-    public TextMeshProUGUI? KillCountText;
-    public TextMeshProUGUI? TotalEnemiesText;
+    public TextMeshProUGUI KillCountText;
+    public TextMeshProUGUI TotalEnemiesText;
     public TextMeshProUGUI playerCurrentAmmo;
     public TextMeshProUGUI playerMagazineSize;
     public TextMeshProUGUI playerMagazineAmount;
