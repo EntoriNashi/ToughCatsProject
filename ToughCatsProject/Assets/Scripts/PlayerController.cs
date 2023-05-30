@@ -162,26 +162,30 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        currentAmmo--;
-        aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
-
-        RaycastHit hit;
-
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f,0.5f)), out hit, shootDistance, PlayerMask))
+        if(currentAmmo > 0 && !isReloading)
         {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
-            if(damageable != null)
+            currentAmmo--;
+            aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, PlayerMask))
             {
-                damageable.takeDamage(shootDamage);
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+                if (damageable != null)
+                {
+                    damageable.takeDamage(shootDamage);
+                }
+
+                GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+                yield return new WaitForSeconds(0.5f);
+                Destroy(hitEffect);
             }
 
-            GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-            yield return new WaitForSeconds(0.5f);
-            Destroy(hitEffect);
+            
+            //UpdatePlayerUI();
         }
-
         yield return new WaitForSeconds(shootRate);
-        //UpdatePlayerUI();
 
         isShooting = false;
     }
