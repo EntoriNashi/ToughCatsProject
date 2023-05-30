@@ -60,7 +60,7 @@ MonoBehaviour:
   aud: {fileID: 1128057895389535003}
   HP: 5
   playerFaceSpeed: 5
-  viewCone: 45
+  viewCone: 80
   roamDist: 12
   roamWaitTime: 5
   animTransSpeed: 3
