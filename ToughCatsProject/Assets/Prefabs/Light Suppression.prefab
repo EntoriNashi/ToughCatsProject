@@ -1386,7 +1386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5659941511909629768
 Transform:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   shootDist: 10
   shootRate: 1
   bullet: {fileID: 2193468300472952756, guid: d10ef838204d08b49a5d6d230db6116b, type: 3}
-  shootAngle: 15
+  shootAngle: 30
   audSteps:
   - {fileID: 8300000, guid: 7e7707efd452d68418e2dd8c68579037, type: 3}
   - {fileID: 8300000, guid: 0e98b340836ee2c4bb9fd35bd910bca4, type: 3}
