@@ -4,13 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    public static gameManager instance;
+    public static GameManager instance;
 
 
-    [Header("----- Player Stuff -----")]
+    [Header("*----- Player Stuff -----*")]
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerSpawnPos;
@@ -51,7 +51,6 @@ public class gameManager : MonoBehaviour
         totalEnemies = 0;
         enemiesKilled = 0;
         UpdateUI();
-
     }
 
     // Update is called once per frame
@@ -63,18 +62,18 @@ public class gameManager : MonoBehaviour
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
 
-            pauseState();
+            PauseState();
         }
     }
 
-    public void pauseState()
+    public void PauseState()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void unPausedState()
+    public void UnpausedState()
     {
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
@@ -84,28 +83,28 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
     }
 
-    IEnumerator youWin()
+    IEnumerator YouWin()
     {
         yield return new WaitForSeconds(WinDelay);
         activeMenu = WinMenu;
         activeMenu.SetActive(true);
-        pauseState();
+        PauseState();
     }
     
     public void UpdateWinCondition()
     {
-        StartCoroutine(youWin());
+        StartCoroutine(YouWin());
     }
 
-    public void youLose()
+    public void YouLose()
     {
-        pauseState();
+        PauseState();
         activeMenu = LoseMenu;
         activeMenu.SetActive(true);
     }
 
     
-    public void enemyDefeatedCounter()
+    public void EnemyDefeatedCounter()
     {
         enemiesKilled += 1;
         UpdateUI();

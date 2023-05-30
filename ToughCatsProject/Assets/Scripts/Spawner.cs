@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsUsingPlayerDetected && gameManager.instance.IsPlayerDetected)
+        if(IsUsingPlayerDetected && GameManager.instance.IsPlayerDetected)
         {
             Debug.Log("Spawner is using player detection");
             if (playerInRange && !isSpawning && numberSpawned < numberToSpawn)

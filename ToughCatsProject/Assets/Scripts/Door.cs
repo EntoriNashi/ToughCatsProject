@@ -21,12 +21,12 @@ public class Door : MonoBehaviour
             anim.SetBool("character_nearby", true);
             if(IsRoomEnterence)
             {
-                gameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
+                GameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
                 
             }
             if(IsGoal)
             {
-                gameManager.instance.UpdateWinCondition();
+                GameManager.instance.UpdateWinCondition();
             }
         }
     }
@@ -38,8 +38,8 @@ public class Door : MonoBehaviour
             anim.SetBool("character_nearby", false);
             if(IsRoomExit)
             {
-                currentUnarmed = gameManager.instance.unarmed;
-                gameManager.instance.unarmed = null;
+                currentUnarmed = GameManager.instance.unarmed;
+                GameManager.instance.unarmed = null;
                 Destroy(currentUnarmed);
             }
         }

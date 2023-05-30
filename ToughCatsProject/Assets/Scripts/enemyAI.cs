@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
@@ -55,7 +55,7 @@ public class enemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
-        gameManager.instance.UpdateEnemyCout(1);
+        GameManager.instance.UpdateEnemyCout(1);
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             StartCoroutine(roam());
         }
-        else if (agent.destination != gameManager.instance.player.transform.position)
+        else if (agent.destination != GameManager.instance.player.transform.position)
         {
             StartCoroutine(roam());
         }
@@ -99,7 +99,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0) 
         {
-            gameManager.instance.enemyDefeatedCounter();
+            GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
             GetComponent<CapsuleCollider>().enabled = false;
             StopAllCoroutines();
@@ -108,7 +108,7 @@ public class enemyAI : MonoBehaviour, IDamage
         else
         {
             animator.SetTrigger("Damage");
-            agent.SetDestination(gameManager.instance.player.transform.position);
+            agent.SetDestination(GameManager.instance.player.transform.position);
             StartCoroutine(flashColor());
             playerInRange = true;
         }
@@ -136,10 +136,10 @@ public class enemyAI : MonoBehaviour, IDamage
 
     bool canSeePlayer()
     {
-        playerDir = gameManager.instance.player.transform.position - headPos.position;
-        if (gameManager.instance.unarmed != null)
+        playerDir = GameManager.instance.player.transform.position - headPos.position;
+        if (GameManager.instance.unarmed != null)
         {
-            unarmedDir = gameManager.instance.unarmed.transform.position - headPos.position;
+            unarmedDir = GameManager.instance.unarmed.transform.position - headPos.position;
             Debug.DrawRay(headPos.position, unarmedDir);
         }
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
@@ -153,7 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone || hit.collider.CompareTag("Player Alert"))
             {
                 agent.stoppingDistance = stoppingDistOrg;
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                agent.SetDestination(GameManager.instance.player.transform.position);
  
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
@@ -172,11 +172,11 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator alert()
     {
         alerting = true;
-        gameManager.instance.IsPlayerDetected = true;
+        GameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
         yield return new WaitForSeconds(3);
         alerting = false;
-        gameManager.instance.IsPlayerDetected = false;
+        GameManager.instance.IsPlayerDetected = false;
         gameObject.tag = "Unarmed";
     }
 

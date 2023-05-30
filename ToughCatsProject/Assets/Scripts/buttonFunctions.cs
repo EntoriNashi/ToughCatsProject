@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonFunctions : MonoBehaviour
+public class ButtonFunctions : MonoBehaviour
 {
     public void resume()
     {
-        gameManager.instance.unPausedState();
+        GameManager.instance.UnpausedState();
     }
 
     public void restart()
     {
-        gameManager.instance.unPausedState();
+        GameManager.instance.UnpausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -23,8 +23,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
-        gameManager.instance.unPausedState();
-        gameManager.instance.playerScript.SpawnPlayer();
-        gameManager.instance.unPausedState();
+        GameManager.instance.UnpausedState();
+        GameManager.instance.playerScript.SpawnPlayer();
+        GameManager.instance.UnpausedState();
     }
 }

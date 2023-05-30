@@ -13,7 +13,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Vector3 yAdjustment = new Vector3(0, SpawnHeightAdjustment, 0);
-            gameManager.instance.UpdatePlayerSpawnPos(Position + yAdjustment, Oriantation);
+            GameManager.instance.UpdatePlayerSpawnPos(Position + yAdjustment, Oriantation);
         }
     }
     private void OnTriggerExit(Collider other)

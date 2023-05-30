@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Update()
     {
-        if(gameManager.instance.activeMenu == null)
+        if(GameManager.instance.activeMenu == null)
         {
             Movement();
             SelectGun();
@@ -212,15 +212,15 @@ public class PlayerController : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             //kill player and respawn
-            gameManager.instance.youLose();
+            GameManager.instance.YouLose();
         }
     }
 
     IEnumerator DamageFlash()
     {
-        gameManager.instance.playerDamageFlash.SetActive(true);
+        GameManager.instance.playerDamageFlash.SetActive(true);
         yield return new WaitForSeconds(0.2f);
-        gameManager.instance.playerDamageFlash.SetActive(false);
+        GameManager.instance.playerDamageFlash.SetActive(false);
     }
 
     public void SpawnPlayer()
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.enabled = false;
         HP = maxHP;
         UpdatePlayerUI();
-        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        transform.position = GameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
 
@@ -287,12 +287,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void UpdatePlayerUI()
     {
-        gameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
+        GameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
         if (gunList.Count > 0)
         {
-            gameManager.instance.playerCurrentAmmo.text = $"{currentAmmo}";
-            gameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].numOfMag}";
-            gameManager.instance.playerMagazineSize.text = $"/{gunList[selectedGun].magazineSize}";
+            GameManager.instance.playerCurrentAmmo.text = $"{currentAmmo}";
+            GameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].numOfMag}";
+            GameManager.instance.playerMagazineSize.text = $"/{gunList[selectedGun].magazineSize}";
         }
     }
 }
