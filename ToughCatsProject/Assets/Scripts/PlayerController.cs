@@ -64,7 +64,10 @@ public class PlayerController : MonoBehaviour, IDamage
         SpawnPlayer();
         HP = maxHP;
         currGrenadeAmount = totalGrenades;
-        currentAmmo = gunList[selectedGun].magazineSize;
+        if(gunList.Count != 0)
+        {
+            currentAmmo = gunList[selectedGun].magazineSize;
+        }
     }
 
     void Update()
