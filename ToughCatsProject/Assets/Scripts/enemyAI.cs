@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
@@ -61,17 +61,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-        animator.SetFloat("Speed", speed);
-        if (playerInRange && !canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
-            StartCoroutine(roam());
+            speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+            animator.SetFloat("Speed", speed);
+            if (playerInRange && !canSeePlayer())
+            {
+                StartCoroutine(roam());
+            }
+            else if (agent.destination != GameManager.instance.player.transform.position)
+            {
+                StartCoroutine(roam());
+            }
         }
-        else if (agent.destination != GameManager.instance.player.transform.position)
-        {
-            StartCoroutine(roam());
-        }
-        
     }
 
     IEnumerator roam()
@@ -101,6 +103,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
+            agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             StopAllCoroutines();
             Destroy(gameObject, 10);
