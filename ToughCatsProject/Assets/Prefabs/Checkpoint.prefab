@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position: {x: 0, y: 0, z: 0}
   Oriantation: {x: 0, y: 0, z: 0, w: 0}
-  SpawnHeightAdjustment: 0
+  SpawnHeightAdjustment: 1.2
 --- !u!65 &8286256316540473092
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4715,6 +4715,10 @@ PrefabInstance:
       propertyPath: Oriantation.y
       value: -0.70710677
       objectReference: {fileID: 0}
+    - target: {fileID: 1774317214740577788, guid: 76536ed5c55908d448894041ebf73a71, type: 3}
+      propertyPath: SpawnHeightAdjustment
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8286256316540473092, guid: 76536ed5c55908d448894041ebf73a71, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -5409,6 +5413,10 @@ PrefabInstance:
     - target: {fileID: 1774317214740577788, guid: 76536ed5c55908d448894041ebf73a71, type: 3}
       propertyPath: Oriantation.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774317214740577788, guid: 76536ed5c55908d448894041ebf73a71, type: 3}
+      propertyPath: SpawnHeightAdjustment
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8286256316540473092, guid: 76536ed5c55908d448894041ebf73a71, type: 3}
       propertyPath: m_Size.x
