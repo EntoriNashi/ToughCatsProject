@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool isShooting;
     private int selectedGun;
     bool stepIsPlaying;
-    int currentMag;
-    int currentAmmo;
+    //int currentMag;
+    //int currentAmmo;
     bool isReloading;
     bool isThrowing = false;
     int currGrenadeAmount;
@@ -66,7 +66,8 @@ public class PlayerController : MonoBehaviour, IDamage
         currGrenadeAmount = totalGrenades;
         if(gunList.Count != 0)
         {
-            currentAmmo = gunList[selectedGun].magazineSize;
+            gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
+            gunList[selectedGun].currentMag = gunList[selectedGun].numOfMag;
         }
     }
 
@@ -162,9 +163,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        if(currentAmmo > 0 && !isReloading)
+        if(gunList[selectedGun].currentAmmo > 0 && !isReloading)
         {
-            currentAmmo--;
+            gunList[selectedGun].currentAmmo--;
             aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
 
             RaycastHit hit;
@@ -197,9 +198,9 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
 
         //decrease mag amount
-        currentMag--;
+        gunList[selectedGun].currentMag--;
         //set current to mag max size
-        currentAmmo = gunList[selectedGun].magazineSize;
+        gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
 
         isReloading = false;
     }
@@ -246,8 +247,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         ChangeGunStats(gunStat);
         selectedGun = gunList.Count - 1;
-        currentMag = gunList[selectedGun].numOfMag;
-        currentAmmo = gunList[selectedGun].magazineSize;
+        gunList[selectedGun].currentMag = gunList[selectedGun].numOfMag;
+        gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
 
         UpdatePlayerUI();
     }
@@ -298,8 +299,8 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.instance.playerHpBar.fillAmount = (float)HP / maxHP;
         if (gunList.Count > 0)
         {
-            GameManager.instance.playerCurrentAmmo.text = $"{currentAmmo}";
-            GameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].numOfMag}";
+            GameManager.instance.playerCurrentAmmo.text = $"{gunList[selectedGun].currentAmmo}";
+            GameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].currentMag}";
             GameManager.instance.playerMagazineSize.text = $"/{gunList[selectedGun].magazineSize}";
         }
     }
