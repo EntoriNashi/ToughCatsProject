@@ -193,16 +193,19 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator Reload()
     {
-        isReloading = true;
+        if (gunList[selectedGun].currentMag > 0)
+        {
+            isReloading = true;
 
-        yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
+            yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
 
-        //decrease mag amount
-        gunList[selectedGun].currentMag--;
-        //set current to mag max size
-        gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
+            //decrease mag amount
+            gunList[selectedGun].currentMag--;
+            //set current to mag max size
+            gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
 
-        isReloading = false;
+            isReloading = false;
+        }
     }
 
     public void Heal(int amount)
