@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    // Variables //
     public static GameManager instance;
 
 
