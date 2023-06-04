@@ -21,6 +21,8 @@ public class GunStats : ScriptableObject
 
     [Header("----- Audio -----")]
     public AudioClip gunShotAud;
+    public AudioClip pickupAud;
+    public AudioClip reloadAud;
     [Range(0, 1)] public float gunShotAudVol;
 
     public int currentMag;

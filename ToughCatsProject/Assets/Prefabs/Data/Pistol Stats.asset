@@ -22,4 +22,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleFlash: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
   gunShotAud: {fileID: 8300000, guid: b86097067ebd3e14091958a95aef9331, type: 3}
+  pickupAud: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
+  reloadAud: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   gunShotAudVol: 0.5
+  currentMag: 0
+  currentAmmo: 21

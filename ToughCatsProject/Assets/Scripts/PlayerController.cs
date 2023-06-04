@@ -199,6 +199,8 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             isReloading = true;
 
+            aud.PlayOneShot(gunList[selectedGun].reloadAud);
+
             yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
 
             //decrease mag amount
@@ -254,6 +256,8 @@ public class PlayerController : MonoBehaviour, IDamage
         selectedGun = gunList.Count - 1;
         gunList[selectedGun].currentMag = gunList[selectedGun].numOfMag;
         gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
+
+        aud.PlayOneShot(gunStat.pickupAud);
 
         UpdatePlayerUI();
     }
