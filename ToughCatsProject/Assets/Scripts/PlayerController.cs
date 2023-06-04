@@ -170,7 +170,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
             RaycastHit hit;
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, PlayerMask))
+            int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
             {
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
                 if (damageable != null)

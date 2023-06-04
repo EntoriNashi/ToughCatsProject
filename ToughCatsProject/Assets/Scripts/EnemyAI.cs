@@ -189,22 +189,22 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        playerInRange = true;
+    //    }
+    //}
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            agent.stoppingDistance = 0;
-        }
-    }
+    //void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        playerInRange = false;
+    //        agent.stoppingDistance = 0;
+    //    }
+    //}
 
     void step()
     {
@@ -217,5 +217,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     void gunShot()
     {
         aud.PlayOneShot(audShot, audShotVol);
+    }
+
+    // TEST //
+    public void playerEnteredRange()
+    {
+        playerInRange = true;
+    }
+
+    public void playerExitedRange()
+    {
+        playerInRange = false;
+        agent.stoppingDistance = 0;
     }
 }
