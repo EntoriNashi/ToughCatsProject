@@ -208,6 +208,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
             reloadTime = gunList[selectedGun].reloadSpeed;
 
+            // Store the original pitch
+            float originalPitch = aud.pitch;
+
+            // Increase the pitch to make the sound play faster
+            aud.pitch = 1.8f;  // Change this value to adjust the speed
+
             aud.PlayOneShot(gunList[selectedGun].reloadAud);
 
             StartCoroutine(MoveGunDownAndUp());
@@ -218,6 +224,9 @@ public class PlayerController : MonoBehaviour, IDamage
             gunList[selectedGun].currentMag--;
             //set current to mag max size
             gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
+
+            // Reset the pitch back to the original value
+            aud.pitch = originalPitch;
 
             isReloading = false;
         }
