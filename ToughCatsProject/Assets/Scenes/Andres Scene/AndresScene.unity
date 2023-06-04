@@ -308,6 +308,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1354266266650434499, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
+      propertyPath: gunPos
+      value: 
+      objectReference: {fileID: 697932755}
+    - target: {fileID: 1354266266650434499, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
       propertyPath: sprintMod
       value: 2
       objectReference: {fileID: 0}
@@ -487,6 +491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddd8e4cf288d4414894a5007c8caf0d8, type: 3}
+--- !u!1 &697932755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4530529724460121261, guid: cc00cb239e443134c85a0d0023ea8f84, type: 3}
+  m_PrefabInstance: {fileID: 431159910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &907807288 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1128057895389534983, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}

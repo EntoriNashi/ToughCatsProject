@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(1, 10)] int shootDamage;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
+    [SerializeField] public GameObject gunPos;
+    [SerializeField] public Vector3 gunLowerPos = new Vector3(0,-1,0);
+    [SerializeField] public Vector3 gunOrigPos;
+    [SerializeField] private float reloadTime;
 
     [Header("*----- Grenade Attributes -----*")]
     [SerializeField] GameObject grenadePrefab;
@@ -69,6 +73,9 @@ public class PlayerController : MonoBehaviour, IDamage
             gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
             gunList[selectedGun].currentMag = gunList[selectedGun].numOfMag;
         }
+
+        // save gun original pos //
+        gunOrigPos = gunPos.transform.localPosition;
     }
 
     void Update()
@@ -199,7 +206,11 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             isReloading = true;
 
+            reloadTime = gunList[selectedGun].reloadSpeed;
+
             aud.PlayOneShot(gunList[selectedGun].reloadAud);
+
+            StartCoroutine(MoveGunDownAndUp());
 
             yield return new WaitForSeconds(gunList[selectedGun].reloadSpeed);
 
@@ -210,6 +221,30 @@ public class PlayerController : MonoBehaviour, IDamage
 
             isReloading = false;
         }
+    }
+
+    IEnumerator MoveGunDownAndUp()
+    {
+        // Animate lowering the gun
+        float startTime = Time.time;
+        while (Time.time < startTime + reloadTime / 2)
+        {
+            float t = (Time.time - startTime) / (reloadTime / 2);  // normalized time between 0 and 1
+            gunPos.transform.localPosition = Vector3.Lerp(gunOrigPos, gunLowerPos, t);
+            yield return null;  // wait until the next frame
+        }
+
+        // Animate raising the gun
+        startTime = Time.time;
+        while (Time.time < startTime + reloadTime / 2)
+        {
+            float t = (Time.time - startTime) / (reloadTime / 2);  // normalized time between 0 and 1
+            gunPos.transform.localPosition = Vector3.Lerp(gunLowerPos, gunOrigPos, t);
+            yield return null;  // wait until the next frame
+        }
+
+        // Make sure the gun ends up in exactly the right place
+        gunPos.transform.localPosition = gunOrigPos;
     }
 
     public void Heal(int amount)
