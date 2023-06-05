@@ -122,6 +122,9 @@ public class EnemyAI : MonoBehaviour, IDamage
             GetComponent<CapsuleCollider>().enabled = false;
             StopAllCoroutines();
             Destroy(gameObject, 10);
+
+            // hide health bar //
+            healthSlider.gameObject.SetActive(false);
         }
         else
         {
