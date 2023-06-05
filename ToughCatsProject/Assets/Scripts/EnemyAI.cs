@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
@@ -16,12 +17,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    private int maxHP;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
     [SerializeField] int roamWaitTime;
     [SerializeField] int animTransSpeed;
     [SerializeField] bool armed;
+
+    [Header("----- Health Bar -----")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Image healthLeft;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2,300)][SerializeField] int shootDist;
@@ -56,6 +62,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
         GameManager.instance.UpdateEnemyCout(1);
+
+        // health bar setup //
+        maxHP = HP;
+        healthSlider.maxValue = maxHP;
+        healthSlider.value = HP;
     }
 
     // Update is called once per frame
@@ -98,6 +109,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+
+        // health bar update //
+        healthSlider.value = HP;
+        healthLeft.fillAmount = (float)HP / maxHP;
 
         if (HP <= 0) 
         {
