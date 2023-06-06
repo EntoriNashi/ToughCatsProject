@@ -41,4 +41,9 @@ public class AudioManager : MonoBehaviour
 
         isPlayingtrack1 = !isPlayingtrack1;
     }
+
+    public void ReturnToDefault()
+    {
+        SwapTrack(defaultAudio);
+    }
 }
