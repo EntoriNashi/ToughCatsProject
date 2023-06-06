@@ -180,6 +180,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
             int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
             GameObject muzzleFlash = Instantiate(gunList[selectedGun].muzzleFlash, muzzle.position, muzzle.transform.rotation);
+            yield return new WaitForSeconds(0.01f);
+            Destroy(muzzleFlash);
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
             {
@@ -193,8 +195,6 @@ public class PlayerController : MonoBehaviour, IDamage
                 yield return new WaitForSeconds(0.5f);
                 Destroy(hitEffect);
             }
-            yield return new WaitForSeconds(0.01f);
-            Destroy(muzzleFlash);
             
             //UpdatePlayerUI();
         }
