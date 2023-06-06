@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamWaitTime;
     [SerializeField] int animTransSpeed;
     [SerializeField] bool armed;
+    [SerializeField] int dropRate;
+    [SerializeField] GameObject pickUp;
 
     [Header("----- Health Bar -----")]
     [SerializeField] private Slider healthSlider;
@@ -54,6 +56,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrg;
     float speed;
+    int numrate;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +65,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
         GameManager.instance.UpdateEnemyCout(1);
+        numrate = 0;
 
         // health bar setup //
         maxHP = HP;
@@ -122,7 +126,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             GetComponent<CapsuleCollider>().enabled = false;
             StopAllCoroutines();
             Destroy(gameObject, 10);
-
+           
             // hide health bar //
             healthSlider.gameObject.SetActive(false);
         }
@@ -134,7 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
-    
+   
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
@@ -229,5 +233,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         playerInRange = false;
         agent.stoppingDistance = 0;
+    }
+
+    public void itemDrop()
+    {
+        numrate++;
+        if (pickUp != null && numrate == dropRate)
+        {
+            Instantiate(pickUp, headPos.position, transform.rotation);
+            numrate = 0;
+        }
     }
 }

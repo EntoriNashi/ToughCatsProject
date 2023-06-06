@@ -1760,6 +1760,8 @@ MonoBehaviour:
   roamWaitTime: 5
   animTransSpeed: 3
   armed: 1
+  dropRate: 2
+  pickUp: {fileID: 0}
   healthSlider: {fileID: 8015176231149040077}
   healthLeft: {fileID: 8015176229901887795}
   shootDist: 10
