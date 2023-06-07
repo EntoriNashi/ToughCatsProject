@@ -3120,6 +3120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: aab57e3d3e09c3342a00797855758a3b, type: 2}
+  volumeMusicParameter: volumeMusic
+  volumeSfxParameter: volumeSfx
+  sliderMusic: {fileID: 8052058595487014403}
+  sliderSfx: {fileID: 6114733561564499755}
+  multiplier: 30
 --- !u!1 &3826156913939914721
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,7 +3288,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 6374248883389014245}
   LoseMenu: {fileID: 1445247402107861764}
   WinMenu: {fileID: 3826156913939914721}
-  SettingsMenu: {fileID: 3526480352503176831}
+  settingsMenu: {fileID: 3526480352503176831}
   playerHpBar: {fileID: 2022193067}
   playerDamageFlash: {fileID: 1023173101}
   KillCountText: {fileID: 1061354417}
@@ -5238,10 +5243,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 8201899250864757130}
   m_HandleRect: {fileID: 6146573447456722919}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6242,16 +6247,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 7902683445288178611}
   m_HandleRect: {fileID: 6394383229821023506}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0.001
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1343739463800660064}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetFfxVolume
+        m_MethodName: SetSfxVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

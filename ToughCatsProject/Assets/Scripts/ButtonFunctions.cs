@@ -30,7 +30,7 @@ public class ButtonFunctions : MonoBehaviour
     public void openSettingsMenu()
     {
         GameManager.instance.activeMenu.SetActive(false);
-        GameManager.instance.activeMenu = GameManager.instance.SettingsMenu;
+        GameManager.instance.activeMenu = GameManager.instance.settingsMenu;
         GameManager.instance.activeMenu.SetActive(true);
     }
 

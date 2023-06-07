@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
-    public GameObject SettingsMenu;
+    public GameObject settingsMenu;
     public Image playerHpBar;
     public GameObject playerDamageFlash;
     public TextMeshProUGUI KillCountText;
@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
         totalEnemies = 0;
         enemiesKilled = 0;
         UpdateUI();
+    }
+
+    private void Start()
+    {
+        settingsMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
     // Update is called once per frame
