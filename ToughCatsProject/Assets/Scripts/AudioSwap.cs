@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AudioSwap : MonoBehaviour
 {
-    public AudioClip newTrack;
+    public string newTrack;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.instance.SwapTrack(newTrack);
+            AudioManager.instance.SwapTrackString(newTrack);
         }
     }
 

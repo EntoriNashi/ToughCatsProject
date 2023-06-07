@@ -1,23 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[Serializable]
+public class NamedAudioClip
+{
+    public string name;
+    public AudioClip clip;
+}
+
 public class AudioManager : MonoBehaviour
 {
+    public List<NamedAudioClip> clipsToAssignInEditor;
+
     public AudioClip defaultAudio;
     public AudioMixerGroup outputAudio;
+    public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
+
     private AudioSource track1, track2;
     private bool isPlayingtrack1;
-    public static AudioManager instance;
 
-    //[SerializeField] private float fadeTime;
-    //[SerializeField] private float timePassed;
+    public static AudioManager instance;
 
     private void Awake()
     {
         if (instance == null)
         instance = this;
+
+        foreach (var namedClip in clipsToAssignInEditor)
+        {
+            audioClips[namedClip.name] = namedClip.clip;
+        }
     }
 
     private void Start()
@@ -33,12 +48,23 @@ public class AudioManager : MonoBehaviour
         SwapTrack(defaultAudio);
     }
 
+    public void AddAudioClip(string name, AudioClip clip)
+    {
+        audioClips[name] = clip;
+    }
+
     public void SwapTrack(AudioClip newClip)
     {
         StopAllCoroutines();
         StartCoroutine(FadeTrack(newClip));
 
         isPlayingtrack1 = !isPlayingtrack1;
+    }
+
+    public void SwapTrackString(string clipName)
+    {
+        if (audioClips.ContainsKey(clipName))
+            SwapTrack(audioClips[clipName]);
     }
 
     public void ReturnToDefault()
