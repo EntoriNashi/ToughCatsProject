@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     private bool isPlayingtrack1;
     public static AudioManager instance;
 
+    //[SerializeField] private float fadeTime;
+    //[SerializeField] private float timePassed;
+
     private void Awake()
     {
         if (instance == null)
@@ -26,18 +29,8 @@ public class AudioManager : MonoBehaviour
 
     public void SwapTrack(AudioClip newClip)
     {
-        if (isPlayingtrack1)
-        {
-            track2.clip = newClip;
-            track2.Play();
-            track1.Stop();
-        }
-        else
-        {
-            track1.clip = newClip;
-            track1.Play();
-            track2.Stop();
-        }
+        StopAllCoroutines();
+        StartCoroutine(FadeTrack(newClip));
 
         isPlayingtrack1 = !isPlayingtrack1;
     }
@@ -46,4 +39,43 @@ public class AudioManager : MonoBehaviour
     {
         SwapTrack(defaultAudio);
     }
+
+    private IEnumerator FadeTrack(AudioClip newClip)
+    {
+        float fadeTime = 1.25f;
+        float timePassed = 0;
+
+        if (isPlayingtrack1)
+        {
+            track2.clip = newClip;
+            track2.Play();
+
+            while(timePassed < fadeTime)
+            {
+                track2.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
+                track1.volume = Mathf.Lerp(1, 0, timePassed / fadeTime);
+                timePassed += Time.deltaTime;
+                yield return null;
+            }
+
+            track1.Stop();
+        }
+        else
+        {
+            track1.clip = newClip;
+            track1.Play();
+
+            while (timePassed < fadeTime)
+            {
+                track1.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
+                track2.volume = Mathf.Lerp(1, 0, timePassed / fadeTime);
+                timePassed += Time.deltaTime;
+                yield return null;
+            }
+
+            track2.Stop();
+        }
+    }
 }
+
+
