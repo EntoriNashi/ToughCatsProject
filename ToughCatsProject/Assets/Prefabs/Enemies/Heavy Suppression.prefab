@@ -1404,6 +1404,8 @@ MonoBehaviour:
   roamWaitTime: 1
   animTransSpeed: 3
   armed: 1
+  dropRate: 0
+  pickUp: {fileID: 0}
   healthSlider: {fileID: 8015176231325373723}
   healthLeft: {fileID: 8015176229692083685}
   shootDist: 25
@@ -1454,7 +1456,7 @@ AudioSource:
   m_GameObject: {fileID: 6278550422357795440}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -868606409135665241, guid: aab57e3d3e09c3342a00797855758a3b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
