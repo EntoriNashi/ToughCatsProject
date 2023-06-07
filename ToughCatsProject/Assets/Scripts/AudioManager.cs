@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
 {
     public List<NamedAudioClip> clipsToAssignInEditor;
 
-    public AudioClip defaultAudio;
+    //public AudioClip defaultAudio;
     public AudioMixerGroup outputAudio;
     public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
 
         isPlayingTrack1 = true;
 
-        SwapTrack(defaultAudio);
+        SwapTrackString("Ambience1");
     }
 
     public void SwapTrack(AudioClip newClip)
@@ -73,9 +73,7 @@ public class AudioManager : MonoBehaviour
             attackingEnemiesCount--;
 
         if (attackingEnemiesCount == 0)
-            SwapTrack(defaultAudio);
-
-
+            SwapTrackString("Ambience1");
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)

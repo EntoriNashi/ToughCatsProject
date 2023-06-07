@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df987957dbed8846908a64443e9ea01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clipsToAssignInEditor:
+  - name: Battle
+    clip: {fileID: 8300000, guid: ad344f6c901528c46916c5af855f5dc9, type: 3}
+  - name: Ambience2
+    clip: {fileID: 8300000, guid: 4c3827c5e7edcb644a12314102bc3b2a, type: 3}
   defaultAudio: {fileID: 8300000, guid: 4c06298da139e0b4685634584394d1bb, type: 3}
   outputAudio: {fileID: 5990394119313648251, guid: aab57e3d3e09c3342a00797855758a3b, type: 2}

@@ -1032,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4639131115082200338, guid: a35f2eeecbea8864f932cf3301864916, type: 3}
       propertyPath: m_Name
-      value: AudioSwapper
+      value: AmbienceAudioSwapper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a35f2eeecbea8864f932cf3301864916, type: 3}
@@ -1094,23 +1094,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: clipsToAssignInEditor.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[0].clip
+      propertyPath: clipsToAssignInEditor.Array.data[2].clip
       value: 
-      objectReference: {fileID: 8300000, guid: ad344f6c901528c46916c5af855f5dc9, type: 3}
+      objectReference: {fileID: 8300000, guid: 4c06298da139e0b4685634584394d1bb, type: 3}
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[0].name
-      value: Battle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4c3827c5e7edcb644a12314102bc3b2a, type: 3}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[1].name
-      value: Ambience2
+      propertyPath: clipsToAssignInEditor.Array.data[2].name
+      value: Ambience1
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052270, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_Name
