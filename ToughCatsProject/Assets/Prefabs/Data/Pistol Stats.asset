@@ -25,5 +25,5 @@ MonoBehaviour:
   pickupAud: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
   reloadAud: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   gunShotAudVol: 0.5
-  currentMag: 0
-  currentAmmo: 21
+  currentMag: 2
+  currentAmmo: 17

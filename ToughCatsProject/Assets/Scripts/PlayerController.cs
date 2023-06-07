@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public Vector3 gunLowerPos = new Vector3(0,-1,0);
     [SerializeField] public Vector3 gunOrigPos;
     [SerializeField] private float reloadTime;
+    [SerializeField] Transform muzzle;
 
     [Header("*----- Grenade Attributes -----*")]
     [SerializeField] GameObject grenadePrefab;
@@ -237,6 +238,9 @@ public class PlayerController : MonoBehaviour, IDamage
             RaycastHit hit;
 
             int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+            GameObject muzzleFlash = Instantiate(gunList[selectedGun].muzzleFlash, muzzle.position, muzzle.transform.rotation);
+            yield return new WaitForSeconds(0.01f);
+            Destroy(muzzleFlash);
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
             {
@@ -250,7 +254,6 @@ public class PlayerController : MonoBehaviour, IDamage
                 yield return new WaitForSeconds(0.5f);
                 Destroy(hitEffect);
             }
-
             
             //UpdatePlayerUI();
         }
