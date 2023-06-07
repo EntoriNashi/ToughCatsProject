@@ -57,7 +57,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     float stoppingDistOrg;
     float speed;
     int numrate;
-    private bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -90,25 +89,10 @@ public class EnemyAI : MonoBehaviour, IDamage
                 StartCoroutine(roam());
             }
         }
-        Debug.Log($"isAttacking = {isAttacking}");
-
-        if (isAttacking && !isShooting)
-        {
-            AudioManager.instance.ReturnToDefault();
-            isAttacking = false;
-        }
-
     }
 
     IEnumerator roam()
     {
-        // turn off battle music //
-        if (isAttacking)
-        {
-            AudioManager.instance.ReturnToDefault();
-            isAttacking = false;
-        }
-
         if (!destinationChosen && agent.remainingDistance < .05f)
         {
             destinationChosen = true;
@@ -166,17 +150,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        // turn on battle music //
-        if(!isAttacking)
-        {
-            AudioManager.instance.SwapTrackString("Battle");
-            isAttacking = true;
-        }
+        
 
         animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
+
 
     public void createBullet()
     {

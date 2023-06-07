@@ -10,6 +10,7 @@ public class AudioSwap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            newTrack = "Ambience2";
             AudioManager.instance.SwapTrackString(newTrack);
         }
     }

@@ -1094,7 +1094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: clipsToAssignInEditor.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: clipsToAssignInEditor.Array.data[0].clip
@@ -1103,6 +1103,14 @@ PrefabInstance:
     - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: clipsToAssignInEditor.Array.data[0].name
       value: Battle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
+      propertyPath: clipsToAssignInEditor.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c3827c5e7edcb644a12314102bc3b2a, type: 3}
+    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
+      propertyPath: clipsToAssignInEditor.Array.data[1].name
+      value: Ambience2
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052270, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_Name
