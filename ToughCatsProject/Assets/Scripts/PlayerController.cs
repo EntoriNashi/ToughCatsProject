@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
-    [SerializeField] LayerMask PlayerMask;
+    [SerializeField] Camera mainCamera;
+    //[SerializeField] LayerMask PlayerMask;
 
     [Header("----- Player Attributes -----")]
     [SerializeField][Range(1, 10)] int HP;
@@ -18,6 +19,12 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(1, 50)] float jumpHeight;
     [SerializeField][Range(9.81f, 20)] float gravityValue;
     [SerializeField][Range(1, 3)] int jumpMax;
+    [SerializeField][Range(0.1f, 1f)] float crouchHeight = 0.5f;
+    [SerializeField][Range(1f, 3f)] float standinghHeight = 2f;
+    [SerializeField][Range(0.1f, 1f)] float timeToCrouch = 0.25f;
+    [SerializeField] Vector3 crouchingCenter = new Vector3(0, 0.5f, 0);
+    [SerializeField] Vector3 standingCenter = Vector3.zero;
+    [SerializeField] bool isCrouching;
 
     [Header("----- Weapon Attributes -----")]
     public List<GunStats> gunList = new List<GunStats>();
@@ -47,8 +54,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] [Range(0, 1)] float audStepsVol;
 
-    
 
+    float crouchSpeed;
     private Vector3 move;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -62,12 +69,14 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isReloading;
     bool isThrowing = false;
     int currGrenadeAmount;
+    bool canCrouch = true;
 
     private void Start()
     {
         SpawnPlayer();
         HP = maxHP;
         currGrenadeAmount = totalGrenades;
+        crouchSpeed = playerSpeed / 2;
         if(gunList.Count != 0)
         {
             gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
@@ -96,6 +105,10 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(ThrowGrenade());
             }
+            if(Input.GetButtonDown("Crouch") && canCrouch && controller.isGrounded)
+            {
+                StartCoroutine(CrouchStand());
+            }
         }
 
         Sprint();        
@@ -118,9 +131,17 @@ public class PlayerController : MonoBehaviour, IDamage
             }
         }
 
-        move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
+        if (isCrouching)
+        {
+            move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
+            controller.Move(move * Time.deltaTime * crouchSpeed);
+        }
+        else
+        {
+            move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
+            controller.Move(move * Time.deltaTime * playerSpeed);
+        }
+        
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         {
@@ -147,11 +168,50 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator CrouchStand()
+    {
+        //prevent player from standing while crouched underneath objects
+        if(isCrouching && Physics.Raycast(mainCamera.transform.position, Vector3.up, 1f))
+        {
+            yield break;
+        }
+
+        canCrouch = false;
+        float timeElapsed = 0;
+        float targetHeight = isCrouching ? standinghHeight : crouchHeight;
+        float currentHeight = controller.height;
+        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
+        Vector3 currentCenter = controller.center;
+
+        while (timeElapsed < timeToCrouch)
+        {
+            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        //prevent weird behaviors
+        controller.height = targetHeight;
+        controller.center = targetCenter;
+
+        isCrouching = !isCrouching;
+
+        canCrouch = true;
+    }
+
     IEnumerator playSteps()
     {
+        
         stepIsPlaying = true;
 
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        if (isCrouching)
+        {
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol/5);
+        }
+        else
+        {
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        }
 
         if (!isSprinting)
         {
@@ -161,7 +221,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             yield return new WaitForSeconds(.3f);
         }
-
 
         stepIsPlaying = false;
     }
