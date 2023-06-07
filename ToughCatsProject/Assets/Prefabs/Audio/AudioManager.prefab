@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAudio: {fileID: 8300000, guid: 4c06298da139e0b4685634584394d1bb, type: 3}
+  outputAudio: {fileID: 5990394119313648251, guid: aab57e3d3e09c3342a00797855758a3b, type: 2}

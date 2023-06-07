@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject LoseMenu;
     public GameObject WinMenu;
+    public GameObject SettingsMenu;
     public Image playerHpBar;
     public GameObject playerDamageFlash;
     public TextMeshProUGUI KillCountText;
