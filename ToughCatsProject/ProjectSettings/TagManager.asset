@@ -8,6 +8,8 @@ TagManager:
   - UI Label
   - Player Alert
   - Unarmed
+  - Undefined
+  - Enemy
   layers:
   - Default
   - TransparentFX

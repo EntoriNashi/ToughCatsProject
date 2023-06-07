@@ -1354,7 +1354,7 @@ GameObject:
   - component: {fileID: 6278550422357795455}
   m_Layer: 6
   m_Name: Heavy Suppression
-  m_TagString: Untagged
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

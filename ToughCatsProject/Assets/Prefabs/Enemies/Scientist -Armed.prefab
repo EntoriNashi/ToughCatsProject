@@ -1710,7 +1710,7 @@ GameObject:
   - component: {fileID: 2872693095736212688}
   m_Layer: 6
   m_Name: Scientist -Armed
-  m_TagString: Untagged
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

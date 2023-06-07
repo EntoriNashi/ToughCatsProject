@@ -20,9 +20,11 @@ public class AudioManager : MonoBehaviour
     public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
     private AudioSource track1, track2;
-    private bool isPlayingtrack1;
+    private bool isPlayingTrack1;
 
     public static AudioManager instance;
+
+    private int attackingEnemiesCount = 0;
 
     private void Awake()
     {
@@ -43,14 +45,9 @@ public class AudioManager : MonoBehaviour
         track2 = gameObject.AddComponent<AudioSource>();
         track2.outputAudioMixerGroup = outputAudio;
 
-        isPlayingtrack1 = true;
+        isPlayingTrack1 = true;
 
         SwapTrack(defaultAudio);
-    }
-
-    public void AddAudioClip(string name, AudioClip clip)
-    {
-        audioClips[name] = clip;
     }
 
     public void SwapTrack(AudioClip newClip)
@@ -58,26 +55,40 @@ public class AudioManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FadeTrack(newClip));
 
-        isPlayingtrack1 = !isPlayingtrack1;
+        isPlayingTrack1 = !isPlayingTrack1;
     }
 
     public void SwapTrackString(string clipName)
     {
         if (audioClips.ContainsKey(clipName))
             SwapTrack(audioClips[clipName]);
+
+        if (clipName == "Battle")
+            attackingEnemiesCount++;
     }
 
     public void ReturnToDefault()
     {
-        SwapTrack(defaultAudio);
+        if (attackingEnemiesCount > 0)
+            attackingEnemiesCount--;
+
+        if (attackingEnemiesCount == 0)
+            SwapTrack(defaultAudio);
+
+
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)
     {
+        AudioSource currentTrack = isPlayingTrack1 ? track1 : track2;
+
+        if (currentTrack.clip == newClip)
+            yield break;
+
         float fadeTime = 1.25f;
         float timePassed = 0;
 
-        if (isPlayingtrack1)
+        if (isPlayingTrack1)
         {
             track2.clip = newClip;
             track2.Play();
