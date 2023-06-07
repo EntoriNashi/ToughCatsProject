@@ -1441,7 +1441,7 @@ GameObject:
   - component: {fileID: 771298950}
   m_Layer: 6
   m_Name: Light Suppression
-  m_TagString: Untagged
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

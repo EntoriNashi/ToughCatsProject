@@ -57,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     float stoppingDistOrg;
     float speed;
     int numrate;
+    private bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -89,11 +90,26 @@ public class EnemyAI : MonoBehaviour, IDamage
                 StartCoroutine(roam());
             }
         }
+        Debug.Log($"isAttacking = {isAttacking}");
+
+        if (isAttacking && !isShooting)
+        {
+            AudioManager.instance.ReturnToDefault();
+            isAttacking = false;
+        }
+
     }
 
     IEnumerator roam()
     {
-        if(!destinationChosen && agent.remainingDistance < .05f)
+        // turn off battle music //
+        if (isAttacking)
+        {
+            AudioManager.instance.ReturnToDefault();
+            isAttacking = false;
+        }
+
+        if (!destinationChosen && agent.remainingDistance < .05f)
         {
             destinationChosen = true;
             agent.stoppingDistance = 0;
@@ -149,6 +165,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+
+        // turn on battle music //
+        if(!isAttacking)
+        {
+            AudioManager.instance.SwapTrackString("Battle");
+            isAttacking = true;
+        }
+
         animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -170,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPos.position, playerDir);
-        Debug.Log(angleToPlayer);
+        //Debug.Log(angleToPlayer);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
