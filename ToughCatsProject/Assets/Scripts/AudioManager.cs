@@ -63,16 +63,16 @@ public class AudioManager : MonoBehaviour
         if (audioClips.ContainsKey(clipName))
             SwapTrack(audioClips[clipName]);
 
-        if (clipName == "Battle")
-            attackingEnemiesCount++;
+        //if (clipName == "Battle")
+        //    attackingEnemiesCount++;
     }
 
     public void ReturnToDefault()
     {
-        if (attackingEnemiesCount > 0)
-            attackingEnemiesCount--;
+        //if (attackingEnemiesCount > 0)
+        //    attackingEnemiesCount--;
 
-        if (attackingEnemiesCount == 0)
+        //if (attackingEnemiesCount == 0)
             SwapTrackString("Ambience1");
     }
 

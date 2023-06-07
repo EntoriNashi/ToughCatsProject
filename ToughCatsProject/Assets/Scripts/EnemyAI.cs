@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] AudioSource aud;
-    
+
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     private int maxHP;
@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] private Image healthLeft;
 
     [Header("----- Enemy Weapon -----")]
-    [Range(2,300)][SerializeField] int shootDist;
+    [Range(2, 300)][SerializeField] int shootDist;
     [Range(0.1f, 3)][SerializeField] float shootRate;
     [SerializeField] GameObject bullet;
     [SerializeField] int shootAngle;
@@ -57,6 +57,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     float stoppingDistOrg;
     float speed;
     int numrate;
+
+    private bool isCheckingShootingStatus = false;
+    private bool isInBattle = false;
 
     // Start is called before the first frame update
     void Start()
@@ -118,7 +121,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         healthSlider.value = HP;
         healthLeft.fillAmount = (float)HP / maxHP;
 
-        if (HP <= 0) 
+        if (HP <= 0)
         {
             GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
@@ -126,7 +129,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             GetComponent<CapsuleCollider>().enabled = false;
             StopAllCoroutines();
             Destroy(gameObject, 10);
-           
+
             // hide health bar //
             healthSlider.gameObject.SetActive(false);
         }
@@ -138,7 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
-   
+
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
@@ -150,13 +153,28 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        
+        if (!isInBattle)
+        {
+            isInBattle = true;
+            AudioManager.instance.SwapTrackString("Battle");
+            StartCoroutine(CheckShootingStatus());
+        }
 
         animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
 
+    IEnumerator CheckShootingStatus()
+    {
+        yield return new WaitForSeconds(10);
+        if (!isShooting)
+        {
+            AudioManager.instance.SwapTrackString("Ambience1");
+            isInBattle = false;
+        }
+
+    }
 
     public void createBullet()
     {
@@ -183,7 +201,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(GameManager.instance.player.transform.position);
- 
+
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     facePlayer();
                 if (!isShooting && angleToPlayer <= shootAngle)
@@ -217,11 +235,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void step()
     {
-        aud.PlayOneShot(audSteps[UnityEngine.Random.Range(0, audSteps.Length)],audStepsVol);
+        aud.PlayOneShot(audSteps[UnityEngine.Random.Range(0, audSteps.Length)], audStepsVol);
     }
     void hit()
     {
-        aud.PlayOneShot(audHit[UnityEngine.Random.Range(0,audHit.Length)],audHitVol);
+        aud.PlayOneShot(audHit[UnityEngine.Random.Range(0, audHit.Length)], audHitVol);
     }
     void gunShot()
     {
