@@ -51,5 +51,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4c3827c5e7edcb644a12314102bc3b2a, type: 3}
   - name: Ambience1
     clip: {fileID: 8300000, guid: 4c06298da139e0b4685634584394d1bb, type: 3}
+  - name: Win
+    clip: {fileID: 8300000, guid: bb32fbe58e3904a5d94ef8995c7d5570, type: 3}
   outputAudio: {fileID: 5990394119313648251, guid: aab57e3d3e09c3342a00797855758a3b, type: 2}
   isEnemyAttacking: 0

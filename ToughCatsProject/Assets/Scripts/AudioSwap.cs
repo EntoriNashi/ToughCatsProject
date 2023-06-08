@@ -38,9 +38,5 @@ public class AudioSwap : MonoBehaviour
                 AudioManager.instance.ReturnToDefault();
             }
         }
-        //if (other.CompareTag("Player") && !AudioManager.instance.IsEnemyAttacking())
-        //{
-        //    AudioManager.instance.ReturnToDefault();
-        //}
     }
 }

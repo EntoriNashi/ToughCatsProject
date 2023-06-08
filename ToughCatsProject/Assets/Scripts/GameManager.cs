@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
     IEnumerator YouWin()
     {
         yield return new WaitForSeconds(WinDelay);
+
+        AudioManager.instance.SwapTrackString("Win");
+
         activeMenu = WinMenu;
         activeMenu.SetActive(true);
         SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
