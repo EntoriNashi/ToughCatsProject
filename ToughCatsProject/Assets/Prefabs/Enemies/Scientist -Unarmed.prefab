@@ -76,11 +76,11 @@ GameObject:
   - component: {fileID: 1128057895389535003}
   m_Layer: 6
   m_Name: Scientist -Unarmed
-  m_TagString: Undefined
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1128057895389535002
 Transform:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   audStepsVol: 0.02
   audHitVol: 0.3
   audShotVol: 0.4
+  isInBattle: 0
 --- !u!95 &1128057895382054042
 Animator:
   serializedVersion: 5
@@ -2051,7 +2052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8015176230393091421, guid: 1fef0b443f302364393621a45608874f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fef0b443f302364393621a45608874f, type: 3}

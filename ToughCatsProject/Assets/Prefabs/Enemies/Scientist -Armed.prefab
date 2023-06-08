@@ -1710,7 +1710,7 @@ GameObject:
   - component: {fileID: 2872693095736212688}
   m_Layer: 6
   m_Name: Scientist -Armed
-  m_TagString: Undefined
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1789,6 +1789,7 @@ MonoBehaviour:
   audStepsVol: 0.02
   audHitVol: 0.3
   audShotVol: 0.4
+  isInBattle: 0
 --- !u!95 &2872693095743624017
 Animator:
   serializedVersion: 5

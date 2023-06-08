@@ -1354,11 +1354,11 @@ GameObject:
   - component: {fileID: 6278550422357795455}
   m_Layer: 6
   m_Name: Heavy Suppression
-  m_TagString: Undefined
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6278550422357835344
 Transform:
   m_ObjectHideFlags: 0
@@ -1433,6 +1433,7 @@ MonoBehaviour:
   audStepsVol: 0.04
   audHitVol: 0.2
   audShotVol: 0.5
+  isInBattle: 0
 --- !u!136 &6278550422357795431
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2139,7 +2140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8015176230393091421, guid: 1fef0b443f302364393621a45608874f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8015176230605673987, guid: 1fef0b443f302364393621a45608874f, type: 3}
       propertyPath: m_IsActive

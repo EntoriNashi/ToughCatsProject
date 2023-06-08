@@ -310,21 +310,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2016052913}
     m_Modifications:
-    - target: {fileID: 1383346673, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1128057895389431546, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
       propertyPath: m_Name
       value: Scientist -Unarmed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1128057895389431546, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1128057895389431546, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1128057895389535002, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
       propertyPath: m_RootOrder
@@ -683,21 +671,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2016052913}
     m_Modifications:
-    - target: {fileID: 2872693096729468645, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5659941511909589864, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
       propertyPath: m_Name
       value: Light Suppression
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659941511909589864, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659941511909589864, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5659941511909629768, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
       propertyPath: m_RootOrder
@@ -741,14 +717,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5659941511909629768, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229878595012, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176230611391988, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -807,10 +775,6 @@ PrefabInstance:
     - target: {fileID: 2872693095736369457, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_Name
       value: Scientist -Armed
-      objectReference: {fileID: 0}
-    - target: {fileID: 2872693095736369457, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
@@ -886,14 +850,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy Suppression
       objectReference: {fileID: 0}
-    - target: {fileID: 6278550422357795440, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6278550422357795440, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 6278550422357835344, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -937,10 +893,6 @@ PrefabInstance:
     - target: {fileID: 6278550422357835344, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229669197383, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
@@ -1156,18 +1108,6 @@ PrefabInstance:
     - target: {fileID: 8193574532786052268, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4c06298da139e0b4685634584394d1bb, type: 3}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[2].name
-      value: Ambience1
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052270, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_Name
