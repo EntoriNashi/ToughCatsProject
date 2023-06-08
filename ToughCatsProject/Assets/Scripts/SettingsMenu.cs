@@ -18,9 +18,6 @@ public class SettingsMenu : MonoBehaviour
     {
         sliderMusic.onValueChanged.AddListener(HandleSliderMusicChanged);
         sliderSfx.onValueChanged.AddListener(HandleSliderSfxChanged);
-
-        sliderMusic.value = PlayerPrefs.GetFloat(volumeMusicParameter);
-        sliderSfx.value = PlayerPrefs.GetFloat(volumeSfxParameter);
     }
 
     private void HandleSliderMusicChanged(float value)
