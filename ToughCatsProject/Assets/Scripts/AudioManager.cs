@@ -50,6 +50,12 @@ public class AudioManager : MonoBehaviour
         isPlayingTrack1 = true;
 
         SwapTrackString("Ambience1");
+
+    }
+
+    private void Update()
+    {
+        StartCoroutine(TrackBattleStatus());
     }
 
     public void SwapTrack(AudioClip newClip)
@@ -129,10 +135,20 @@ public class AudioManager : MonoBehaviour
     {
         foreach (var enemy in enemies)
         {
-            if (enemy.isInBattle)
+            if (enemy.isInBattle && !enemy.isDying)
                 return true;
         }
         return false;
+    }
+
+    private IEnumerator TrackBattleStatus()
+    {
+        yield return new WaitForSeconds(10);
+
+        if (!IsEnemyAttacking())
+        {
+            SwapTrackString("Ambience1");
+        }
     }
 }
 

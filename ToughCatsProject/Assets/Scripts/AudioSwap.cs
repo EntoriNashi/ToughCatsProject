@@ -14,6 +14,8 @@ public class AudioSwap : MonoBehaviour
         {
             AudioManager.instance.SwapTrackString("Battle");
         }
+
+        //Debug.Log($"is enemy attacking -> {AudioManager.instance.IsEnemyAttacking()}");
     }
 
     private void OnTriggerEnter(Collider other)

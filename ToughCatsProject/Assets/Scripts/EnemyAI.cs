@@ -60,6 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
+    public bool isDying = false;
 
     private void Awake()
     {
@@ -128,6 +129,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            isDying = true;
             // battle music turn off //
             AudioManager.instance.UnregisterEnemy(this);
             // If no enemy is attacking, switch the audio back to default.
