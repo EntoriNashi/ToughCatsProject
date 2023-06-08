@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,12 +60,27 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-            isPaused = !isPaused;
-            activeMenu = pauseMenu;
-            activeMenu.SetActive(isPaused);
-
-            PauseState();
+            PauseTheGame();
         }
+    }
+
+    public void PauseTheGame()
+    {
+        isPaused = !isPaused;
+        activeMenu = pauseMenu;
+        activeMenu.SetActive(isPaused);
+        SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
+
+        PauseState();
+    }
+
+    public void SetPrimaryButton(GameObject primaryButton)
+    {
+        if(primaryButton == null)
+        {
+            return;
+        }
+        ButtonSelect.primaryButton = primaryButton.GetComponent<Button>();
     }
 
     public void PauseState()
@@ -89,6 +105,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(WinDelay);
         activeMenu = WinMenu;
         activeMenu.SetActive(true);
+        SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
         PauseState();
     }
     
@@ -102,6 +119,7 @@ public class GameManager : MonoBehaviour
         PauseState();
         activeMenu = LoseMenu;
         activeMenu.SetActive(true);
+        SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
     }
 
     
@@ -128,5 +146,4 @@ public class GameManager : MonoBehaviour
         KillCountText.text = enemiesKilled.ToString("F0");
         TotalEnemiesText.text = totalEnemies.ToString("F0");
     }
-    
 }
