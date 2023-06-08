@@ -6,10 +6,21 @@ public class AudioSwap : MonoBehaviour
 {
     public string newTrack;
 
+    private bool playerInsideTrigger = false;
+
+    private void Update()
+    {
+        if (playerInsideTrigger && AudioManager.instance.IsEnemyAttacking())
+        {
+            AudioManager.instance.SwapTrackString("Battle");
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !AudioManager.instance.IsEnemyAttacking())
         {
+            playerInsideTrigger = true;
             newTrack = "Ambience2";
             AudioManager.instance.SwapTrackString(newTrack);
         }
@@ -19,7 +30,15 @@ public class AudioSwap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.instance.ReturnToDefault();
+            playerInsideTrigger = false;
+            if (!AudioManager.instance.IsEnemyAttacking())
+            {
+                AudioManager.instance.ReturnToDefault();
+            }
         }
+        //if (other.CompareTag("Player") && !AudioManager.instance.IsEnemyAttacking())
+        //{
+        //    AudioManager.instance.ReturnToDefault();
+        //}
     }
 }

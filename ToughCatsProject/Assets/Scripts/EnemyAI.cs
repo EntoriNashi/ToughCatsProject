@@ -59,7 +59,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     int numrate;
 
     private bool isCheckingShootingStatus = false;
-    private bool isInBattle = false;
+    public bool isInBattle = false;
+
+    private void Awake()
+    {
+        AudioManager.instance.RegisterEnemy(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +128,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            // battle music turn off //
+            AudioManager.instance.UnregisterEnemy(this);
+            // If no enemy is attacking, switch the audio back to default.
+            if (!AudioManager.instance.IsEnemyAttacking())
+            {
+                AudioManager.instance.ReturnToDefault();
+            }
+
+
             GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
             agent.enabled = false;

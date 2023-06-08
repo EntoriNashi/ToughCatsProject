@@ -24,12 +24,14 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    private int attackingEnemiesCount = 0;
+    public bool isEnemyAttacking = false;
+
+    private List<EnemyAI> enemies = new List<EnemyAI>();
 
     private void Awake()
     {
         if (instance == null)
-        instance = this;
+            instance = this;
 
         foreach (var namedClip in clipsToAssignInEditor)
         {
@@ -62,18 +64,11 @@ public class AudioManager : MonoBehaviour
     {
         if (audioClips.ContainsKey(clipName))
             SwapTrack(audioClips[clipName]);
-
-        //if (clipName == "Battle")
-        //    attackingEnemiesCount++;
     }
 
     public void ReturnToDefault()
     {
-        //if (attackingEnemiesCount > 0)
-        //    attackingEnemiesCount--;
-
-        //if (attackingEnemiesCount == 0)
-            SwapTrackString("Ambience1");
+        SwapTrackString("Ambience1");
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)
@@ -91,7 +86,7 @@ public class AudioManager : MonoBehaviour
             track2.clip = newClip;
             track2.Play();
 
-            while(timePassed < fadeTime)
+            while (timePassed < fadeTime)
             {
                 track2.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
                 track1.volume = Mathf.Lerp(1, 0, timePassed / fadeTime);
@@ -116,6 +111,28 @@ public class AudioManager : MonoBehaviour
 
             track2.Stop();
         }
+    }
+
+    public void RegisterEnemy(EnemyAI enemy)
+    {
+        if (!enemies.Contains(enemy))
+            enemies.Add(enemy);
+    }
+
+    public void UnregisterEnemy(EnemyAI enemy)
+    {
+        if (enemies.Contains(enemy))
+            enemies.Remove(enemy);
+    }
+
+    public bool IsEnemyAttacking()
+    {
+        foreach (var enemy in enemies)
+        {
+            if (enemy.isInBattle)
+                return true;
+        }
+        return false;
     }
 }
 
