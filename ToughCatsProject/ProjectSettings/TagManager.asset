@@ -10,6 +10,7 @@ TagManager:
   - Unarmed
   - Undefined
   - Enemy
+  - Button
   layers:
   - Default
   - TransparentFX
