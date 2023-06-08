@@ -55,12 +55,6 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void Start()
-    {
-        settingsMenu.SetActive(true);
-        settingsMenu.SetActive(false);
-    }
-
     // Update is called once per frame
     void Update()
     {
