@@ -215,9 +215,7 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
         _transform.anchorMax = new Vector2(0, 0);
         _transform.pivot = new Vector2(0, 0);
 
-        Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvas.transform as RectTransform, eventData.position, Camera.main, out pos);
-        _transform.localPosition = pos + offset;
+        this.transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
