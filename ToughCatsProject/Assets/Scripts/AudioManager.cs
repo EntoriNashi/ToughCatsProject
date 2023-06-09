@@ -19,12 +19,14 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup outputAudio;
     public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
+    public AudioSource winTrack;
     private AudioSource track1, track2;
     private bool isPlayingTrack1;
 
     public static AudioManager instance;
 
     public bool isEnemyAttacking = false;
+    public bool isGameEnded = false;
 
     private List<EnemyAI> enemies = new List<EnemyAI>();
 
@@ -46,6 +48,10 @@ public class AudioManager : MonoBehaviour
 
         track2 = gameObject.AddComponent<AudioSource>();
         track2.outputAudioMixerGroup = outputAudio;
+
+        // Initialize the winTrack
+        winTrack = gameObject.AddComponent<AudioSource>();
+        winTrack.outputAudioMixerGroup = outputAudio;
 
         isPlayingTrack1 = true;
 
@@ -74,8 +80,44 @@ public class AudioManager : MonoBehaviour
 
     public void ReturnToDefault()
     {
-        //test
         SwapTrackString("Ambience1");
+    }
+
+    public void PlayWinTrack(string clipName)
+    {
+        if (audioClips.ContainsKey(clipName))
+        {
+            // Stop the current track
+            if (isPlayingTrack1)
+                track1.Stop();
+            else
+                track2.Stop();
+
+            // Set the volume to a higher value
+            winTrack.volume = 1.0f;  // Set this to the desired volume level
+
+            // Start the fade in process for the win track
+            StartCoroutine(FadeInTrack(winTrack, audioClips[clipName]));
+        }
+    }
+
+    private IEnumerator FadeInTrack(AudioSource track, AudioClip newClip)
+    {
+        track.clip = newClip;
+        track.Play();
+        float fadeTime = 0.5f;
+        float timePassed = 0;
+
+        while (timePassed < fadeTime)
+        {
+            track.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
+            Debug.Log("Track volume: " + track.volume);  // print the volume to console
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
+
+        track.volume = 1.0f;
+        Debug.Log("Final Track volume: " + track.volume);  // print the final volume to console
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)

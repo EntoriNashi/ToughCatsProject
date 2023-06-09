@@ -103,8 +103,8 @@ public class GameManager : MonoBehaviour
     IEnumerator YouWin()
     {
         yield return new WaitForSeconds(WinDelay);
-
-        AudioManager.instance.SwapTrackString("Win");
+        AudioManager.instance.PlayWinTrack("Win");
+        AudioManager.instance.isGameEnded = true;
 
         activeMenu = WinMenu;
         activeMenu.SetActive(true);
@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         PauseState();
         activeMenu = LoseMenu;
+        AudioManager.instance.isGameEnded = true;
         activeMenu.SetActive(true);
         SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
     }

@@ -12,6 +12,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void restart()
     {
+        AudioManager.instance.isGameEnded = false;
         GameManager.instance.UnpausedState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -23,6 +24,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void respawnPlayer()
     {
+        AudioManager.instance.isGameEnded = false;
         GameManager.instance.UnpausedState();
         GameManager.instance.playerScript.SpawnPlayer();
     }
