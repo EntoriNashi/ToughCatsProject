@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
     [SerializeField] public GameObject gunPos;
-    [SerializeField] public Vector3 gunLowerPos = new Vector3(0,-1,0);
+    [SerializeField] public Vector3 gunLowerPos = new Vector3(0, -1, 0);
     [SerializeField] public Vector3 gunOrigPos;
     [SerializeField] private float reloadTime;
     [SerializeField] Transform muzzle;
@@ -50,11 +50,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
-    [SerializeField] [Range(0, 1)] float audJumpVol;
+    [SerializeField][Range(0, 1)] float audJumpVol;
     [SerializeField] AudioClip[] audDmg;
-    [SerializeField] [Range(0, 1)] float audDmgVol;
+    [SerializeField][Range(0, 1)] float audDmgVol;
     [SerializeField] AudioClip[] audSteps;
-    [SerializeField] [Range(0, 1)] float audStepsVol;
+    [SerializeField][Range(0, 1)] float audStepsVol;
 
 
     float crouchSpeed;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, IDamage
         HP = maxHP;
         currGrenadeAmount = totalGrenades;
         crouchSpeed = playerSpeed / 2;
-        if(gunList.Count != 0)
+        if (gunList.Count != 0)
         {
             gunList[selectedGun].currentAmmo = gunList[selectedGun].magazineSize;
             gunList[selectedGun].currentMag = gunList[selectedGun].numOfMag;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Update()
     {
-        if(GameManager.instance.activeMenu == null)
+        if (GameManager.instance.activeMenu == null)
         {
             Movement();
             SelectGun();
@@ -99,21 +99,21 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(Shoot());
             }
-            if(Input.GetButton("Reload") && !isReloading && gunList[selectedGun].numOfMag > 0 && gunList.Count > 0)
+            if (Input.GetButton("Reload") && !isReloading && gunList[selectedGun].numOfMag > 0 && gunList.Count > 0)
             {
                 StartCoroutine(Reload());
             }
-            if(Input.GetButton("Grenade") && !isThrowing && currGrenadeAmount > 0)
+            if (Input.GetButton("Grenade") && !isThrowing && currGrenadeAmount > 0)
             {
                 StartCoroutine(ThrowGrenade());
             }
-            if(Input.GetButtonDown("Crouch") && canCrouch && controller.isGrounded)
+            if (Input.GetButtonDown("Crouch") && canCrouch && controller.isGrounded)
             {
                 StartCoroutine(CrouchStand());
             }
         }
 
-        Sprint();        
+        Sprint();
     }
 
     private void Movement()
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour, IDamage
             move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
         }
-        
+
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpedTimes < jumpMax)
         {
@@ -163,9 +163,9 @@ public class PlayerController : MonoBehaviour, IDamage
             isSprinting = true;
             playerSpeed *= sprintMod;
         }
-        else if(Input.GetButtonUp("Sprint"))
-        { 
-            isSprinting= false;
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            isSprinting = false;
             playerSpeed /= sprintMod;
         }
     }
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator CrouchStand()
     {
         //prevent player from standing while crouched underneath objects
-        if(isCrouching && Physics.Raycast(mainCamera.transform.position, Vector3.up, 1f))
+        if (isCrouching && Physics.Raycast(mainCamera.transform.position, Vector3.up, 1f))
         {
             yield break;
         }
@@ -203,12 +203,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator playSteps()
     {
-        
+
         stepIsPlaying = true;
 
         if (isCrouching)
         {
-            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol/5);
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol / 5);
         }
         else
         {
@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        if(gunList[selectedGun].currentAmmo > 0 && !isReloading)
+        if (gunList[selectedGun].currentAmmo > 0 && !isReloading)
         {
             gunList[selectedGun].currentAmmo--;
             aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
@@ -239,9 +239,10 @@ public class PlayerController : MonoBehaviour, IDamage
             RaycastHit hit;
 
             int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
-            GameObject muzzleFlash = Instantiate(gunList[selectedGun].muzzleFlash, muzzle.position, muzzle.transform.rotation);
-            yield return new WaitForSeconds(0.01f);
-            Destroy(muzzleFlash);
+            GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", muzzle.position, muzzle.transform.rotation);
+
+            // Move muzzle flash under the map after a delay.
+            StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
             {
@@ -251,16 +252,64 @@ public class PlayerController : MonoBehaviour, IDamage
                     damageable.takeDamage(shootDamage);
                 }
 
-                GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-                yield return new WaitForSeconds(0.5f);
-                Destroy(hitEffect);
+                GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
+
+                // Move hit effect under the map after a delay.
+                StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
             }
-            
-            //UpdatePlayerUI();
+
+            yield return new WaitForSeconds(gunList[selectedGun].shootRate);
         }
-        yield return new WaitForSeconds(shootRate);
 
         isShooting = false;
+
+
+
+
+
+
+        //    isShooting = true;
+
+        //    if(gunList[selectedGun].currentAmmo > 0 && !isReloading)
+        //    {
+        //        gunList[selectedGun].currentAmmo--;
+        //        aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
+
+        //        RaycastHit hit;
+
+        //        int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
+        //        GameObject muzzleFlash = Instantiate(gunList[selectedGun].muzzleFlash, muzzle.position, muzzle.transform.rotation);
+        //        yield return new WaitForSeconds(0.01f);
+        //        Destroy(muzzleFlash);
+
+        //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
+        //        {
+        //            IDamage damageable = hit.collider.GetComponent<IDamage>();
+        //            if (damageable != null)
+        //            {
+        //                damageable.takeDamage(shootDamage);
+        //            }
+
+        //            //GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+        //            //yield return new WaitForSeconds(gunList[selectedGun].shootRate);
+        //            //Destroy(hitEffect);
+        //        }
+
+        //        //UpdatePlayerUI();
+        //    }
+        //    yield return new WaitForSeconds(gunList[selectedGun].shootRate);
+
+        //    isShooting = false;
+    }
+
+    // Coroutine to move an object under the map and deactivate it after a delay.
+    IEnumerator MoveObjectUnderMap(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Arbitrary position under the map.
+        obj.transform.position = new Vector3(0, -1000, 0);
+        obj.SetActive(false);
     }
 
     IEnumerator Reload()
@@ -383,16 +432,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void SelectGun()
     {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
         }
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
         }
 
-        if(gunList.Count > 0)
+        if (gunList.Count > 0)
             ChangeGunStats(gunList[selectedGun]);
     }
 
