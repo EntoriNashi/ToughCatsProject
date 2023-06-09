@@ -847,8 +847,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Armed
       objectReference: {fileID: 0}
+    - target: {fileID: 8015176229725131260, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015176229725131260, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
