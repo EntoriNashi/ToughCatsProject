@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(1f, 3f)] float standinghHeight = 2f;
     [SerializeField][Range(0.1f, 1f)] float timeToCrouch = 0.25f;
     [SerializeField] Vector3 crouchingCenter = new Vector3(0, 0.5f, 0);
+    [SerializeField] public float crouchOffset;
     [SerializeField] Vector3 standingCenter = Vector3.zero;
-    [SerializeField] bool isCrouching;
+    [SerializeField] public bool isCrouching;
 
     [Header("----- Weapon Attributes -----")]
     public List<GunStats> gunList = new List<GunStats>();

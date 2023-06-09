@@ -441,6 +441,7 @@ MonoBehaviour:
   standinghHeight: 2
   timeToCrouch: 0.25
   crouchingCenter: {x: 0, y: 0.5, z: 0}
+  crouchOffset: -0.5
   standingCenter: {x: 0, y: 0, z: 0}
   isCrouching: 0
   gunList: []

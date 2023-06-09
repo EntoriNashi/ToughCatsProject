@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] int damage;
-    [SerializeField] int speed;
+    [SerializeField] public int speed;
     [SerializeField] int timer;
 
     [SerializeField] Rigidbody rb;
@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, timer);
+
         rb.velocity = transform.forward * speed;
     }
 

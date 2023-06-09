@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] bool armed;
     [SerializeField] int dropRate;
     [SerializeField] GameObject pickUp;
+    private int bulletSpeed;
 
     [Header("----- Health Bar -----")]
     [SerializeField] private Slider healthSlider;
@@ -173,6 +174,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             isInBattle = true;
             AudioManager.instance.SwapTrackString("Battle");
+
+            
+
             StartCoroutine(CheckShootingStatus());
         }
 
@@ -194,7 +198,29 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void createBullet()
     {
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Vector3 playerChestPos = GameManager.instance.player.transform.position;
+        // If player is crouching, adjust height
+
+        //GameManager.instance.player.GetComponent<PlayerController>().isCrouching
+
+        if (GameManager.instance.playerScript.isCrouching)
+        {
+            playerChestPos.y -= GameManager.instance.playerScript.crouchOffset;
+        }
+        else
+        {
+            playerChestPos.y += GameManager.instance.player.transform.localScale.y / 2;
+        }
+
+        Vector3 bulletDirection = (playerChestPos - shootPos.position).normalized;
+
+        // Instantiate bullet and set initial velocity //
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.LookRotation(bulletDirection));
+        bulletClone.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
+
+
+
+        //Instantiate(bullet, shootPos.position, transform.rotation);
     }
 
     bool canSeePlayer()
