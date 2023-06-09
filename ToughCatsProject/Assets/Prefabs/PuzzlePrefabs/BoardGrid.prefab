@@ -49,12 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f09ff3c3a4b1f4182ba790e4385280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapeStorage: {fileID: 0}
+  pieceStorage: {fileID: 0}
   Columns: 8
   Rows: 8
   SquaresGap: 0.1
-  GridSquare: {fileID: 887436555273782643, guid: 89ebd24848a4e0841be9c8e578561661,
-    type: 3}
+  GridSquare: {fileID: 887436555273782643, guid: 89ebd24848a4e0841be9c8e578561661, type: 3}
   StartPos: {x: 0, y: 0}
   SquareScale: 0.5
   EverySquareOffset: 10
+  BoardSquaresFilled: 0
+  BoardSquaresRemaining: 0
+  TotalBoardSquares: 0
