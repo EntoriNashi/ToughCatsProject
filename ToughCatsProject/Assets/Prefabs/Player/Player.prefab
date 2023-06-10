@@ -479,7 +479,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fe1f10cde4fd9eb47ad9c6676d465484, type: 3}
   - {fileID: 8300000, guid: 8b91165d5adf592428bd3720d6396ac2, type: 3}
   - {fileID: 8300000, guid: 43e7d99170361ca41858236ffdfa7a8c, type: 3}
-  audStepsVol: 0.5
+  audStepsVol: 0.15
 --- !u!143 &5191761235789316680
 CharacterController:
   m_ObjectHideFlags: 0

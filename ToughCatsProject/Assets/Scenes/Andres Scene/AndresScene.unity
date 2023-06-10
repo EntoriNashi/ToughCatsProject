@@ -894,10 +894,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5191761235789316681, guid: 0ba31da52b0a90b409fd07f15fe7946d, type: 3}
-      propertyPath: audStepsVol
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 5282578412703672145, guid: 0ba31da52b0a90b409fd07f15fe7946d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1396,18 +1392,6 @@ PrefabInstance:
     - target: {fileID: 8193574532786052268, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 10389977f1b28df4582103a666416cf1, type: 3}
-    - target: {fileID: 8193574532786052269, guid: 95c80136acc46284098cec130b81de63, type: 3}
-      propertyPath: clipsToAssignInEditor.Array.data[4].name
-      value: Lose
       objectReference: {fileID: 0}
     - target: {fileID: 8193574532786052270, guid: 95c80136acc46284098cec130b81de63, type: 3}
       propertyPath: m_Name

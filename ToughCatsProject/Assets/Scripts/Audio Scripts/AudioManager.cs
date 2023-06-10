@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup outputAudio;
     public Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
-    public AudioSource winTrack;
+    public AudioSource endGameTrack;
     private AudioSource track1, track2;
     private bool isPlayingTrack1;
 
@@ -50,8 +50,8 @@ public class AudioManager : MonoBehaviour
         track2.outputAudioMixerGroup = outputAudio;
 
         // Initialize the winTrack
-        winTrack = gameObject.AddComponent<AudioSource>();
-        winTrack.outputAudioMixerGroup = outputAudio;
+        endGameTrack = gameObject.AddComponent<AudioSource>();
+        endGameTrack.outputAudioMixerGroup = outputAudio;
 
         isPlayingTrack1 = true;
 
@@ -83,7 +83,7 @@ public class AudioManager : MonoBehaviour
         SwapTrackString("Ambience1");
     }
 
-    public void PlayWinTrack(string clipName)
+    public void PlayEndGameTrack(string clipName)
     {
         if (audioClips.ContainsKey(clipName))
         {
@@ -94,10 +94,10 @@ public class AudioManager : MonoBehaviour
                 track2.Stop();
 
             // Set the volume to a higher value
-            winTrack.volume = 1.0f;  // Set this to the desired volume level
+            endGameTrack.volume = 1.0f;  // Set this to the desired volume level
 
             // Start the fade in process for the win track
-            StartCoroutine(FadeInTrack(winTrack, audioClips[clipName]));
+            StartCoroutine(FadeInTrack(endGameTrack, audioClips[clipName]));
         }
     }
 
