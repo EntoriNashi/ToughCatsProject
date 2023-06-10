@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
+    public GameObject PuzzleSprite;
     public GameObject SquarePieceImage;
     public PieceData pieceData;
 
@@ -33,6 +35,7 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
         isPieceDraggable = true;
         startPos = transform.localPosition;
         pieceActive = true;
+        PuzzleSprite.SetActive(false);
     }
 
     private void OnEnable()
