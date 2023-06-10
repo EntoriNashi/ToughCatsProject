@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     // Variables //
     public static GameManager instance;
 
-
     [Header("*----- Player Stuff -----*")]
     public GameObject player;
     public PlayerController playerScript;
@@ -119,11 +118,12 @@ public class GameManager : MonoBehaviour
 
     public void YouLose()
     {
-        PauseState();
-        activeMenu = LoseMenu;
+        AudioManager.instance.PlayWinTrack("Lose");
         AudioManager.instance.isGameEnded = true;
+        activeMenu = LoseMenu;
         activeMenu.SetActive(true);
         SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
+        PauseState();
     }
 
     

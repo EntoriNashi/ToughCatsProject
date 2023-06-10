@@ -119,24 +119,6 @@ public class AudioManager : MonoBehaviour
 
         track.volume = 1.0f;
         Debug.Log("Final Track volume: " + track.volume);  // print the final volume to console
-
-
-
-        //track.clip = newClip;
-        //track.Play();
-        //float fadeTime = 0.5f;
-        //float timePassed = 0;
-
-        //while (timePassed < fadeTime)
-        //{
-        //    track.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
-        //    Debug.Log("Track volume: " + track.volume);  // print the volume to console
-        //    timePassed += Time.deltaTime;
-        //    yield return null;
-        //}
-
-        //track.volume = 1.0f;
-        //Debug.Log("Final Track volume: " + track.volume);  // print the final volume to console
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)
