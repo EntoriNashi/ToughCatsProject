@@ -445,9 +445,9 @@ MonoBehaviour:
   standingCenter: {x: 0, y: 0, z: 0}
   isCrouching: 0
   gunList: []
-  shootDistance: 2
-  shootRate: 0.2
-  shootDamage: 1
+  shootDistance: 4
+  shootRate: 0.1
+  shootDamage: 2
   gunModel: {fileID: 6412036625829179448}
   gunMaterial: {fileID: 9158305272287413490}
   gunPos: {fileID: 7212561461173347623}
