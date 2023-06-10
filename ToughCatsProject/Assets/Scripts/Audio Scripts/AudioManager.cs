@@ -66,6 +66,9 @@ public class AudioManager : MonoBehaviour
 
     public void SwapTrack(AudioClip newClip)
     {
+        if (isGameEnded)
+            return;
+
         StopAllCoroutines();
         StartCoroutine(FadeTrack(newClip));
 
@@ -109,16 +112,40 @@ public class AudioManager : MonoBehaviour
         float startTime = Time.realtimeSinceStartup;
         float endTime = startTime + fadeTime;
 
-        while (Time.realtimeSinceStartup < endTime)
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeTime)
         {
-            float timePassed = Time.realtimeSinceStartup - startTime;
-            track.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
+            float ratio = elapsedTime / fadeTime;
+            track.volume = Mathf.Lerp(0, 1, ratio);
             Debug.Log("Track volume: " + track.volume);  // print the volume to console
-            yield return null;
+            yield return new WaitForEndOfFrame();
+            elapsedTime += Time.unscaledDeltaTime;
         }
 
         track.volume = 1.0f;
         Debug.Log("Final Track volume: " + track.volume);  // print the final volume to console
+
+
+
+
+
+
+        //track.clip = newClip;
+        //track.Play();
+        //float fadeTime = 0.5f;
+        //float startTime = Time.realtimeSinceStartup;
+        //float endTime = startTime + fadeTime;
+
+        //while (Time.realtimeSinceStartup < endTime)
+        //{
+        //    float timePassed = Time.realtimeSinceStartup - startTime;
+        //    track.volume = Mathf.Lerp(0, 1, timePassed / fadeTime);
+        //    Debug.Log("Track volume: " + track.volume);  // print the volume to console
+        //    yield return null;
+        //}
+
+        //track.volume = 1.0f;
+        //Debug.Log("Final Track volume: " + track.volume);  // print the final volume to console
     }
 
     private IEnumerator FadeTrack(AudioClip newClip)
@@ -193,6 +220,12 @@ public class AudioManager : MonoBehaviour
         {
             SwapTrackString("Ambience1");
         }
+    }
+
+    public void MuteTracks()
+    {
+        track1.volume = 0;
+        track2.volume = 0;
     }
 }
 

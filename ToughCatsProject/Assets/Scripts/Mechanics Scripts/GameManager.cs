@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void YouLose()
     {
+        AudioManager.instance.MuteTracks();
         AudioManager.instance.PlayEndGameTrack("Lose");
         AudioManager.instance.isGameEnded = true;
         activeMenu = LoseMenu;
