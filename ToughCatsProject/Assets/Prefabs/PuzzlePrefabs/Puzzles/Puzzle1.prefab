@@ -115,26 +115,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1051976594017611519, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1051976594017611519, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1051976594017611519, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3611532005159027473, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_Name
-      value: RestartButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4296340927469261607, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_text
-      value: Restart
-      objectReference: {fileID: 0}
     - target: {fileID: 7052099287596254399, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -142,14 +122,6 @@ PrefabInstance:
     - target: {fileID: 7052099287596254399, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -320
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428195801445969111, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 666
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428195801445969111, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 345
       objectReference: {fileID: 0}
     - target: {fileID: 8217615654881520484, guid: 221f1adc950912c48b829c6f97c3adfb, type: 3}
       propertyPath: pieceList.Array.size

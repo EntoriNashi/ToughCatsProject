@@ -45,17 +45,7 @@ public class Door : MonoBehaviour
         }
         else if (other.CompareTag("Player") && IsLocked)
         {
-            //GameManager.instance.PuzzleActivate(attachedPuzzle);
-
-            //Code needed to be added to Game Manage:
-            //public void PuzzleActivate(GameObject puzzle)
-            //{
-            //    activeMenu = puzzle;
-            //    activeMenu.SetActive(true);
-            //    Cursor.visible = true;
-            //    Cursor.lockState = CursorLockMode.Confined;
-            //    isPaused = true;
-            //}
+            GameManager.instance.PuzzleActivate(attachedPuzzle);
         }
     }
 

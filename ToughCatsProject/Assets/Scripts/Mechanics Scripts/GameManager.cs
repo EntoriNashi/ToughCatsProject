@@ -151,4 +151,17 @@ public class GameManager : MonoBehaviour
         KillCountText.text = enemiesKilled.ToString("F0");
         TotalEnemiesText.text = totalEnemies.ToString("F0");
     }
+    public void PuzzleActivate(GameObject puzzle)
+    {
+        activeMenu = puzzle;
+        activeMenu.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        isPaused = true;
+    }
+
+    public bool GetIsPaused()
+    {
+        return isPaused;
+    }
 }
