@@ -143,7 +143,7 @@ public class BoardGrid : MonoBehaviour
         }
         else
         {
-            //PuzzleEvents.MovePieceToStartPosition();
+            PuzzleEvents.MovePieceToStartPosition();
         }
 
     }
