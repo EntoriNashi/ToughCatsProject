@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage, ISleep
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
@@ -14,10 +14,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] AudioSource aud;
+    [SerializeField] GameObject sleepIndicator;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     private int maxHP;
+    [SerializeField] int stamina;
+    private int maxStamina;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
@@ -58,10 +61,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     float stoppingDistOrg;
     float speed;
     int numrate;
+    float sleepTimer = 500f;
 
     private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
     public bool isDying = false;
+    public bool isAsleep = false;
 
     private void Awake()
     {
@@ -98,6 +103,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 StartCoroutine(roam());
             }
+            if (isAsleep)
+            {
+                StartCoroutine(FallAsleep());
+            }
         }
     }
 
@@ -120,6 +129,17 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator FallAsleep()
+    {
+        isAsleep = true;
+        sleepIndicator.SetActive(true);
+
+        yield return new WaitForSeconds(sleepTimer);
+
+        sleepIndicator.SetActive(false);
+        isAsleep = false;
+    }
+
     public void takeDamage(int dmg)
     {
         HP -= dmg;
@@ -139,7 +159,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 AudioManager.instance.ReturnToDefault();
             }
 
-
             GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
             agent.enabled = false;
@@ -158,7 +177,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
-
+    
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
@@ -190,7 +209,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             AudioManager.instance.SwapTrackString("Ambience1");
             isInBattle = false;
         }
-
     }
 
     public void createBullet()
@@ -214,8 +232,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         // Instantiate bullet and set initial velocity //
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.LookRotation(bulletDirection));
         bulletClone.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
-
-
 
         //Instantiate(bullet, shootPos.position, transform.rotation);
     }
@@ -303,6 +319,16 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             Instantiate(pickUp, headPos.position, transform.rotation);
             numrate = 0;
+        }
+    }
+
+    public void ReduceStamina(int amount)
+    {
+        stamina -= amount;
+
+        if(stamina <= 0)
+        {
+            FallAsleep();
         }
     }
 }

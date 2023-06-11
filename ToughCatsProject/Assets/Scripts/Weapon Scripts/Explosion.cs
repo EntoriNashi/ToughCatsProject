@@ -13,11 +13,11 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamage damagable = other.GetComponent<IDamage>();
+        ISleep damagable = other.GetComponent<ISleep>();
 
         if (damagable != null)
         {
-            damagable.takeDamage(damage);
+            damagable.ReduceStamina(damage);
         }
     }
 }
