@@ -5,29 +5,57 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    public GameObject Puzzle;
 
     [SerializeField] bool IsGoal;
     [SerializeField] bool IsRoomEnterence;
     [SerializeField] bool IsRoomExit;
     [SerializeField] GameObject UnarmedSpawnPos;
     [SerializeField] GameObject Unarmed;
-
+    public bool IsLocked { get; set; }
     GameObject currentUnarmed;
-    // Start is called before the first frame update
+    GameObject attachedPuzzle;
+
+    private void Awake()
+    {
+        if(Puzzle != null)
+        {
+            IsLocked = true;
+            attachedPuzzle = Instantiate(Puzzle); //add parent as UI?
+            attachedPuzzle.SetActive(false);
+            attachedPuzzle.GetComponentInChildren<BoardGrid>().SetAttachedDoor(this.gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+
+        if (other.CompareTag("Player") && !IsLocked)
         {
             anim.SetBool("character_nearby", true);
-            if(IsRoomEnterence)
+            if (IsRoomEnterence)
             {
                 GameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
-                
+
             }
-            if(IsGoal)
+            if (IsGoal)
             {
                 GameManager.instance.UpdateWinCondition();
             }
+        }
+        else if (other.CompareTag("Player") && IsLocked)
+        {
+            //GameManager.instance.PuzzleActivate(attachedPuzzle);
+
+            //Code needed to be added to Game Manage:
+            //public void PuzzleActivate(GameObject puzzle)
+            //{
+            //    activeMenu = puzzle;
+            //    activeMenu.SetActive(true);
+            //    Cursor.visible = true;
+            //    Cursor.lockState = CursorLockMode.Confined;
+            //    isPaused = true;
+            //}
         }
     }
 
