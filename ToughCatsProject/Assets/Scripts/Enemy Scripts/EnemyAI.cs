@@ -103,10 +103,6 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             {
                 StartCoroutine(roam());
             }
-            if (isAsleep)
-            {
-                StartCoroutine(FallAsleep());
-            }
         }
     }
 
@@ -136,6 +132,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
         yield return new WaitForSeconds(sleepTimer);
 
+        stamina = maxStamina;
         sleepIndicator.SetActive(false);
         isAsleep = false;
     }
@@ -326,9 +323,10 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     {
         stamina -= amount;
 
-        if(stamina <= 0)
+        if(stamina <= 0 && !isAsleep)
         {
-            FallAsleep();
+            stamina = 0;
+            StartCoroutine(FallAsleep());
         }
     }
 }
