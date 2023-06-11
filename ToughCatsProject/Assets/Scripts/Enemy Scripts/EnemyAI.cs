@@ -174,9 +174,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             isInBattle = true;
             AudioManager.instance.SwapTrackString("Battle");
-
-            
-
             StartCoroutine(CheckShootingStatus());
         }
 

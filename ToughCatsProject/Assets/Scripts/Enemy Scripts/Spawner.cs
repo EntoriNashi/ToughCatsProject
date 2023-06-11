@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
     {
         if(IsUsingPlayerDetected && GameManager.instance.IsPlayerDetected)
         {
-            Debug.Log("Spawner is using player detection");
+            //Debug.Log("Spawner is using player detection");
             if (playerInRange && !isSpawning && numberSpawned < numberToSpawn)
             {
                 StartCoroutine(spawn());
@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         }
         else if (!IsUsingPlayerDetected && playerInRange && !isSpawning && numberSpawned < numberToSpawn)
         {
-            Debug.Log("Spawner is NOT using player detection");
+            //Debug.Log("Spawner is NOT using player detection");
             StartCoroutine(spawn());
         }
     }
