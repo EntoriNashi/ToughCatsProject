@@ -231,7 +231,7 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
 
     }
 
-    private void MovePieceToStartPosition()
+    public void MovePieceToStartPosition()
     {
         _transform.localPosition = startPos;
     }
@@ -240,5 +240,16 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
     {
         Vector3 rotate = new Vector3(0, 0, 90);
         this.transform.Rotate(rotate);
+    }
+
+    public void ResetPiece()
+    {
+        ActivatePiece();
+        this.transform.rotation = Quaternion.identity;
+        MovePieceToStartPosition();
+        foreach (var square in _currentPiece)
+        {
+            square.GetComponent<PieceSquare>().UnSetOccupied();
+        }
     }
 }

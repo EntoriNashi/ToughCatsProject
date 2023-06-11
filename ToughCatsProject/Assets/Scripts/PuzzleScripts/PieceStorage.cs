@@ -29,5 +29,13 @@ public class PieceStorage : MonoBehaviour
         return null;
     }
 
+    public void ResetPieces()
+    {
+        foreach (var piece in pieceList)
+        {
+            piece.GetComponent<PuzzlePiece>().ResetPiece();
+        }
+    }
+
 
 }

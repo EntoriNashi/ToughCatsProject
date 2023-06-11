@@ -180,4 +180,12 @@ public class BoardGrid : MonoBehaviour
     {
         attachedDoor = door;
     }
+
+    public void ResetGrid()
+    {
+        foreach (var square in _gridSquares)
+        {
+            square.GetComponent<GridSquare>().DeactivateSquare();
+        }
+    }
 }
