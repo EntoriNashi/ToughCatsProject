@@ -22,7 +22,7 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
     private List<GameObject> _currentPiece = new List<GameObject>();
     private Vector3 pieceStartScale;
     private RectTransform _transform;
-    private bool isPieceDraggable = true;
+    //private bool isPieceDraggable = true;
     private Canvas _canvas;
     private Vector3 startPos;
     private bool pieceActive = true;
@@ -32,7 +32,7 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
         pieceStartScale = this.GetComponent<RectTransform>().localScale;
         _transform = this.GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
-        isPieceDraggable = true;
+        //isPieceDraggable = true;
         startPos = transform.localPosition;
         pieceActive = true;
         PuzzleSprite.SetActive(false);
@@ -209,15 +209,10 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
     public void OnBeginDrag(PointerEventData eventData)
     {
         this.GetComponent<RectTransform>().localScale = PieceSelectedScale;
-        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        _transform.anchorMin = new Vector2(0, 0);
-        _transform.anchorMax = new Vector2(0, 0);
-        _transform.pivot = new Vector2(0, 0);
-
         this.transform.position = Input.mousePosition;
     }
 
@@ -228,17 +223,28 @@ public class PuzzlePiece : MonoBehaviour, IPointerClickHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
+        
     }
 
-    private void MovePieceToStartPosition()
+    public void MovePieceToStartPosition()
     {
         _transform.localPosition = startPos;
+        this.transform.rotation = Quaternion.identity;
     }
 
     public void RotatePiece()
     {
         Vector3 rotate = new Vector3(0, 0, 90);
         this.transform.Rotate(rotate);
+    }
+
+    public void ResetPiece()
+    {
+        ActivatePiece();
+        MovePieceToStartPosition();
+        foreach (var square in _currentPiece)
+        {
+            square.GetComponent<PieceSquare>().UnSetOccupied();
+        }
     }
 }

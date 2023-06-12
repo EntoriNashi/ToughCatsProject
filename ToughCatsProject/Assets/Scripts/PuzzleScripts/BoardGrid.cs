@@ -18,6 +18,8 @@ public class BoardGrid : MonoBehaviour
     private Vector2 _offset = new Vector2(0.0f, 0.0f);
     private List<GameObject> _gridSquares = new List<GameObject>();
 
+    GameObject attachedDoor;
+
 
 
 
@@ -141,7 +143,7 @@ public class BoardGrid : MonoBehaviour
         }
         else
         {
-            //PuzzleEvents.MovePieceToStartPosition();
+            PuzzleEvents.MovePieceToStartPosition();
         }
 
     }
@@ -167,9 +169,23 @@ public class BoardGrid : MonoBehaviour
         if (BoardSquaresFilled == TotalBoardSquares)
         {
             Debug.Log("YOU WIN!");
-            //wincondition
+            attachedDoor.GetComponent<Door>().IsLocked = false;
+            GameManager.instance.UnpausedState();
+            attachedDoor.GetComponent<Animator>().SetBool("character_nearby", true);
         }
         
         
+    }
+    public void SetAttachedDoor(GameObject door)
+    {
+        attachedDoor = door;
+    }
+
+    public void ResetGrid()
+    {
+        foreach (var square in _gridSquares)
+        {
+            square.GetComponent<GridSquare>().DeactivateSquare();
+        }
     }
 }

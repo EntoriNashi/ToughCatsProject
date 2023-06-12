@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PuzzleButtons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void RestartPuzzle()
+    public GameObject Storage;
+    public GameObject PuzzleGrid;
+
+    public void PuzzleExit()
     {
-        
+        GameManager.instance.UnpausedState();
+    }
+    public void PuzzleRestart()
+    {
+        Storage.GetComponent<PieceStorage>().ResetPieces();
+        PuzzleGrid.GetComponent<BoardGrid>().ResetGrid();
+    }
+    public void PuzzleUndo()
+    {
+
     }
 }

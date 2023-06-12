@@ -21,21 +21,24 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
-
-        if (invertY)
+        if(!GameManager.instance.GetIsPaused())
         {
-            xRotation += mouseY;
-        }
-        else
-        {
-            xRotation -= mouseY;
-        }
+            float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
+            float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
 
-        xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+            if (invertY)
+            {
+                xRotation += mouseY;
+            }
+            else
+            {
+                xRotation -= mouseY;
+            }
 
-        transform.parent.Rotate(Vector3.up * mouseX);
+            xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);
+            transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
+            transform.parent.Rotate(Vector3.up * mouseX);
+        }
     }
 }
