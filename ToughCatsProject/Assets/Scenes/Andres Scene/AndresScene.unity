@@ -1137,6 +1137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 535ca6b22ff6c924e9920e48d26226a4, type: 3}
+--- !u!23 &23075233989233886 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2483875378001627464, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
+  m_PrefabInstance: {fileID: 2461645673320793494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1824775787229900205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1249,6 +1254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ammo_box
       objectReference: {fileID: 0}
+    - target: {fileID: 2476427142210413418, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 23075233989233886}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
 --- !u!1001 &2889932306414331536
