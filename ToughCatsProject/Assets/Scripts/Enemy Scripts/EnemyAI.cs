@@ -25,7 +25,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int animTransSpeed;
     [SerializeField] bool armed;
     [SerializeField] int dropRate;
-    [SerializeField] GameObject pickUp;
+    [SerializeField] GameObject healthPickup;
+    [SerializeField] GameObject ammoPickup;
     private int bulletSpeed;
 
     [Header("----- Health Bar -----")]
@@ -130,6 +131,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            // drop item //
+            itemDrop();
+
             isDying = true;
             // battle music turn off //
             AudioManager.instance.UnregisterEnemy(this);
@@ -298,11 +302,24 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void itemDrop()
     {
-        numrate++;
-        if (pickUp != null && numrate == dropRate)
+        float randomValue = UnityEngine.Random.value;
+        Debug.Log($"{randomValue}");
+        if (randomValue <= 0.5f)
         {
-            Instantiate(pickUp, headPos.position, transform.rotation);
-            numrate = 0;
+            Instantiate(healthPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
         }
+        else
+        {
+            Instantiate(ammoPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
+        }
+
+
+
+        //numrate++;
+        //if (healthPickup != null && numrate == dropRate)
+        //{
+        //    Instantiate(healthPickup, headPos.position, transform.rotation);
+        //    numrate = 0;
+        //}
     }
 }
