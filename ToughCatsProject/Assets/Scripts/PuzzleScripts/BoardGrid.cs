@@ -168,10 +168,13 @@ public class BoardGrid : MonoBehaviour
 
         if (BoardSquaresFilled == TotalBoardSquares)
         {
-            Debug.Log("YOU WIN!");
             attachedDoor.GetComponent<Door>().IsLocked = false;
             GameManager.instance.UnpausedState();
             attachedDoor.GetComponent<Animator>().SetBool("character_nearby", true);
+            if (attachedDoor.GetComponent<Door>().IsGoal)
+            {
+                GameObject.FindGameObjectWithTag("Elevator Center").GetComponent<ElevatorCinematic>().StartLevelEnd();
+            }
         }
         
         

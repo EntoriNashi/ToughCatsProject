@@ -11,6 +11,8 @@ TagManager:
   - Undefined
   - Enemy
   - Button
+  - Goal Door
+  - Elevator Center
   layers:
   - Default
   - TransparentFX

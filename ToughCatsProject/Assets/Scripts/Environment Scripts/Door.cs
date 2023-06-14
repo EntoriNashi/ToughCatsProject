@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
     [SerializeField] Animator anim;
     public GameObject Puzzle;
 
-    [SerializeField] bool IsGoal;
+    public bool IsGoal;
     [SerializeField] bool IsRoomEnterence;
     [SerializeField] bool IsRoomExit;
     [SerializeField] GameObject UnarmedSpawnPos;
@@ -25,6 +25,10 @@ public class Door : MonoBehaviour
             attachedPuzzle.SetActive(false);
             attachedPuzzle.GetComponentInChildren<BoardGrid>().SetAttachedDoor(this.gameObject);
         }
+        if(IsGoal)
+        {
+            gameObject.tag = "Goal Door";
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,10 +42,6 @@ public class Door : MonoBehaviour
                 GameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
 
             }
-            if (IsGoal)
-            {
-                GameManager.instance.UpdateWinCondition();
-            }
         }
         else if (other.CompareTag("Player") && IsLocked)
         {
@@ -51,14 +51,17 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(!IsGoal)
         {
-            anim.SetBool("character_nearby", false);
-            if(IsRoomExit)
+            if (other.CompareTag("Player"))
             {
-                currentUnarmed = GameManager.instance.unarmed;
-                GameManager.instance.unarmed = null;
-                Destroy(currentUnarmed);
+                anim.SetBool("character_nearby", false);
+                if (IsRoomExit)
+                {
+                    currentUnarmed = GameManager.instance.unarmed;
+                    GameManager.instance.unarmed = null;
+                    Destroy(currentUnarmed);
+                }
             }
         }
     }
