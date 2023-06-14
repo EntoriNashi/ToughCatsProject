@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -61,7 +62,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     float stoppingDistOrg;
     float speed;
     int numrate;
-    float sleepTimer = 500f;
+    float sleepTimer = 10f;
 
     private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
@@ -91,6 +92,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     // Update is called once per frame
     void Update()
     {
+        if (isAsleep)
+        {
+            return;
+        }
+
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
@@ -108,6 +114,10 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator roam()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
         if (!destinationChosen && agent.remainingDistance < .05f)
         {
             destinationChosen = true;
@@ -129,11 +139,13 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     {
         isAsleep = true;
         sleepIndicator.SetActive(true);
+        agent.enabled = false;
 
         yield return new WaitForSeconds(sleepTimer);
 
         stamina = maxStamina;
         sleepIndicator.SetActive(false);
+        agent.enabled = true;
         isAsleep = false;
     }
 
@@ -184,6 +196,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator shoot()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
+
         isShooting = true;
 
         if (!isInBattle)
@@ -235,6 +252,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     bool canSeePlayer()
     {
+        if (isAsleep)
+        {
+            return false;
+        }
+
         playerDir = GameManager.instance.player.transform.position - headPos.position;
         if (GameManager.instance.unarmed != null)
         {
@@ -270,6 +292,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator alert()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
+
         alerting = true;
         GameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
