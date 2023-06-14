@@ -1406,8 +1406,8 @@ MonoBehaviour:
   roamWaitTime: 1
   animTransSpeed: 3
   armed: 1
-  dropRate: 0
-  pickUp: {fileID: 0}
+  healthPickup: {fileID: 0}
+  ammoPickup: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
   healthSlider: {fileID: 8015176231325373723}
   healthLeft: {fileID: 8015176229692083685}
   shootDist: 25
