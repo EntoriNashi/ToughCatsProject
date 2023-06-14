@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage, ISleep
 {
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
@@ -14,10 +15,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Transform shootPos;
     [SerializeField] AudioSource aud;
+    [SerializeField] GameObject sleepIndicator;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     private int maxHP;
+    [SerializeField] int stamina;
+    private int maxStamina;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
@@ -59,10 +63,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     float stoppingDistOrg;
     float speed;
     int numrate;
+    float sleepTimer = 60f;
 
     private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
     public bool isDying = false;
+    public bool isAsleep = false;
 
     private void Awake()
     {
@@ -87,6 +93,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (isAsleep)
+        {
+            return;
+        }
+
         if (agent.isActiveAndEnabled)
         {
             speed = Mathf.Lerp(speed, agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
@@ -104,6 +115,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator roam()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
         if (!destinationChosen && agent.remainingDistance < .05f)
         {
             destinationChosen = true;
@@ -119,6 +134,20 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             agent.SetDestination(hit.position);
         }
+    }
+
+    IEnumerator FallAsleep()
+    {
+        isAsleep = true;
+        sleepIndicator.SetActive(true);
+        agent.enabled = false;
+
+        yield return new WaitForSeconds(sleepTimer);
+
+        stamina = maxStamina;
+        sleepIndicator.SetActive(false);
+        agent.enabled = true;
+        isAsleep = false;
     }
 
     public void takeDamage(int dmg)
@@ -143,7 +172,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 AudioManager.instance.ReturnToDefault();
             }
 
-
             GameManager.instance.EnemyDefeatedCounter();
             animator.SetBool("Dead", true);
             agent.enabled = false;
@@ -162,7 +190,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = true;
         }
     }
-
+    
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
@@ -172,6 +200,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
+
         isShooting = true;
 
         if (!isInBattle)
@@ -194,7 +227,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             AudioManager.instance.SwapTrackString("Ambience1");
             isInBattle = false;
         }
-
     }
 
     public void createBullet()
@@ -219,13 +251,16 @@ public class EnemyAI : MonoBehaviour, IDamage
         GameObject bulletClone = Instantiate(bullet, shootPos.position, Quaternion.LookRotation(bulletDirection));
         bulletClone.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
 
-
-
         //Instantiate(bullet, shootPos.position, transform.rotation);
     }
 
     bool canSeePlayer()
     {
+        if (isAsleep)
+        {
+            return false;
+        }
+
         playerDir = GameManager.instance.player.transform.position - headPos.position;
         if (GameManager.instance.unarmed != null)
         {
@@ -261,6 +296,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator alert()
     {
+        if (isAsleep)
+        {
+            yield break;
+        }
+
         alerting = true;
         GameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
@@ -321,5 +361,16 @@ public class EnemyAI : MonoBehaviour, IDamage
         //    Instantiate(healthPickup, headPos.position, transform.rotation);
         //    numrate = 0;
         //}
+    }
+
+    public void ReduceStamina(int amount)
+    {
+        stamina -= amount;
+
+        if(stamina <= 0 && !isAsleep)
+        {
+            stamina = 0;
+            StartCoroutine(FallAsleep());
+        }
     }
 }

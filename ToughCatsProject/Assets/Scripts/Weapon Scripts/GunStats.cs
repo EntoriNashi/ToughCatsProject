@@ -12,6 +12,7 @@ public class GunStats : ScriptableObject
     [Range(1, 25)] public int magazineSize;
     [Range(1, 10)] public int numOfMag;
     [Range(0.1f, 3)] public float reloadSpeed;
+    public bool isTranqGun = false;
 
 
     [Header("----- Components -----")]

@@ -1753,7 +1753,9 @@ MonoBehaviour:
   headPos: {fileID: 2872693095736212657}
   shootPos: {fileID: 4515944752336301911}
   aud: {fileID: 2872693095736212688}
+  sleepIndicator: {fileID: 1621123714820818636}
   HP: 5
+  stamina: 5
   playerFaceSpeed: 5
   viewCone: 80
   roamDist: 12
@@ -1790,6 +1792,8 @@ MonoBehaviour:
   audHitVol: 0.3
   audShotVol: 0.4
   isInBattle: 0
+  isDying: 0
+  isAsleep: 0
 --- !u!95 &2872693095743624017
 Animator:
   serializedVersion: 5
@@ -2140,6 +2144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fef0b443f302364393621a45608874f, type: 3}
+--- !u!1 &1621123714820818636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1621123714277335296, guid: 1fef0b443f302364393621a45608874f, type: 3}
+  m_PrefabInstance: {fileID: 548218828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8015176229802644013 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8015176230333036001, guid: 1fef0b443f302364393621a45608874f, type: 3}

@@ -244,19 +244,34 @@ public class PlayerController : MonoBehaviour, IDamage
             // Move muzzle flash under the map after a delay.
             StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
+            if (gunList[selectedGun].isTranqGun)
             {
-                IDamage damageable = hit.collider.GetComponent<IDamage>();
-                if (damageable != null)
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
                 {
-                    damageable.takeDamage(shootDamage);
+                    ISleep sleepable = hit.collider.GetComponent<ISleep>();
+                    if (sleepable != null)
+                    {
+                        sleepable.ReduceStamina(shootDamage);
+                    }
                 }
-
-                GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
-
-                // Move hit effect under the map after a delay.
-                StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
             }
+            else
+            {
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
+                {
+                    IDamage damageable = hit.collider.GetComponent<IDamage>();
+                    if (damageable != null)
+                    {
+                        damageable.takeDamage(shootDamage);
+                    }
+                }
+            }
+
+            GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
+
+            // Move hit effect under the map after a delay.
+            StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
+
 
             yield return new WaitForSeconds(gunList[selectedGun].shootRate);
         }
