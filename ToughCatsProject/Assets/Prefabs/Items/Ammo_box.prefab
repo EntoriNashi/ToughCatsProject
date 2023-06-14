@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 33650484292069117}
+  meshRenderer: {fileID: 2483875378001627464}
 --- !u!33 &2476427142210413420
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     [SerializeField] int roamWaitTime;
     [SerializeField] int animTransSpeed;
     [SerializeField] bool armed;
-    [SerializeField] int dropRate;
+    //[SerializeField] int dropRate;
     [SerializeField] GameObject healthPickup;
     [SerializeField] GameObject ammoPickup;
     private int bulletSpeed;
@@ -161,7 +161,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         if (HP <= 0)
         {
             // drop item //
-            itemDrop();
+            //itemDrop();
 
             isDying = true;
             // battle music turn off //
@@ -344,23 +344,21 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     {
         float randomValue = UnityEngine.Random.value;
         Debug.Log($"{randomValue}");
-        if (randomValue <= 0.5f)
+        // spawn health drop //
+        if (randomValue <= 0.40f)
         {
             Instantiate(healthPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
         }
-        else
+        // spawn ammo drop //
+        else if (randomValue >= 0.60)
         {
             Instantiate(ammoPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
         }
-
-
-
-        //numrate++;
-        //if (healthPickup != null && numrate == dropRate)
-        //{
-        //    Instantiate(healthPickup, headPos.position, transform.rotation);
-        //    numrate = 0;
-        //}
+        // spawn nothing //
+        else
+        {
+            return;
+        }
     }
 
     public void ReduceStamina(int amount)
