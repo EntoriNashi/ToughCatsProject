@@ -28,4 +28,9 @@ public class MainMenu : MonoBehaviour
         sliderMusic.value = PlayerPrefs.GetFloat(volumeMusicParameter);
         sliderSfx.value = PlayerPrefs.GetFloat(volumeSfxParameter);
     }
+
+    public void rollCredits()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
