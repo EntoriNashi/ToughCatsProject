@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerCurrentAmmo;
     public TextMeshProUGUI playerMagazineSize;
     public TextMeshProUGUI playerMagazineAmount;
+    public TextMeshProUGUI playerGrenadeAmount;
     
 
     [Header("*----- Other -----*")]

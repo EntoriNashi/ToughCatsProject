@@ -75,9 +75,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
     private void Start()
     {
+        currGrenadeAmount = totalGrenades;
         SpawnPlayer();
         HP = maxHP;
-        currGrenadeAmount = totalGrenades;
         crouchSpeed = playerSpeed / 2;
         if (gunList.Count != 0)
         {
@@ -437,6 +437,8 @@ public class PlayerController : MonoBehaviour, IDamage
         rb.AddForce(forceToAdd, ForceMode.Impulse);
         currGrenadeAmount--;
 
+        UpdatePlayerUI();
+
         yield return new WaitForSeconds(throwCooldown);
         isThrowing = false;
     }
@@ -450,5 +452,6 @@ public class PlayerController : MonoBehaviour, IDamage
             GameManager.instance.playerMagazineAmount.text = $"{gunList[selectedGun].currentMag}";
             GameManager.instance.playerMagazineSize.text = $"/{gunList[selectedGun].magazineSize}";
         }
+        GameManager.instance.playerGrenadeAmount.text = $"{currGrenadeAmount}";
     }
 }
