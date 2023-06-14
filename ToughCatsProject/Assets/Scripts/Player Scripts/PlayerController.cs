@@ -277,44 +277,6 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         isShooting = false;
-
-
-
-
-
-
-        //    isShooting = true;
-
-        //    if(gunList[selectedGun].currentAmmo > 0 && !isReloading)
-        //    {
-        //        gunList[selectedGun].currentAmmo--;
-        //        aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
-
-        //        RaycastHit hit;
-
-        //        int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
-        //        GameObject muzzleFlash = Instantiate(gunList[selectedGun].muzzleFlash, muzzle.position, muzzle.transform.rotation);
-        //        yield return new WaitForSeconds(0.01f);
-        //        Destroy(muzzleFlash);
-
-        //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
-        //        {
-        //            IDamage damageable = hit.collider.GetComponent<IDamage>();
-        //            if (damageable != null)
-        //            {
-        //                damageable.takeDamage(shootDamage);
-        //            }
-
-        //            //GameObject hitEffect = Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-        //            //yield return new WaitForSeconds(gunList[selectedGun].shootRate);
-        //            //Destroy(hitEffect);
-        //        }
-
-        //        //UpdatePlayerUI();
-        //    }
-        //    yield return new WaitForSeconds(gunList[selectedGun].shootRate);
-
-        //    isShooting = false;
     }
 
     // Coroutine to move an object under the map and deactivate it after a delay.
@@ -357,6 +319,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
             isReloading = false;
         }
+    }
+
+    public void AddMag()
+    {
+        gunList[selectedGun].currentMag++;
     }
 
     IEnumerator MoveGunDownAndUp()
