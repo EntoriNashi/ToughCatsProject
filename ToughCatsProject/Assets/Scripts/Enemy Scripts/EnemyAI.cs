@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     float stoppingDistOrg;
     float speed;
     int numrate;
-    float sleepTimer = 10f;
+    float sleepTimer = 60f;
 
     private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
