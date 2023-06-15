@@ -25,7 +25,7 @@ public class PieceStorage : MonoBehaviour
             }
         }
 
-        Debug.LogError("There is no Piece Selected!");
+        //Debug.LogError("There is no Piece Selected!");
         return null;
     }
 
