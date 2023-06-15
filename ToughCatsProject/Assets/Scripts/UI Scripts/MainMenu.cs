@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] string volumeSfxParameter = "volumeSfx";
     [SerializeField] Slider sliderMusic;
     [SerializeField] Slider sliderSfx;
-    [SerializeField] float multiplier = 30f;
+    [SerializeField] float multiplier;
     public void playGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);

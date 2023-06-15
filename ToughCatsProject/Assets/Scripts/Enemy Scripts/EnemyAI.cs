@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     int numrate;
     float sleepTimer = 60f;
 
-    private bool isCheckingShootingStatus = false;
+    //private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
     public bool isDying = false;
     public bool isAsleep = false;
@@ -82,7 +82,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
         GameManager.instance.UpdateEnemyCout(1);
-        numrate = 0;
+        //numrate = 0; // <- warning
 
         // health bar setup //
         maxHP = HP;
@@ -301,11 +301,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             yield break;
         }
 
-        alerting = true;
+        //alerting = true; <- warning
         GameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
         yield return new WaitForSeconds(3);
-        alerting = false;
+        //alerting = false; <- warning
         GameManager.instance.IsPlayerDetected = false;
         gameObject.tag = "Unarmed";
     }
