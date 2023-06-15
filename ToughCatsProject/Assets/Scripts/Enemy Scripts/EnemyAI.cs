@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     float stoppingDistOrg;
     float speed;
     int numrate;
-    float sleepTimer = 60f;
+    float sleepTimer = 10f;
 
     //private bool isCheckingShootingStatus = false;
     public bool isInBattle = false;
@@ -135,8 +135,8 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             if (!isAsleep)
             {
                 yield return new WaitForSeconds(3);
-            }
                 agent.SetDestination(hit.position);
+            }   
         }
     }
 
@@ -144,13 +144,20 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     {
         isAsleep = true;
         sleepIndicator.SetActive(true);
-        agent.enabled = false;
+        agent.SetDestination(Vector3.zero);
+        StopCoroutine(roam());
+        StopCoroutine(shoot());
+        StopCoroutine(alert());
+        agent.isStopped = true;
+        animator.enabled = false;
 
         yield return new WaitForSeconds(sleepTimer);
 
         stamina = maxStamina;
         sleepIndicator.SetActive(false);
-        agent.enabled = true;
+        animator.enabled = true;
+        agent.isStopped = false;
+        
         isAsleep = false;
     }
 
