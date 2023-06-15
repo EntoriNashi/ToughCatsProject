@@ -132,6 +132,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             NavMeshHit hit;
             NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
 
+            yield return new WaitForSeconds(3);
             agent.SetDestination(hit.position);
         }
     }
@@ -265,11 +266,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         if (GameManager.instance.unarmed != null)
         {
             unarmedDir = GameManager.instance.unarmed.transform.position - headPos.position;
-            Debug.DrawRay(headPos.position, unarmedDir);
+            //Debug.DrawRay(headPos.position, unarmedDir);
         }
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        Debug.DrawRay(headPos.position, playerDir);
+        //Debug.DrawRay(headPos.position, playerDir);
         //Debug.Log(angleToPlayer);
 
         RaycastHit hit;
@@ -343,7 +344,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     public void itemDrop()
     {
         float randomValue = UnityEngine.Random.value;
-        Debug.Log($"{randomValue}");
+        //Debug.Log($"{randomValue}");
         // spawn health drop //
         if (randomValue <= 0.40f)
         {
