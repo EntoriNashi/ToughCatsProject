@@ -267,10 +267,21 @@ public class PlayerController : MonoBehaviour, IDamage
                 }
             }
 
-            GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
+            bool didHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask); // Store result
 
-            // Move hit effect under the map after a delay.
-            StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
+            if (didHit)
+            {
+                GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
+                StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f)); // Move hit effect under the map after a delay.
+            }
+            else
+            {
+                GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", new Vector3(0,-10,0), Quaternion.identity);
+
+                // Move hit effect under the map after a delay.
+                StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
+
+            }
 
 
             yield return new WaitForSeconds(gunList[selectedGun].shootRate);
