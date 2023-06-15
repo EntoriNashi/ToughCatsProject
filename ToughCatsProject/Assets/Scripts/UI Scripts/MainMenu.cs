@@ -25,6 +25,8 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         sliderMusic.value = PlayerPrefs.GetFloat(volumeMusicParameter);
         sliderSfx.value = PlayerPrefs.GetFloat(volumeSfxParameter);
     }
