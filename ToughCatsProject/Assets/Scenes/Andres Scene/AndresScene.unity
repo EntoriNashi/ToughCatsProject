@@ -2471,14 +2471,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Unarmed
       objectReference: {fileID: 0}
-    - target: {fileID: 1128057895389534983, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
-      propertyPath: ammoPickup
-      value: 
-      objectReference: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
-    - target: {fileID: 1128057895389534983, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
-      propertyPath: healthPickup
-      value: 
-      objectReference: {fileID: 9171116555283999904, guid: 8d67a5fbe6bbaf146a4213fbe35ef03b, type: 3}
     - target: {fileID: 1128057895389535002, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3552,14 +3544,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Suppression
       objectReference: {fileID: 0}
-    - target: {fileID: 5659941511909589871, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: ammoPickup
-      value: 
-      objectReference: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
-    - target: {fileID: 5659941511909589871, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
-      propertyPath: healthPickup
-      value: 
-      objectReference: {fileID: 9171116555283999904, guid: 8d67a5fbe6bbaf146a4213fbe35ef03b, type: 3}
     - target: {fileID: 5659941511909629768, guid: 17614168266637f4cb27bc056d4cbbe6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3736,14 +3720,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2016052913}
     m_Modifications:
-    - target: {fileID: 2872693095736212684, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: ammoPickup
-      value: 
-      objectReference: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
-    - target: {fileID: 2872693095736212684, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: healthPickup
-      value: 
-      objectReference: {fileID: 9171116555283999904, guid: 8d67a5fbe6bbaf146a4213fbe35ef03b, type: 3}
     - target: {fileID: 2872693095736212689, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3792,32 +3768,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Armed
       objectReference: {fileID: 0}
-    - target: {fileID: 8015176229725131260, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229725131260, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4686,14 +4638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2016052913}
     m_Modifications:
-    - target: {fileID: 6278550422357795429, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
-      propertyPath: ammoPickup
-      value: 
-      objectReference: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
-    - target: {fileID: 6278550422357795429, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
-      propertyPath: healthPickup
-      value: 
-      objectReference: {fileID: 9171116555283999904, guid: 8d67a5fbe6bbaf146a4213fbe35ef03b, type: 3}
     - target: {fileID: 6278550422357795440, guid: dd1fd3f87c39c614cb697100c1df2cf4, type: 3}
       propertyPath: m_Name
       value: Heavy Suppression

@@ -69,6 +69,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     public bool isInBattle = false;
     public bool isDying = false;
     public bool isAsleep = false;
+    private bool lockMovement = false;
 
     private void Awake()
     {
@@ -115,10 +116,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator roam()
     {
-        if (isAsleep)
+        if (isAsleep || lockMovement)
         {
             yield break;
         }
+
         if (!destinationChosen && agent.remainingDistance < .05f)
         {
             destinationChosen = true;
@@ -132,16 +134,17 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             NavMeshHit hit;
             NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
 
-            if (!isAsleep)
+            if (!isAsleep && !lockMovement)
             {
                 yield return new WaitForSeconds(3);
-            }
                 agent.SetDestination(hit.position);
+            }
         }
     }
 
     IEnumerator FallAsleep()
     {
+        lockMovement = true;
         isAsleep = true;
         sleepIndicator.SetActive(true);
         agent.enabled = false;
@@ -152,6 +155,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         sleepIndicator.SetActive(false);
         agent.enabled = true;
         isAsleep = false;
+        lockMovement = false;
     }
 
     public void takeDamage(int dmg)
