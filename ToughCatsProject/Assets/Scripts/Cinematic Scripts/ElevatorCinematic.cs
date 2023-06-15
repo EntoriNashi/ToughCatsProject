@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ElevatorCinematic : MonoBehaviour
 {
@@ -99,6 +100,7 @@ public class ElevatorCinematic : MonoBehaviour
             else
             {
                 door.GetComponent<Animator>().SetBool("character_nearby", false);
+                StartCoroutine(EndDelay());
             }
         }
     }
@@ -108,5 +110,10 @@ public class ElevatorCinematic : MonoBehaviour
         player.GetComponent<PlayerController>().enabled = false;
         player.GetComponentInChildren<CameraController>().enabled = false;
         isLevelEnding = true;
+    }
+    IEnumerator EndDelay()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(2);
     }
 }
