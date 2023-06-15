@@ -132,8 +132,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             NavMeshHit hit;
             NavMesh.SamplePosition(randPos, out hit, roamDist, 1);
 
-            yield return new WaitForSeconds(3);
-            agent.SetDestination(hit.position);
+            if (!isAsleep)
+            {
+                yield return new WaitForSeconds(3);
+            }
+                agent.SetDestination(hit.position);
         }
     }
 
@@ -191,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
             playerInRange = true;
         }
     }
-    
+
     IEnumerator flashColor()
     {
         model.material.color = Color.red;
@@ -348,12 +351,12 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         // spawn health drop //
         if (randomValue <= 0.40f)
         {
-            Instantiate(healthPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
+            Instantiate(healthPickup, gameObject.transform.position + new Vector3(0, 0, 0), transform.rotation);
         }
         // spawn ammo drop //
         else if (randomValue >= 0.60)
         {
-            Instantiate(ammoPickup, gameObject.transform.position + new Vector3(0,0,0), transform.rotation);
+            Instantiate(ammoPickup, gameObject.transform.position + new Vector3(0, 0, 0), transform.rotation);
         }
         // spawn nothing //
         else
@@ -366,7 +369,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     {
         stamina -= amount;
 
-        if(stamina <= 0 && !isAsleep)
+        if (stamina <= 0 && !isAsleep)
         {
             stamina = 0;
             StartCoroutine(FallAsleep());
