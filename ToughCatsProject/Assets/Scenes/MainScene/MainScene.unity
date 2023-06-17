@@ -3233,6 +3233,7 @@ Transform:
   - {fileID: 619272368}
   - {fileID: 76069489}
   - {fileID: 866636941}
+  - {fileID: 1305979079}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5424,6 +5425,68 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 2, y: -1.11, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1001 &1305979078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 677530783}
+    m_Modifications:
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157597829368267112, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+      propertyPath: m_Name
+      value: Green Room
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+--- !u!4 &1305979079 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
+  m_PrefabInstance: {fileID: 1305979078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1315306446
 PrefabInstance:
   m_ObjectHideFlags: 0
