@@ -461,6 +461,7 @@ MonoBehaviour:
   throwCooldown: 3
   throwForce: 10
   throwUpwardForce: 10
+  grenadeThrowClip: {fileID: 8300000, guid: ac1cb04ab9cfeb74c8de45aa81c06351, type: 3}
   audJump:
   - {fileID: 8300000, guid: df4d2f9041efd474bb72c4cfe14d3773, type: 3}
   - {fileID: 8300000, guid: 60f31b1d763121e45bebc7f6a9145993, type: 3}
@@ -551,7 +552,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

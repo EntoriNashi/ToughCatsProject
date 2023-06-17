@@ -53,7 +53,8 @@ MonoBehaviour:
   timer: 3
   audioSource: {fileID: 8959123041871070208}
   radius: 5.5
-  damage: 10
+  damageToPlayer: 10
+  damageToEnemy: 20
 --- !u!33 &8728687244338436790
 MeshFilter:
   m_ObjectHideFlags: 0
