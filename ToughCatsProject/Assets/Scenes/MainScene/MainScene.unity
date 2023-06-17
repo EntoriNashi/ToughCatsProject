@@ -4032,6 +4032,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2327862781680233396, guid: d3ff537fd181c1243abf713dd36841c3, type: 3}
+      propertyPath: IsRoomEnterence
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2327862782160951388, guid: d3ff537fd181c1243abf713dd36841c3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8

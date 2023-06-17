@@ -51,7 +51,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(!IsGoal)
+        if (!IsGoal)
         {
             if (other.CompareTag("Player"))
             {

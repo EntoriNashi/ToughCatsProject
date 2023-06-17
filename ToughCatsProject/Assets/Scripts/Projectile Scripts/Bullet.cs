@@ -28,10 +28,5 @@ public class Bullet : MonoBehaviour
                 damagable.takeDamage(damage);
             }
         }
-
-        //if (!other.gameObject.CompareTag("Enemy"))
-        //{
-        //    Destroy(gameObject);
-        //}
     }
 }

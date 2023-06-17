@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField][Range(0.2f, 5)] float throwCooldown;
     [SerializeField][Range(1, 15)] int throwForce;
     [SerializeField][Range(1, 15)] int throwUpwardForce;
+    [SerializeField] private AudioClip grenadeThrowClip;
 
     [Header("*----- Audio -----*")]
     [SerializeField] AudioClip[] audJump;
@@ -441,6 +442,9 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator ThrowGrenade()
     {
         isThrowing = true;
+
+        aud.PlayOneShot(grenadeThrowClip);
+
         GameObject grenade = Instantiate(grenadePrefab, throwPoint.position, grenadePrefab.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
         Vector3 forceToAdd = GetComponentInChildren<Camera>().transform.forward * throwForce + transform.up * throwUpwardForce;
