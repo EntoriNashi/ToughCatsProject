@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1331946541904269108
 Transform:
@@ -101,7 +101,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1331946542800365921
 Transform:
@@ -215,12 +215,13 @@ GameObject:
   - component: {fileID: 1331946542798012297}
   - component: {fileID: 1331946542809605737}
   - component: {fileID: 1331946542793764579}
+  - component: {fileID: 14511026329813621}
   m_Layer: 0
   m_Name: door_2_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1331946542800357345
 Transform:
@@ -321,6 +322,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.8586206, y: 1.6951628, z: 0.20500568}
   m_Center: {x: 2, y: -0.89826655, z: -0.0000002682209}
+--- !u!208 &14511026329813621
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331946542800152409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.9290001, y: 1.059, z: 0.051000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2, y: -1.11, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1331946542800192139
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +358,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1331946542800426339
 Transform:
@@ -375,6 +392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1331946542809623613}
+  Puzzle: {fileID: 0}
+  IsGoal: 0
   IsRoomEnterence: 0
   IsRoomExit: 0
   UnarmedSpawnPos: {fileID: 5036457867040813897}
