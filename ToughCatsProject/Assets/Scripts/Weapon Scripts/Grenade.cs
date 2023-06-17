@@ -35,8 +35,6 @@ public class Grenade : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-
-
         if (distanceToPlayer <= radius)
             GameManager.instance.playerScript.takeDamage(damageToPlayer);
 
