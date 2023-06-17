@@ -5185,6 +5185,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2842064399712227027, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842064399712442201, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842064399712607941, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4039495390153839481, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
       propertyPath: m_Name
       value: EnemySpawnRoom1 (1)
@@ -5438,11 +5450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.68
+      value: 13.81
       objectReference: {fileID: 0}
     - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9157597829368267111, guid: 545ff45d3ecaa5b4c8903b9e606c367c, type: 3}
       propertyPath: m_LocalPosition.z
