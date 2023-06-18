@@ -6,6 +6,9 @@ public class PuzzleButtons : MonoBehaviour
 {
     public GameObject Storage;
     public GameObject PuzzleGrid;
+    public GameObject PuzzlePieces;
+    public GameObject HelpMenu;
+    
 
     public void PuzzleExit()
     {
@@ -19,5 +22,17 @@ public class PuzzleButtons : MonoBehaviour
     public void PuzzleUndo()
     {
 
+    }
+    public void PuzzleHelp()
+    {
+        HelpMenu.SetActive(true);
+        PuzzleGrid.SetActive(false);
+        PuzzlePieces.SetActive(false);
+    }
+    public void CloseHelp()
+    {
+        HelpMenu.SetActive(false);
+        PuzzleGrid.SetActive(true);
+        PuzzlePieces.SetActive(true);
     }
 }
