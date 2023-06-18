@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc0b496f635d7c4a8cfb4b972d66277, type: 3}
   m_Name: Pistol Stats
   m_EditorClassIdentifier: 
-  shootDistance: 10
+  shootDistance: 35
   shootRate: 0.4
   shootDamage: 1
   magazineSize: 21
   numOfMag: 2
   reloadSpeed: 1
+  isTranqGun: 0
   model: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   muzzleFlash: {fileID: 1391847458487284, guid: 9bf79f2d846a57440a981c168c87c617, type: 3}
@@ -25,5 +26,5 @@ MonoBehaviour:
   pickupAud: {fileID: 8300000, guid: 9158afb6966d445db9caf1dccf7acbcc, type: 3}
   reloadAud: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   gunShotAudVol: 0.5
-  currentMag: 1
-  currentAmmo: 13
+  currentMag: 2
+  currentAmmo: 10

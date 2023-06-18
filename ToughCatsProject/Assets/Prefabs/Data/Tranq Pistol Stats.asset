@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc0b496f635d7c4a8cfb4b972d66277, type: 3}
   m_Name: Tranq Pistol Stats
   m_EditorClassIdentifier: 
-  shootDistance: 11
+  shootDistance: 35
   shootRate: 0.75
   shootDamage: 1
   magazineSize: 25
@@ -27,4 +27,4 @@ MonoBehaviour:
   reloadAud: {fileID: 8300000, guid: e5198250a6a57408bb36e14bc4a322c4, type: 3}
   gunShotAudVol: 0.5
   currentMag: 1
-  currentAmmo: 25
+  currentAmmo: 19
