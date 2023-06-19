@@ -1038,6 +1038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Armed (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3744454383165036355, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3180,6 +3184,10 @@ PrefabInstance:
     - target: {fileID: 2872693095736369457, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_Name
       value: Scientist -Armed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744454383165036355, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
