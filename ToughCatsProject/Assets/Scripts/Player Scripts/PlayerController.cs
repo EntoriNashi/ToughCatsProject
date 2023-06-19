@@ -251,6 +251,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask)) // All layers considered
                 {
+                    Debug.Log($"Hit {hit.collider.gameObject.name}.");
                     ISleep sleepable = hit.collider.GetComponent<ISleep>();
                     if (sleepable != null)
                     {
@@ -262,6 +263,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask)) // All layers considered
                 {
+                    Debug.Log($"Hit {hit.collider.gameObject.name}.");
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
                     if (damageable != null)
                     {
