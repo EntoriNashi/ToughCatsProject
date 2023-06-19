@@ -18,10 +18,10 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     [SerializeField] GameObject sleepIndicator;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
-    private int maxHP;
-    [SerializeField] int stamina;
-    private int maxStamina;
+    [SerializeField] int maxHP;
+    private int currHP;
+    [SerializeField] int maxStamina;
+    private int currStamina;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int viewCone;
     [SerializeField] int roamDist;
@@ -36,6 +36,10 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     [Header("----- Health Bar -----")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Image healthLeft;
+
+    [Header("----- Stamina Bar -----")]
+    [SerializeField] private Slider staminaSlider;
+    [SerializeField] private Image staminaLeft;
 
     [Header("----- Enemy Weapon -----")]
     [Range(2, 300)][SerializeField] int shootDist;
@@ -86,9 +90,12 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         //numrate = 0; // <- warning
 
         // health bar setup //
-        maxHP = HP;
+        currHP = maxHP;
         healthSlider.maxValue = maxHP;
-        healthSlider.value = HP;
+        healthSlider.value = currHP;
+        currStamina = maxStamina;
+        staminaSlider.maxValue = maxStamina;
+        staminaSlider.value = currStamina;
     }
 
     // Update is called once per frame
@@ -156,7 +163,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
         yield return new WaitForSeconds(sleepTimer);
 
-        stamina = maxStamina;
+        currStamina = maxStamina;
         sleepIndicator.SetActive(false);
         animator.enabled = true;
         agent.isStopped = false;
@@ -167,14 +174,15 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
+        currHP -= dmg;
 
         // health bar update //
-        healthSlider.value = HP;
-        healthLeft.fillAmount = (float)HP / maxHP;
+        healthSlider.value = currHP;
+        healthLeft.fillAmount = (float)currHP / maxHP;
 
-        if (HP <= 0)
+        if (currHP <= 0)
         {
+            currHP = 0;
             // drop item //
             //itemDrop();
 
@@ -378,11 +386,14 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     public void ReduceStamina(int amount)
     {
-        stamina -= amount;
+        currStamina -= amount;
 
-        if (stamina <= 0 && !isAsleep)
+        staminaSlider.value = currStamina;
+        staminaLeft.fillAmount = (float)currStamina / maxStamina;
+
+        if (currStamina <= 0 && !isAsleep)
         {
-            stamina = 0;
+            currStamina = 0;
             StartCoroutine(FallAsleep());
         }
     }

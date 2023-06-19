@@ -120,8 +120,8 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   aud: {fileID: 1128057895389535003}
   sleepIndicator: {fileID: 8738323844785128876}
-  HP: 5
-  stamina: 5
+  maxHP: 5
+  maxStamina: 5
   playerFaceSpeed: 5
   viewCone: 80
   roamDist: 12
@@ -132,6 +132,8 @@ MonoBehaviour:
   ammoPickup: {fileID: 2463365199979763402, guid: 64a4c3c93a9e663408b2f88bc41b1a6a, type: 3}
   healthSlider: {fileID: 800060077}
   healthLeft: {fileID: 1360128595}
+  staminaSlider: {fileID: 8412626875270156708}
+  staminaLeft: {fileID: 145270935039368126}
   shootDist: 2
   shootRate: 0.1
   bullet: {fileID: 0}
@@ -2087,6 +2089,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8015176230333036001, guid: 1fef0b443f302364393621a45608874f, type: 3}
   m_PrefabInstance: {fileID: 8015176231232742572}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &145270935039368126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7872216787637370642, guid: 1fef0b443f302364393621a45608874f, type: 3}
+  m_PrefabInstance: {fileID: 8015176231232742572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8412626875270156708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1982718269423482120, guid: 1fef0b443f302364393621a45608874f, type: 3}
+  m_PrefabInstance: {fileID: 8015176231232742572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8738323844785128876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1621123714277335296, guid: 1fef0b443f302364393621a45608874f, type: 3}

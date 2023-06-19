@@ -290,26 +290,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
         isShooting = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //isShooting = true;
 
         //if (gunList[selectedGun].currentAmmo > 0 && !isReloading)

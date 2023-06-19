@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
 
     public void PauseTheGame()
     {
-        isPaused = !isPaused;
+        isPaused = true;
         activeMenu = pauseMenu;
-        activeMenu.SetActive(isPaused);
+        activeMenu.SetActive(true);
         SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);
 
         PauseState();
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        isPaused = !isPaused;
+        isPaused = false;
         activeMenu = null;
     }
 
