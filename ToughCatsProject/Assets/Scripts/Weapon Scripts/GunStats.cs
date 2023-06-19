@@ -19,6 +19,7 @@ public class GunStats : ScriptableObject
     public GameObject model;
     public GameObject hitEffect;
     public GameObject muzzleFlash;
+    public bool isRifle;
 
     [Header("----- Audio -----")]
     public AudioClip gunShotAud;
