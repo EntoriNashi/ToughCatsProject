@@ -57,6 +57,9 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audSteps;
     [SerializeField][Range(0, 1)] float audStepsVol;
 
+    [Header("*----- Misc -----*")]
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask enemyDetectionLayer;
 
     float crouchSpeed;
     private Vector3 move;
@@ -239,8 +242,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             RaycastHit hit;
 
-            int playerLayer = LayerMask.NameToLayer("Player");
-            int layerMask = ~(1 << playerLayer); // consider all layers except Player
+            int layerMask = ~(1 << playerLayer | 1 << enemyDetectionLayer); // consider all layers except Player
 
             GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", muzzle.position, muzzle.transform.rotation);
 
