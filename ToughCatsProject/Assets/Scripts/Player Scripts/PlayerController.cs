@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] public Vector3 gunOrigPos;
     [SerializeField] private float reloadTime;
     [SerializeField] Transform muzzle;
+    [SerializeField] Transform rifleMuzzle;
 
     [Header("*----- Grenade Attributes -----*")]
     [SerializeField] GameObject grenadePrefab;
@@ -244,10 +246,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
             int layerMask = ~(1 << playerLayer | 1 << enemyDetectionLayer); // consider all layers except Player
 
-            GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", muzzle.position, muzzle.transform.rotation);
-
-            // Move muzzle flash under the map after a delay.
-            StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
+            if (gunList[selectedGun].isRifle)
+            {
+                GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", rifleMuzzle.position, muzzle.transform.rotation);
+                StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
+            }
+            else
+            {
+                GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", muzzle.position, muzzle.transform.rotation);
+                // Move muzzle flash under the map after a delay.
+                StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
+            }
 
             if (gunList[selectedGun].isTranqGun)
             {

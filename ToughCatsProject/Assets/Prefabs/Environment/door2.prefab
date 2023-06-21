@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1331946541904269108
 Transform:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   anim: {fileID: 1331946542809623613}
   Puzzle: {fileID: 0}
   IsGoal: 0
-  IsRoomEnterence: 0
+  IsRoomEnterence: 1
   IsRoomExit: 0
   UnarmedSpawnPos: {fileID: 5036457867040813897}
   Unarmed: {fileID: 1128057895389431546, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}
@@ -520,7 +520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5036457867040813897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalPosition: {x: -6, y: 1.1, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
