@@ -443,6 +443,10 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        if (GameManager.instance.isInPuzzle || GameManager.instance.isInCinematic)
+        {
+            return;
+        }
         HP -= damage;
         aud.PlayOneShot(audDmg[Random.Range(0, audDmg.Length)], audDmgVol);
         UpdatePlayerUI();
