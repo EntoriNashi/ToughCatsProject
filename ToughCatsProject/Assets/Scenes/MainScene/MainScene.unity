@@ -1183,13 +1183,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Armed (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2872693095736369457, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3744454383165036355, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
@@ -3603,13 +3607,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scientist -Armed
       objectReference: {fileID: 0}
+    - target: {fileID: 2872693095736369457, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3744454383165036355, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8015176229845021329, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ea5bb996d152764f879d14651a84701, type: 3}
