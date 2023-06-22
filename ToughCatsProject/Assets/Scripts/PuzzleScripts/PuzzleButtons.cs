@@ -12,6 +12,8 @@ public class PuzzleButtons : MonoBehaviour
 
     public void PuzzleExit()
     {
+
+        GameManager.instance.isInPuzzle = false;
         GameManager.instance.UnpausedState();
     }
     public void PuzzleRestart()

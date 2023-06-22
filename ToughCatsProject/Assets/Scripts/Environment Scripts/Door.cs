@@ -47,6 +47,7 @@ public class Door : MonoBehaviour
         else if (other.CompareTag("Player") && IsLocked)
         {
             GameManager.instance.PuzzleActivate(attachedPuzzle);
+            GameManager.instance.isInPuzzle = true;
         }
     }
 

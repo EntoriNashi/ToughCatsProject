@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerSpawnPos;
     [HideInInspector] public bool isDead = false;
+    public bool isInPuzzle;
+    public bool isInCinematic;
 
     [Header("*----- UI Stuff -----*")]
     public GameObject activeMenu;

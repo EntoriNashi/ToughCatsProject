@@ -123,7 +123,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator roam()
     {
-        if (isAsleep || lockMovement)
+        if (isAsleep || lockMovement || GameManager.instance.isInPuzzle)
         {
             yield break;
         }
@@ -224,7 +224,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator shoot()
     {
-        if (isAsleep || GameManager.instance.isDead)
+        if (isAsleep || GameManager.instance.isDead || GameManager.instance.isInPuzzle || GameManager.instance.isInCinematic)
         {
             yield break;
         }
@@ -285,7 +285,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     bool canSeePlayer()
     {
-        if (isAsleep)
+        if (isAsleep || GameManager.instance.isInCinematic || GameManager.instance.isInPuzzle)
         {
             return false;
         }

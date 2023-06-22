@@ -109,11 +109,13 @@ public class ElevatorCinematic : MonoBehaviour
     {
         player.GetComponent<PlayerController>().enabled = false;
         player.GetComponentInChildren<CameraController>().enabled = false;
+        GameManager.instance.isInCinematic = true;
         isLevelEnding = true;
     }
     IEnumerator EndDelay()
     {
         yield return new WaitForSeconds(3);
+        GameManager.instance.isInCinematic = false;
         SceneManager.LoadScene(2);
     }
 }

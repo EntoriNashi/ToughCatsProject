@@ -169,6 +169,7 @@ public class BoardGrid : MonoBehaviour
         if (BoardSquaresFilled == TotalBoardSquares)
         {
             attachedDoor.GetComponent<Door>().IsLocked = false;
+            GameManager.instance.isInPuzzle = false;
             GameManager.instance.UnpausedState();
             attachedDoor.GetComponent<Animator>().SetBool("character_nearby", true);
             if (attachedDoor.GetComponent<Door>().IsGoal)
