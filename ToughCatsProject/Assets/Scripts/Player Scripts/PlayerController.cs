@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             RaycastHit hit;
 
-            int layerMask = ~(1 << playerLayer | 1 << enemyDetectionLayer); // consider all layers except Player
+            int layerMask = ~(1 << playerLayer | 1 << enemyDetectionLayer); // consider all layers except Player and enemyDetection
 
             if (gunList[selectedGun].isRifle)
             {

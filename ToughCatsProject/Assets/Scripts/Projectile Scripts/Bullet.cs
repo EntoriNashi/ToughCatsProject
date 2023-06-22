@@ -18,6 +18,14 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.forward * speed;
     }
 
+    //private void Update()
+    //{
+    //    if (GameManager.instance.isDead)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

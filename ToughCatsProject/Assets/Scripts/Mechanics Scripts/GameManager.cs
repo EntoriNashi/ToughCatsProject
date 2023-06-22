@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerSpawnPos;
+    [HideInInspector] public bool isDead = false;
 
     [Header("*----- UI Stuff -----*")]
     public GameObject activeMenu;
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour
 
     public void YouLose()
     {
+        isDead = false;
+        DestroyAllBullets();
         AudioManager.instance.MuteTracks();
         AudioManager.instance.PlayEndGameTrack("Lose");
         AudioManager.instance.isGameEnded = true;
@@ -164,5 +167,15 @@ public class GameManager : MonoBehaviour
     public bool GetIsPaused()
     {
         return isPaused;
+    }
+
+    public void DestroyAllBullets()
+    {
+        Bullet[] bullets = FindObjectsOfType<Bullet>();
+
+        foreach (Bullet bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
     }
 }

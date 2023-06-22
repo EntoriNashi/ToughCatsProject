@@ -164,6 +164,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         yield return new WaitForSeconds(sleepTimer);
 
         currStamina = maxStamina;
+        staminaSlider.value = currStamina;
         sleepIndicator.SetActive(false);
         animator.enabled = true;
         agent.isStopped = false;
@@ -223,7 +224,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     IEnumerator shoot()
     {
-        if (isAsleep)
+        if (isAsleep || GameManager.instance.isDead)
         {
             yield break;
         }
@@ -254,6 +255,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
 
     public void createBullet()
     {
+        if (GameManager.instance.isDead)
+        {
+            return;
+        }
+
         Vector3 playerChestPos = GameManager.instance.player.transform.position;
         // If player is crouching, adjust height
 
