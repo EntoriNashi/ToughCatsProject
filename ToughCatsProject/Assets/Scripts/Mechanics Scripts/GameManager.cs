@@ -135,6 +135,12 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.MuteTracks();
         AudioManager.instance.PlayEndGameTrack("Lose");
         AudioManager.instance.isGameEnded = true;
+        GameObject[] allPuzzle = GameObject.FindGameObjectsWithTag("Puzzle");
+        foreach (GameObject puzzle in allPuzzle)
+        {
+            puzzle.SetActive(false);
+        }
+
         activeMenu = LoseMenu;
         activeMenu.SetActive(true);
         SetPrimaryButton(activeMenu.transform.GetChild(1).gameObject);

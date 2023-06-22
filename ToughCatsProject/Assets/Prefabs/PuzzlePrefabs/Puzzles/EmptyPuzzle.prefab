@@ -1428,7 +1428,7 @@ GameObject:
   - component: {fileID: 8217615655365556886}
   m_Layer: 5
   m_Name: EmptyPuzzle
-  m_TagString: Untagged
+  m_TagString: Puzzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
