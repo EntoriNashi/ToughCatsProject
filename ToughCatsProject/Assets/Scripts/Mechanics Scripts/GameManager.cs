@@ -29,12 +29,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerMagazineSize;
     public TextMeshProUGUI playerMagazineAmount;
     public TextMeshProUGUI playerGrenadeAmount;
-    
+    public TextMeshProUGUI introText;
+
 
     [Header("*----- Other -----*")]
     public bool IsPlayerDetected;
     public GameObject unarmed;
-    [SerializeField][Range(0,10)] float WinDelay;
+    [SerializeField][Range(0, 10)] float WinDelay;
+    [SerializeField][Range(0, 10)] float introTextDisplayDuration;
+    [SerializeField][Range(0, 10)] float introTextFadeDuration;
+    [SerializeField] public float introTextTypeSpeed;
 
     int enemiesKilled;
     int totalEnemies;
@@ -52,6 +56,10 @@ public class GameManager : MonoBehaviour
         IsPlayerDetected = false;
         totalEnemies = 0;
         enemiesKilled = 0;
+
+        // intro text //
+        StartCoroutine(ShowIntroText());
+
         UpdateUI();
     }
 
@@ -164,5 +172,48 @@ public class GameManager : MonoBehaviour
     public bool GetIsPaused()
     {
         return isPaused;
+    }
+
+    IEnumerator ShowIntroText()
+    {
+        // Fade in //
+        //yield return StartCoroutine(FadeTextIn(introTextFadeDuration, introText));
+        yield return StartCoroutine(TypeText(introText));
+        // Wait //
+        yield return new WaitForSeconds(introTextDisplayDuration);
+        // Fade out //
+        yield return StartCoroutine(FadeTextOut(introTextFadeDuration, introText));
+    }
+
+    //public IEnumerator FadeTextIn(float t, TMP_Text i)
+    //{
+    //    i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+    //    while (i.color.a < 1.0f)
+    //    {
+    //        i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+    //        yield return null;
+    //    }
+    //}
+
+    public IEnumerator TypeText(TMP_Text textComponent)
+    {
+        string fullText = textComponent.text;
+        textComponent.text = "";
+
+        foreach (char c in fullText)
+        {
+            textComponent.text += c;
+            yield return new WaitForSeconds(introTextTypeSpeed);  // You can adjust this delay for faster or slower typing
+        }
+    }
+
+    public IEnumerator FadeTextOut(float t, TMP_Text i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
     }
 }
