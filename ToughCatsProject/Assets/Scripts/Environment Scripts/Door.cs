@@ -15,6 +15,7 @@ public class Door : MonoBehaviour
     public bool IsLocked { get; set; }
     GameObject currentUnarmed;
     GameObject attachedPuzzle;
+    bool hasSpawnedUnarmed;
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class Door : MonoBehaviour
         if (other.CompareTag("Player") && !IsLocked)
         {
             anim.SetBool("character_nearby", true);
-            if (IsRoomEnterence)
+            if (IsRoomEnterence && !hasSpawnedUnarmed)
             {
                 GameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
 
