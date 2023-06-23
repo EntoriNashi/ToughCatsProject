@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerMagazineAmount;
     public TextMeshProUGUI playerGrenadeAmount;
     public TextMeshProUGUI introText;
+    public TextMeshProUGUI pistolText;
+    public TextMeshProUGUI rifleText;
+
 
 
     [Header("*----- Other -----*")]
@@ -195,16 +198,7 @@ public class GameManager : MonoBehaviour
         // Fade out //
         yield return StartCoroutine(FadeTextOut(introTextFadeDuration, introText));
     }
-
-    //public IEnumerator FadeTextIn(float t, TMP_Text i)
-    //{
-    //    i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-    //    while (i.color.a < 1.0f)
-    //    {
-    //        i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-    //        yield return null;
-    //    }
-    //}
+    
 
     public IEnumerator TypeText(TMP_Text textComponent)
     {
@@ -236,5 +230,33 @@ public class GameManager : MonoBehaviour
         {
             Destroy(bullet.gameObject);
         }
+    }
+
+    public void ShowPistolText()
+    {
+        StartCoroutine(ShowAndHideWeaponText(pistolText));
+    }
+
+    public void ShowRifleText()
+    {
+        StartCoroutine(ShowAndHideWeaponText(rifleText));
+    }
+
+    IEnumerator ShowAndHideWeaponText(TMP_Text textComponent)
+    {
+        // activate the text object
+        textComponent.gameObject.SetActive(true);
+
+        // Show the text like a typewriter
+        yield return StartCoroutine(TypeText(textComponent));
+
+        // Wait for some time (you can customize this delay)
+        yield return new WaitForSeconds(3.0f);
+
+        // Fade out the text
+        yield return StartCoroutine(FadeTextOut(introTextFadeDuration, textComponent));
+
+        // Deactivate the text object
+        textComponent.gameObject.SetActive(false);
     }
 }

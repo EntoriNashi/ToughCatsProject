@@ -21,6 +21,15 @@ public class GunPickup : MonoBehaviour
         {
             GameManager.instance.playerScript.GunPickUp(gun);
 
+            if (this.gameObject.CompareTag("Pistol"))
+            {
+                GameManager.instance.ShowPistolText();
+            }
+            else if (this.gameObject.CompareTag("Rifle"))
+            {
+                GameManager.instance.ShowRifleText();
+            }
+
             Destroy(gameObject);
         }
     }
