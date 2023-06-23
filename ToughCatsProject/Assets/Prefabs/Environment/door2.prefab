@@ -394,7 +394,7 @@ MonoBehaviour:
   anim: {fileID: 1331946542809623613}
   Puzzle: {fileID: 0}
   IsGoal: 0
-  IsRoomEnterence: 1
+  IsRoomEnterence: 0
   IsRoomExit: 0
   UnarmedSpawnPos: {fileID: 5036457867040813897}
   Unarmed: {fileID: 1128057895389431546, guid: 11a57a5d11e959d4baa80faf30639b30, type: 3}

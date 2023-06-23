@@ -40,7 +40,7 @@ public class Door : MonoBehaviour
             if (IsRoomEnterence && !hasSpawnedUnarmed)
             {
                 GameManager.instance.unarmed = Instantiate(Unarmed, UnarmedSpawnPos.transform.position, UnarmedSpawnPos.transform.rotation);
-
+                hasSpawnedUnarmed = true;
             }
         }
         else if (other.CompareTag("Player") && IsLocked)
