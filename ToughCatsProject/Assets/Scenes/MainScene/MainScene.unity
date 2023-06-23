@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tranq Rifle
+  m_text: Tranq Rifle Collected
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5571,6 +5571,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de8f3b21ff34f3144af5d3c0dc52ac93, type: 3}
+--- !u!1 &1160638074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1661098195704186335, guid: f81d578e892394344a6220ecf1d20101, type: 3}
+  m_PrefabInstance: {fileID: 2123915320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1160638078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160638074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ece43c5d5076649ad15bcc95665116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  verticalSpeed: 1.5
+  height: 0.2
+  rotateX: 0
+  rotateY: 10
+  rotateZ: 0
 --- !u!1001 &1183989233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5637,6 +5660,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6276556301070489703, guid: fcb777cc2e0c3ee42afc94e60c167cb3, type: 3}
   m_PrefabInstance: {fileID: 1183989233}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1184285724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1661098195704186335, guid: d9417b73c682e884cb8ad4d66bd9ea3f, type: 3}
+  m_PrefabInstance: {fileID: 215177547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1184285728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184285724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ece43c5d5076649ad15bcc95665116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  verticalSpeed: 1.5
+  height: 0.2
+  rotateX: 0
+  rotateY: 10
+  rotateZ: 0
 --- !u!1001 &1200620837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6870,6 +6916,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de8f3b21ff34f3144af5d3c0dc52ac93, type: 3}
+--- !u!1 &1445397135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1661098195704186335, guid: ddd8e4cf288d4414894a5007c8caf0d8, type: 3}
+  m_PrefabInstance: {fileID: 1623088581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1445397139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445397135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ece43c5d5076649ad15bcc95665116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  verticalSpeed: 1.5
+  height: 0.2
+  rotateX: 0
+  rotateY: 10
+  rotateZ: 0
 --- !u!1001 &1455616479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7279,7 +7348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tranq Pistol
+  m_text: Tranq Pistol Collected
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10778,15 +10847,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988721620570017294, guid: f81d578e892394344a6220ecf1d20101, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 5988721620570017294, guid: f81d578e892394344a6220ecf1d20101, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.1
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 5988721620570017294, guid: f81d578e892394344a6220ecf1d20101, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82
+      value: 88.3
       objectReference: {fileID: 0}
     - target: {fileID: 5988721620570017294, guid: f81d578e892394344a6220ecf1d20101, type: 3}
       propertyPath: m_LocalRotation.w
