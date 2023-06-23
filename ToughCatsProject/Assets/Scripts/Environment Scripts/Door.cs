@@ -13,7 +13,6 @@ public class Door : MonoBehaviour
     [SerializeField] GameObject UnarmedSpawnPos;
     [SerializeField] GameObject Unarmed;
     public bool IsLocked { get; set; }
-    GameObject currentUnarmed;
     GameObject attachedPuzzle;
     bool hasSpawnedUnarmed;
 
@@ -58,12 +57,6 @@ public class Door : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 anim.SetBool("character_nearby", false);
-                if (IsRoomExit)
-                {
-                    currentUnarmed = GameManager.instance.unarmed;
-                    GameManager.instance.unarmed = null;
-                    Destroy(currentUnarmed);
-                }
             }
         }
     }
