@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] Vector3 Position;
     [SerializeField] Quaternion Oriantation;
     [SerializeField] float SpawnHeightAdjustment;
+    GameObject currentUnarmed;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +21,12 @@ public class Checkpoint : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            if (currentUnarmed != null)
+            {
+                currentUnarmed = GameManager.instance.unarmed;
+                GameManager.instance.unarmed = null;
+                Destroy(currentUnarmed);
+            }
             Destroy(this);
         }
     }
