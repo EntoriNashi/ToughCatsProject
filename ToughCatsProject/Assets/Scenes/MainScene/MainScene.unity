@@ -8375,6 +8375,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5673252429783159610, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673252429783159610, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5837528203777682956, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.717
@@ -8382,6 +8390,14 @@ PrefabInstance:
     - target: {fileID: 5837528203777682956, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
       propertyPath: m_LocalPosition.z
       value: -9.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820478572891702063, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820478572980219010, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6820478573218931876, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
       propertyPath: m_RootOrder
@@ -8430,6 +8446,14 @@ PrefabInstance:
     - target: {fileID: 6820478573218931877, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
       propertyPath: m_Name
       value: Barracks_ChowHall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820478573419052049, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820478573419052049, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7945475626271028133, guid: 099f8eb1aade9c34385efdd2ad837eed, type: 3}
       propertyPath: m_NavMeshLayer
