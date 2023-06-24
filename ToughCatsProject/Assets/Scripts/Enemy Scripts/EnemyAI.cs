@@ -75,14 +75,11 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
     public bool isAsleep = false;
     private bool lockMovement = false;
 
-    private void Awake()
-    {
-        AudioManager.instance.RegisterEnemy(this);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.instance.RegisterEnemy(this);
+
         colorOrig = model.material.color;
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
