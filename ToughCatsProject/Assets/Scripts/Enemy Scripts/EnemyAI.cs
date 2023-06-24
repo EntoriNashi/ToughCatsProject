@@ -333,7 +333,7 @@ public class EnemyAI : MonoBehaviour, IDamage, ISleep
         //alerting = true; <- warning
         GameManager.instance.IsPlayerDetected = true;
         gameObject.tag = "Player Alert";
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
         //alerting = false; <- warning
         GameManager.instance.IsPlayerDetected = false;
         gameObject.tag = "Unarmed";
