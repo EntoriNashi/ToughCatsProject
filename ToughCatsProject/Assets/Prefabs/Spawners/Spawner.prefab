@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3319493656836786955}
   - component: {fileID: 6822720086045278585}
   - component: {fileID: -4696755003941241836}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 1728945099798520462}
   timeBetweenSpawns: 0
   numberToSpawn: 0
-  IsUsingTriggerCollider: 1
+  IsUsingPlayerDetected: 0
 --- !u!65 &-4696755003941241836
 BoxCollider:
   m_ObjectHideFlags: 0

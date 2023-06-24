@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("*----- Misc -----*")]
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask spawnerLayer;
     [SerializeField] LayerMask enemyDetectionLayer;
 
     float crouchSpeed;
@@ -244,8 +245,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
             RaycastHit hit;
 
-            int layerMask = ~(1 << playerLayer | 1 << enemyDetectionLayer); // consider all layers except Player and enemyDetection
-
             if (gunList[selectedGun].isRifle)
             {
                 GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", rifleMuzzle.position, muzzle.transform.rotation);
@@ -258,9 +257,11 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
             }
 
+            int layerMask = ~(1 << enemyDetectionLayer.value | 1 << playerLayer.value | 1 << spawnerLayer.value);
+
             if (gunList[selectedGun].isTranqGun)
             {
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask)) // All layers considered
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask, QueryTriggerInteraction.Ignore))
                 {
                     Debug.Log($"Hit {hit.collider.gameObject.name}.");
                     ISleep sleepable = hit.collider.GetComponent<ISleep>();
@@ -272,7 +273,7 @@ public class PlayerController : MonoBehaviour, IDamage
             }
             else
             {
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask)) // All layers considered
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask, QueryTriggerInteraction.Ignore))
                 {
                     Debug.Log($"Hit {hit.collider.gameObject.name}.");
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
@@ -283,7 +284,9 @@ public class PlayerController : MonoBehaviour, IDamage
                 }
             }
 
-            bool didHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, layerMask); // All layers considered
+            int playerLayerMask = ~(1 << playerLayer);
+
+            bool didHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, playerLayerMask, QueryTriggerInteraction.Ignore);
 
             if (didHit)
             {
@@ -302,66 +305,6 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         isShooting = false;
-
-        //isShooting = true;
-
-        //if (gunList[selectedGun].currentAmmo > 0 && !isReloading)
-        //{
-        //    gunList[selectedGun].currentAmmo--;
-        //    aud.PlayOneShot(gunList[selectedGun].gunShotAud, gunList[selectedGun].gunShotAudVol);
-
-        //    RaycastHit hit;
-
-        //    int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
-        //    GameObject muzzleFlash = ObjectPooler.instance.SpawnFromPool("MuzzleFlash", muzzle.position, muzzle.transform.rotation);
-
-        //    // Move muzzle flash under the map after a delay.
-        //    StartCoroutine(MoveObjectUnderMap(muzzleFlash, 0.01f));
-
-        //    if (gunList[selectedGun].isTranqGun)
-        //    {
-        //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
-        //        {
-        //            ISleep sleepable = hit.collider.GetComponent<ISleep>();
-        //            if (sleepable != null)
-        //            {
-        //                sleepable.ReduceStamina(shootDamage);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask)) // PlayerMask
-        //        {
-        //            IDamage damageable = hit.collider.GetComponent<IDamage>();
-        //            if (damageable != null)
-        //            {
-        //                damageable.takeDamage(shootDamage);
-        //            }
-        //        }
-        //    }
-
-        //    bool didHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance, enemyLayerMask); // Store result
-
-        //    if (didHit)
-        //    {
-        //        GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", hit.point, Quaternion.LookRotation(hit.normal));
-        //        StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f)); // Move hit effect under the map after a delay.
-        //    }
-        //    else
-        //    {
-        //        GameObject hitEffect = ObjectPooler.instance.SpawnFromPool("HitEffect", new Vector3(0,-10,0), Quaternion.identity);
-
-        //        // Move hit effect under the map after a delay.
-        //        StartCoroutine(MoveObjectUnderMap(hitEffect, 0.1f));
-
-        //    }
-
-
-        //    yield return new WaitForSeconds(gunList[selectedGun].shootRate);
-        //}
-
-        //isShooting = false;
     }
 
     // Coroutine to move an object under the map and deactivate it after a delay.

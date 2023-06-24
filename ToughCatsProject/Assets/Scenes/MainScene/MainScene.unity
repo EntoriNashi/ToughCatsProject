@@ -5176,6 +5176,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0022015597
       objectReference: {fileID: 0}
+    - target: {fileID: 5191761235789316681, guid: 0ba31da52b0a90b409fd07f15fe7946d, type: 3}
+      propertyPath: audioLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191761235789316681, guid: 0ba31da52b0a90b409fd07f15fe7946d, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 5282578412703672145, guid: 0ba31da52b0a90b409fd07f15fe7946d, type: 3}
       propertyPath: m_RootOrder
       value: 8

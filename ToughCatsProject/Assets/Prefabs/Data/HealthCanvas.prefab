@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608417145931900262}
   - component: {fileID: 1982718269423482120}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: StaminaSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4543017758468050012}
   - component: {fileID: 4057454652614369770}
   - component: {fileID: 203251864435605780}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: SleepIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6663546919796369748}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 3744454382634791055}
   - component: {fileID: 7735374802243003992}
   - component: {fileID: 1732198294594164525}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 7371254571644968078}
   - component: {fileID: 8808642974451737918}
   - component: {fileID: 5492811879061941608}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8015176230251198000}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 8015176230333036014}
   - component: {fileID: 8015176230333036015}
   - component: {fileID: 8015176230333036000}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 8015176230393091421}
   - component: {fileID: 8015176230393091419}
   - component: {fileID: 8015176230393091420}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 8015176230445371133}
   - component: {fileID: 8015176230445371134}
   - component: {fileID: 8015176230445371135}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: HealthLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8015176230605673986}
   - component: {fileID: 8015176230605673985}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 8015176230974305355}
   - component: {fileID: 8015176230974305353}
   - component: {fileID: 8015176230974305354}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 3743838396013239171}
   - component: {fileID: 9209357622859770089}
   - component: {fileID: 7872216787637370642}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: StaminaLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

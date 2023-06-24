@@ -2144,6 +2144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8015176230333036002, guid: 1fef0b443f302364393621a45608874f, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8015176230393091421, guid: 1fef0b443f302364393621a45608874f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
