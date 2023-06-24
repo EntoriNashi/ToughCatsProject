@@ -1401,7 +1401,7 @@ MonoBehaviour:
   maxHP: 15
   maxStamina: 1000000
   playerFaceSpeed: 3
-  viewCone: 45
+  viewCone: 180
   roamDist: 12
   roamWaitTime: 1
   animTransSpeed: 3
