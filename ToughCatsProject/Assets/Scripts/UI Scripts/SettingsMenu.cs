@@ -18,6 +18,10 @@ public class SettingsMenu : MonoBehaviour
     {
         sliderMusic.onValueChanged.AddListener(HandleSliderMusicChanged);
         sliderSfx.onValueChanged.AddListener(HandleSliderSfxChanged);
+        sliderMusic.value = PlayerPrefs.GetFloat(volumeMusicParameter);
+        sliderSfx.value = PlayerPrefs.GetFloat(volumeSfxParameter);
+        audioMixer.SetFloat(volumeMusicParameter, Mathf.Log10(sliderMusic.value) * multiplier);
+        audioMixer.SetFloat(volumeSfxParameter, Mathf.Log10(sliderSfx.value) * multiplier);
     }
 
     private void HandleSliderMusicChanged(float value)
@@ -34,10 +38,5 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat(volumeMusicParameter, sliderMusic.value);
         PlayerPrefs.SetFloat(volumeSfxParameter, sliderSfx.value);
-    }
-
-    private void Start()
-    {
-        
     }
 }

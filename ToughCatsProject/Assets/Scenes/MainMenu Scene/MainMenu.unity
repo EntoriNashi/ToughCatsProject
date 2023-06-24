@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57af25a7e3bb4045b9927018471528f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsMenu: {fileID: 1480237632}
   audioMixer: {fileID: 0}
   volumeMusicParameter: volumeMusic
   volumeSfxParameter: volumeSfx
@@ -1338,8 +1339,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282384163
-  m_fontColor: {r: 0.13679248, g: 1, b: 0.24813056, a: 1}
+    rgba: 4292738851
+  m_fontColor: {r: 0.13679248, g: 1, b: 0.8666667, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1756,8 +1757,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282384163
-  m_fontColor: {r: 0.13679248, g: 1, b: 0.24813056, a: 1}
+    rgba: 4293000997
+  m_fontColor: {r: 0.14509805, g: 1, b: 0.88235295, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2121,7 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15294118, g: 1, b: 0.46274513, a: 0.6156863}
+  m_Color: {r: 0.12156863, g: 0.81960785, b: 0.7137255, a: 0.6156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2213,7 +2214,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282384163
+    rgba: 4293000997
   m_fontColor: {r: 0.14509805, g: 1, b: 0.882353, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3717,8 +3718,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282384163
-  m_fontColor: {r: 0.13679248, g: 1, b: 0.24813056, a: 1}
+    rgba: 4292738851
+  m_fontColor: {r: 0.13679248, g: 1, b: 0.8666667, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3836,7 +3837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15294118, g: 1, b: 0.46274513, a: 0.6156863}
+  m_Color: {r: 0.12001601, g: 0.8207547, b: 0.71245867, a: 0.6156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

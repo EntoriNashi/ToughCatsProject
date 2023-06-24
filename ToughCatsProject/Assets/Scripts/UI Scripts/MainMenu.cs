@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject settingsMenu;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] string volumeMusicParameter = "volumeMusic";
     [SerializeField] string volumeSfxParameter = "volumeSfx";
@@ -34,5 +35,12 @@ public class MainMenu : MonoBehaviour
     public void rollCredits()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void Start()
+    {
+        //this will allow the settings menu to load the volume settings at the very start
+        settingsMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 }
