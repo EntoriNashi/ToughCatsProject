@@ -24,6 +24,14 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

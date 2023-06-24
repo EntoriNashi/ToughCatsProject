@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Light Suppression Spawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7025945077527409000, guid: bb7f202cd3c4cb44f81589777a11f82d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7f202cd3c4cb44f81589777a11f82d, type: 3}
 --- !u!4 &28494051 stripped
@@ -2748,6 +2752,10 @@ PrefabInstance:
     - target: {fileID: 7725633078399177475, guid: cef14806c828b224197014beba1fdd16, type: 3}
       propertyPath: m_Name
       value: Heavy Suppression Spawner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725633078399177475, guid: cef14806c828b224197014beba1fdd16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cef14806c828b224197014beba1fdd16, type: 3}
@@ -6423,7 +6431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1252474694493883485, guid: cef14806c828b224197014beba1fdd16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.29
+      value: 22.879612
       objectReference: {fileID: 0}
     - target: {fileID: 1252474694493883485, guid: cef14806c828b224197014beba1fdd16, type: 3}
       propertyPath: m_LocalRotation.w
