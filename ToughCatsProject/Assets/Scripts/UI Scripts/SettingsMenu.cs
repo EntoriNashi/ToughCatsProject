@@ -10,8 +10,10 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] string volumeMusicParameter = "volumeMusic";
     [SerializeField] string volumeSfxParameter = "volumeSfx";
+    [SerializeField] string lookSensitivityParameter = "Look Sensitivity";
     [SerializeField] Slider sliderMusic;
     [SerializeField] Slider sliderSfx;
+    [SerializeField] Slider sliderLookSensitivity;
     [SerializeField] float multiplier = 30f;
 
     private void Awake()
